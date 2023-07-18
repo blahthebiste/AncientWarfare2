@@ -6534,7 +6534,7 @@ rule:
 plugin=vanillaBlocks
 number=3
 data:
-JSON:{blockState:{blockName:"minecraft:coal_block"}}
+JSON:{blockState:{blockName:"minecraft:obsidian"}}
 :enddata
 :endrule
 

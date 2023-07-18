@@ -21,6 +21,7 @@ import net.shadowmage.ancientwarfare.structure.template.build.StructureBB;
 import net.shadowmage.ancientwarfare.structure.tile.SpawnerSettings;
 import net.shadowmage.ancientwarfare.structure.tile.TileAdvancedSpawner;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
@@ -39,22 +40,24 @@ public class ConquerHelper {
 	}
 
 	private static void markSpawnerAndMessagePlayer(EntityPlayer player, BlockPos pos) {
-		NetworkHandler.sendToPlayer((EntityPlayerMP) player, new PacketHighlightBlock(new BlockHighlightInfo(pos, player.getEntityWorld().getTotalWorldTime() + 200)));
+		NetworkHandler.sendToPlayer((EntityPlayerMP) player, new PacketHighlightBlock(new BlockHighlightInfo(pos, player.getEntityWorld().getTotalWorldTime() + 6000)));
 		player.sendStatusMessage(new TextComponentTranslation("gui.ancientwarfarestructure.structure_spawner_present"), true);
 	}
 
 	private static void markNpcAndMessagePlayer(EntityPlayer player, NpcFaction npc) {
-		npc.addPotionEffect(new PotionEffect(MobEffects.GLOWING, 200));
+		npc.addPotionEffect(new PotionEffect(MobEffects.GLOWING, 6000));
 		player.sendStatusMessage(new TextComponentTranslation("gui.ancientwarfarestructure.structure_hostile_alive",
 				TextUtils.getSimpleBlockPosString(npc.getPosition())), true);
 	}
 
 	private static boolean checkBBConquered(World world, StructureBB bb, Consumer<NpcFaction> onHostileNpcFound, Consumer<BlockPos> onHostileSpawnerFound) {
 		AxisAlignedBB boundingBox = bb.getAABB();
+		ArrayList<NpcFaction> remainingEnemies = new ArrayList<>();
+		ArrayList<BlockPos> remainingEnemyBlocks = new ArrayList<>();
 		for (NpcFaction factionNpc : world.getEntitiesWithinAABB(NpcFaction.class, boundingBox)) {
 			if (!factionNpc.isPassive()) {
 				onHostileNpcFound.accept(factionNpc);
-				return false;
+				remainingEnemies.add(factionNpc);
 			}
 		}
 
@@ -65,10 +68,26 @@ public class ConquerHelper {
 			if (world.getBlockState(blockPos).getBlock() == AWStructureBlocks.ADVANCED_SPAWNER &&
 					WorldTools.getTile(world, blockPos, TileAdvancedSpawner.class).map(te -> SpawnerSettings.spawnsHostileNpcs(te.getSettings())).orElse(false)) {
 				onHostileSpawnerFound.accept(blockPos);
-				return false;
+				remainingEnemyBlocks.add(blockPos);
 			}
 		}
-		return true;
+
+		// If there are 5 or more enemies alive, structure cannot be claimed. Elites count as 2, bosses count as 10
+		if(remainingEnemies.size() + remainingEnemyBlocks.size() >= 5) {
+			return false;
+		}
+		else {
+			// Despawn all remaining enemies
+			for (NpcFaction factionNpc : remainingEnemies) {
+				factionNpc.setDropItemsWhenDead(false);
+				factionNpc.setDead();
+			}
+			// Turn spawners to air
+			for (BlockPos blockPos : remainingEnemyBlocks) {
+				world.setBlockToAir(blockPos);
+			}
+			return true;
+		}
 	}
 
 	public static boolean checkBBNotConquered(World world, StructureBB bb) {

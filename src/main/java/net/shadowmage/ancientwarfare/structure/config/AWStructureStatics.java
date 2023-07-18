@@ -821,6 +821,8 @@ public class AWStructureStatics extends ModConfiguration {
 				"primitivemobs:primitive_tnt_primed",
 				"primitivemobs:spider_egg",
 				"primitivemobs:thrown_block",
+				"pvj:pvj_beach_starfish",
+				"pvj:pvj_clam",
 				"roots:auspicious_point",
 				"roots:barrow",
 				"roots:blink_projectile",
@@ -958,8 +960,15 @@ public class AWStructureStatics extends ModConfiguration {
 	}
 
 	public static boolean isValidTargetBlock(IBlockState state) {
-		//noinspection ConstantConditions
-		return isValidTargetMaterial(state.getMaterial()) || worldGenTargetBlocks.contains(state.getBlock().getRegistryName().toString());
+		try {
+			//noinspection ConstantConditions
+			return isValidTargetMaterial(state.getMaterial()) || worldGenTargetBlocks.contains(state.getBlock().getRegistryName().toString());
+		}
+		catch (NullPointerException e) {
+			// Error handling
+			System.out.println("AWStructure isValidTargetBlock: " + e);
+			return false;
+		}
 	}
 
 	public static boolean isValidTargetMaterial(Material material) {
@@ -968,8 +977,15 @@ public class AWStructureStatics extends ModConfiguration {
 	}
 
 	public static boolean isSkippable(IBlockState state) {
-		//noinspection ConstantConditions
-		return isSkippableMaterial(state.getMaterial()) || skippableWorldGenBlocks.contains(state.getBlock().getRegistryName().toString());
+		try {
+			//noinspection ConstantConditions
+			return isSkippableMaterial(state.getMaterial()) || skippableWorldGenBlocks.contains(state.getBlock().getRegistryName().toString());
+		}
+		catch (NullPointerException e) {
+			// Error handling
+			System.out.println("AWStructure isSkippable: " + e);
+			return false;
+		}
 	}
 
 	public static boolean isSkippableMaterial(Material material) {

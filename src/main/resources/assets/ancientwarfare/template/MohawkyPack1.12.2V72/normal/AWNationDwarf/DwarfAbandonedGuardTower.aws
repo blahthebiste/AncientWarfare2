@@ -27,7 +27,7 @@ dimensionWhiteList=true
 dimensionList=0
 biomeGroupList=
 biomeWhiteList=true
-biomeList=nt:stone_mountains,redwoods:alpine,minecraft:mutated_extreme_hills,explorercraft:snowdonia,minecraft:extreme_hills,minecraft:ice_mountains,traverse:cliffs,minecraft:smaller_extreme_hills,nt:mountains
+biomeList=nt:stone_mountains,redwoods:alpine,minecraft:mutated_extreme_hills,explorercraft:snowdonia,minecraft:extreme_hills,minecraft:ice_mountains,traverse:cliffs,minecraft:smaller_extreme_hills,nt:mountains,biomesoplenty:mountain,biomesoplenty:mountain_foothills
 leveling=60
 fill=60
 border=10
@@ -2448,7 +2448,7 @@ rule:
 plugin=vanillaSign
 number=92
 data:
-JSON:{signContents0:"?????... ??????...§r§r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"west"}},signContents2:"??? ? ??? ????§r§r",signContents1:"?? ?????? ??????§r§r",signContents3:"=)§r§r",rotation:0}
+JSON:{signContents0:"?????... ??????...ï¿½rï¿½r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"west"}},signContents2:"??? ? ??? ????ï¿½rï¿½r",signContents1:"?? ?????? ??????ï¿½rï¿½r",signContents3:"=)ï¿½rï¿½r",rotation:0}
 :enddata
 :endrule
 

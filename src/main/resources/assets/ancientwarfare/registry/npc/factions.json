@@ -71,11 +71,11 @@
             "name": "empire",
             "color": "800080",
             "standing_settings": {
-                "player_default_standing": -1000,
+                "player_default_standing": 0,
                 "standing_can_change": false,
                 "standing_changes": {
                     "kill": -10,
-                    "trade": 0
+                    "trade": 2
                 }
             },
             "hostile_towards_factions": {
@@ -139,11 +139,11 @@
             "name": "norska",
             "color": "9999FF",
             "standing_settings": {
-                "player_default_standing": -1000,
+                "player_default_standing": 0,
                 "standing_can_change": false,
                 "standing_changes": {
                     "kill": -100,
-                    "trade": 0
+                    "trade": 2
                 }
             },
             "hostile_towards_factions": {
@@ -196,11 +196,11 @@
             "name": "sarkonid",
             "color": "b20000",
             "standing_settings": {
-                "player_default_standing": -1000,
+                "player_default_standing": 0,
                 "standing_can_change": false,
                 "standing_changes": {
                     "kill": -100,
-                    "trade": 0
+                    "trade": 2
                 }
             },
             "hostile_towards_factions": {
@@ -452,11 +452,11 @@
             "name": "buffloka",
             "color": "008000",
             "standing_settings": {
-                "player_default_standing": -1000,
+                "player_default_standing": 0,
                 "standing_can_change": false,
                 "standing_changes": {
                     "kill": -100,
-                    "trade": 0
+                    "trade": 1
                 }
             },
             "hostile_towards_factions": {
@@ -689,8 +689,8 @@
                 "player_default_standing": -1000,
                 "standing_can_change": false,
                 "standing_changes": {
-                    "kill": -100,
-                    "trade": 0
+                    "kill": 1,
+                    "trade": 1
                 }
             },
             "hostile_towards_factions": {

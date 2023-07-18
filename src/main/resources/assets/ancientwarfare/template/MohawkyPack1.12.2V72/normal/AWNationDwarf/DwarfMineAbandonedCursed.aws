@@ -27,7 +27,7 @@ dimensionWhiteList=true
 dimensionList=0
 biomeGroupList=
 biomeWhiteList=true
-biomeList=nt:stone_mountains,redwoods:alpine,minecraft:mutated_extreme_hills,explorercraft:snowdonia,minecraft:extreme_hills,minecraft:ice_mountains,traverse:cliffs,minecraft:smaller_extreme_hills,nt:mountains
+biomeList=nt:stone_mountains,redwoods:alpine,minecraft:mutated_extreme_hills,explorercraft:snowdonia,minecraft:extreme_hills,minecraft:ice_mountains,traverse:cliffs,minecraft:smaller_extreme_hills,nt:mountains,biomesoplenty:mountain,biomesoplenty:mountain_foothills
 leveling=60
 fill=60
 border=10
@@ -1671,7 +1671,7 @@ rule:
 plugin=vanillaSign
 number=102
 data:
-JSON:{signContents0:"Witch§r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"to unending§r",signContents1:"Grannysox§r",signContents3:"undeath!§r",rotation:0}
+JSON:{signContents0:"Witchï¿½r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"to unendingï¿½r",signContents1:"Grannysoxï¿½r",signContents3:"undeath!ï¿½r",rotation:0}
 :enddata
 :endrule
 
@@ -1727,7 +1727,7 @@ rule:
 plugin=vanillaSign
 number=109
 data:
-JSON:{signContents0:"This Dwarf§r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"cursed§r",signContents1:"mine was§r",signContents3:"by the§r",rotation:0}
+JSON:{signContents0:"This Dwarfï¿½r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"cursedï¿½r",signContents1:"mine wasï¿½r",signContents3:"by theï¿½r",rotation:0}
 :enddata
 :endrule
 
@@ -1743,7 +1743,7 @@ rule:
 plugin=vanillaSign
 number=111
 data:
-JSON:{signContents0:"Flee§r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"",signContents1:"Fools!§r",signContents3:"",rotation:0}
+JSON:{signContents0:"Fleeï¿½r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"",signContents1:"Fools!ï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 

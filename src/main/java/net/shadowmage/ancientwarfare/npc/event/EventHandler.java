@@ -140,25 +140,27 @@ public class EventHandler {
 		if (!player.capabilities.isCreativeMode && isLockedContainer(world, pos)) {
 			AWGameData.INSTANCE.getPerWorldData(world, StructureMap.class).getStructureAt(world, pos).ifPresent(structure -> {
 				Optional<TileProtectionFlag> tile = WorldTools.getTile(world, structure.getProtectionFlagPos(), TileProtectionFlag.class);
-				if (tile.isPresent() && tile.get().shouldProtectAgainst(player)) {
-					evt.setCanceled(true);
-					evt.setCancellationResult(EnumActionResult.FAIL);
-					if (world.isRemote) {
-						player.sendStatusMessage(new TextComponentTranslation("gui.ancientwarfarenpc.no_chest_access_flag_not_claimed"), true);
-					}
-				} else {
-					for (NpcFaction factionNpc : world.getEntitiesWithinAABB(NpcFaction.class, structure.getBB().getAABB())) {
-						if (!factionNpc.isPassive()) {
-							evt.setCanceled(true);
-							evt.setCancellationResult(EnumActionResult.FAIL);
-							factionNpc.addPotionEffect(new PotionEffect(MobEffects.GLOWING, 200));
-							if (world.isRemote) {
-								player.sendStatusMessage(new TextComponentTranslation("gui.ancientwarfarenpc.no_chest_access",
-										StringUtils.capitalize(factionNpc.getFaction())), true);
-							}
-							return;
+				// Skip the flag protection. Always let the player loot chests if no one is around to see it
+//				if (tile.isPresent() && tile.get().shouldProtectAgainst(player)) {
+//					evt.setCanceled(true);
+//					evt.setCancellationResult(EnumActionResult.FAIL);
+//					if (world.isRemote) {
+//						player.sendStatusMessage(new TextComponentTranslation("gui.ancientwarfarenpc.no_chest_access_flag_not_claimed"), true);
+//					}
+//				} else {
+				for (NpcFaction factionNpc : world.getEntitiesWithinAABB(NpcFaction.class, structure.getBB().getAABB())) {
+					// If none of the entities can see the player, simply let them open the chest.
+					if (player.canEntityBeSeen(factionNpc)) {
+						evt.setCanceled(true);
+						evt.setCancellationResult(EnumActionResult.FAIL);
+						factionNpc.addPotionEffect(new PotionEffect(MobEffects.GLOWING, 6000));
+						if (world.isRemote) {
+							player.sendStatusMessage(new TextComponentTranslation("gui.ancientwarfarenpc.no_chest_access",
+									StringUtils.capitalize(factionNpc.getFaction())), true);
 						}
+						return;
 					}
+//					}
 				}
 			});
 		}

@@ -17,7 +17,6 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-        classpath "com.wynprice.cursemaven:CurseMaven:2.1.1"
     }
 }
 
@@ -38,8 +37,8 @@ repositories {
         url = "http://maven.covers1624.net"
     }
     maven {
-        name "LatvianModder Ivy"
-        url = "https://maven.latmod.com/"
+        name "Curse Maven"
+        url = "https://cursemaven.com"
     }
     maven { 
         url "http://dvs1.progwml6.com/files/maven" 
@@ -69,10 +68,10 @@ dependencies {
     deobfCompile "cofh:RedstoneFlux:${rf_version}:universal"
     deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
     deobfCompile "codechicken:CodeChickenLib:${ccl_version}:deobf"
-    deobfCompile "com.feed_the_beast.mods:FTBLib:${ftblib_version}"
-    compile "curse.maven:ElectroblobsWizardry:${eb_cf_fileid}"
-    compile "curse.maven:infinitylib:${infinitylib_cf_fileid}"
-    compile "curse.maven:agricraft:${agricraft_cf_fileid}"
+    deobfCompile "curse.maven:FTBLib-237167:2832410"
+    compile "curse.maven:ElectroblobsWizardry-265642:4284076"
+    compile "curse.maven:infinitylib-251396:3317119"
+    compile "curse.maven:agricraft-225635:3317747"
 }
 
 buildConfig {

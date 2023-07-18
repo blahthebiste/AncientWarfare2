@@ -65,7 +65,7 @@
                 },
 				{
                     "type": "item",
-                    "name": "zawa:crocodile_leather",
+                    "name": "zawa:reptile_hide",
                     "weight": 1,
                     "functions": [
                         {
