@@ -20,6 +20,7 @@ import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -32,6 +33,7 @@ import net.shadowmage.ancientwarfare.core.util.NBTHelper;
 import net.shadowmage.ancientwarfare.npc.ai.AIHelper;
 import net.shadowmage.ancientwarfare.npc.ai.faction.NpcAIFactionFleeSun;
 import net.shadowmage.ancientwarfare.npc.ai.faction.NpcAIFactionRestrictSun;
+import net.shadowmage.ancientwarfare.npc.dialogue.NPCDialogue;
 import net.shadowmage.ancientwarfare.npc.config.AWNPCStatics;
 import net.shadowmage.ancientwarfare.npc.entity.NpcBase;
 import net.shadowmage.ancientwarfare.npc.entity.NpcPlayerOwned;
@@ -39,6 +41,7 @@ import net.shadowmage.ancientwarfare.npc.entity.faction.attributes.AdditionalAtt
 import net.shadowmage.ancientwarfare.npc.entity.faction.attributes.IAdditionalAttribute;
 import net.shadowmage.ancientwarfare.npc.faction.FactionTracker;
 import net.shadowmage.ancientwarfare.npc.init.AWNPCSounds;
+import net.shadowmage.ancientwarfare.npc.item.ItemCommandBaton;
 import net.shadowmage.ancientwarfare.npc.registry.FactionNpcDefault;
 import net.shadowmage.ancientwarfare.npc.registry.FactionRegistry;
 import net.shadowmage.ancientwarfare.npc.registry.NpcDefaultsRegistry;
@@ -451,5 +454,18 @@ public abstract class NpcFaction extends NpcBase {
 
 	public float getWidthModifier() {
 		return width / 0.6f;
+	}
+
+	@Override
+	protected boolean processInteract(EntityPlayer player, EnumHand hand) {
+		boolean baton = !player.getHeldItem(hand).isEmpty() && player.getHeldItem(hand).getItem() instanceof ItemCommandBaton;
+		if (!baton && isEntityAlive()) {
+			if (!player.world.isRemote) {
+				// Say something to the player who right-clicked, pass in the NPC object containing important data
+				NPCDialogue.speakToPlayer(player, this);
+			}
+			return true;
+		}
+		return false;
 	}
 }

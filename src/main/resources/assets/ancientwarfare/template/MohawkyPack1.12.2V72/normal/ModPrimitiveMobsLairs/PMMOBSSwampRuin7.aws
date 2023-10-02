@@ -6,7 +6,7 @@
 header:
 version=2.10
 name=PMMOBSSwampRuin7
-mods=
+mods=primitivemobs
 size=14,15,14
 offset=6,2,13
 :endheader

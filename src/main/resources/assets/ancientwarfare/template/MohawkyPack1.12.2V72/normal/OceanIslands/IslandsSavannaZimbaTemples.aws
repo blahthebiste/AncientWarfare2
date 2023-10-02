@@ -26,7 +26,7 @@ dimensionWhiteList=true
 dimensionList=0
 biomeGroupList=
 biomeWhiteList=true
-biomeList=biomesoplenty:kelp_forest,biomesoplenty:coral_reef,minecraft:ocean,minecraft:deep_ocean
+biomeList=biomesoplenty:kelp_forest,biomesoplenty:coral_reef,climaticbiomesjbg:coastal_waters,minecraft:ocean,minecraft:deep_ocean
 leveling=0
 fill=0
 border=0
@@ -17321,7 +17321,7 @@ rule:
 plugin=vanillaSign
 number=200
 data:
-JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"north"}},signContents2:"",signContents1:"OFF/ON§r",signContents3:"",rotation:0}
+JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"north"}},signContents2:"",signContents1:"OFF/ONï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 

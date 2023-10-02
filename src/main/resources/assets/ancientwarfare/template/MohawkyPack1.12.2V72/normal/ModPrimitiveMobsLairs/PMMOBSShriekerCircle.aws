@@ -6,7 +6,7 @@
 header:
 version=2.11
 name=PMMOBSShriekerCircle
-mods=
+mods=primitivemobs
 size=12,9,13
 offset=6,3,12
 :endheader

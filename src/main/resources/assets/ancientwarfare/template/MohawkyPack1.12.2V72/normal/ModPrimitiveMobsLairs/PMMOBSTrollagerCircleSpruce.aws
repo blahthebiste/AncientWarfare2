@@ -6,7 +6,7 @@
 header:
 version=2.11
 name=PMMOBSTrollagerCircleSpruce
-mods=
+mods=primitivemobs
 size=67,22,60
 offset=34,10,59
 :endheader

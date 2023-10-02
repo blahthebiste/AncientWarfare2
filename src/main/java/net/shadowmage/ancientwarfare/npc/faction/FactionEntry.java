@@ -1,5 +1,6 @@
 package net.shadowmage.ancientwarfare.npc.faction;
 
+import net.minecraft.command.WrongUsageException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
@@ -45,6 +46,9 @@ public class FactionEntry implements Iterable<Map.Entry<String, Integer>> {
 	public void adjustStandingFor(String factionName, int adjustment) {
 		if (factionStandings.containsKey(factionName)) {
 			setStandingFor(factionName, getStandingFor(factionName) + adjustment);
+		}
+		else {
+			System.out.println("Invalid Faction name!");
 		}
 	}
 

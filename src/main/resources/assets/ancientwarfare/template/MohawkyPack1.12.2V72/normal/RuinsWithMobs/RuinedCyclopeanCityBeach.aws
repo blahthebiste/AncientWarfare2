@@ -6,7 +6,7 @@
 header:
 version=2.10
 name=RuinedCyclopeanCityBeach
-mods=
+mods=primitivemobs
 size=172,59,163
 offset=64,27,162
 :endheader

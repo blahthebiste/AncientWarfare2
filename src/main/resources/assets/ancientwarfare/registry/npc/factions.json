@@ -140,7 +140,7 @@
             "color": "9999FF",
             "standing_settings": {
                 "player_default_standing": 0,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 2
@@ -197,7 +197,7 @@
             "color": "b20000",
             "standing_settings": {
                 "player_default_standing": 0,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 2
@@ -254,7 +254,7 @@
             "color": "ffa500",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -316,7 +316,7 @@
             "color": "ffffff",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -10,
                     "trade": 0
@@ -453,7 +453,7 @@
             "color": "008000",
             "standing_settings": {
                 "player_default_standing": 0,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 1
@@ -566,11 +566,11 @@
             "name": "zimba",
             "color": "ffff00",
             "standing_settings": {
-                "player_default_standing": -1000,
-                "standing_can_change": false,
+                "player_default_standing": 0,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
-                    "trade": 0
+                    "trade": 2
                 }
             },
             "hostile_towards_factions": {
@@ -624,7 +624,7 @@
             "color": "004000",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -687,7 +687,7 @@
             "color": "404040",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": 1,
                     "trade": 1
@@ -811,7 +811,7 @@
             "color": "cc7722",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -1093,7 +1093,7 @@
             "color": "ff2400",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -1168,7 +1168,7 @@
             "color": "000000",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -1288,7 +1288,7 @@
             "color": "802B00",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -1459,7 +1459,7 @@
             "color": "FFD700",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -1521,7 +1521,7 @@
             "color": "576500",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -1583,7 +1583,7 @@
             "color": "777500",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -1702,7 +1702,7 @@
             "color": "d7bf00",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -1826,7 +1826,7 @@
             "color": "fed000",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -1888,7 +1888,7 @@
             "color": "3c9f9c",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -2121,7 +2121,7 @@
             "color": "456689",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -2592,7 +2592,7 @@
             "color": "FFC0CB",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -2654,7 +2654,7 @@
             "color": "320000",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -2716,7 +2716,7 @@
             "color": "FFC0CB",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0

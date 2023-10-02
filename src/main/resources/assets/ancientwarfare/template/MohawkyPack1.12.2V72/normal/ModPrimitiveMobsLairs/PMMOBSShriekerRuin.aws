@@ -6,7 +6,7 @@
 header:
 version=2.10
 name=PMMOBSShriekerRuin
-mods=
+mods=primitivemobs
 size=58,24,26
 offset=57,5,12
 :endheader
