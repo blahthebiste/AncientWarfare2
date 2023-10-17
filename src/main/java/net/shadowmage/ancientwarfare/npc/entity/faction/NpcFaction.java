@@ -72,6 +72,7 @@ public abstract class NpcFaction extends NpcBase {
 
 	protected String factionName;
 	private Map<String, Long> revengePlayers = new HashMap<>();
+	public double dialogueSeed;
 
 	public NpcFaction(World world) {
 		super(world);
@@ -88,6 +89,8 @@ public abstract class NpcFaction extends NpcBase {
 	protected void entityInit() {
 		super.entityInit();
 		dataManager.register(SOUND, "none");
+		// Get a random seeded number for dialogue.
+		this.dialogueSeed = Math.random();
 	}
 
 	private final Map<IAdditionalAttribute<?>, Object> additionalAttributes = new HashMap<>();
@@ -458,6 +461,10 @@ public abstract class NpcFaction extends NpcBase {
 
 	@Override
 	protected boolean processInteract(EntityPlayer player, EnumHand hand) {
+		// Allow creative mode players to still access GUIs for NPC setup.
+		if(player.capabilities.isCreativeMode) {
+			return super.processInteract(player, hand);
+		}
 		boolean baton = !player.getHeldItem(hand).isEmpty() && player.getHeldItem(hand).getItem() instanceof ItemCommandBaton;
 		if (!baton && isEntityAlive()) {
 			if (!player.world.isRemote) {

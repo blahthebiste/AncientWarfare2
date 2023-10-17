@@ -1,0 +1,497 @@
+{
+  "amazon": {
+    "friendly": [
+      "Snoo-snoo? Never heard of it.",
+      "If you are looking to trade, speak with my sister.",
+      "We don't take kindly to outsiders.",
+      "We don't normally trade with outsiders."
+    ],
+    "hostile": [
+      "Halt, trespasser!"
+    ]
+  },
+  "barbarian": {
+    "friendly": [
+      "Got any meat?",
+      "I wanted to multi-class as a wizard, but my DM wouldn't let me...",
+      "Unga bunga, my dude!",
+      "You don't look so tough.",
+      "What are you lookin' at?"
+    ],
+    "hostile": [
+      "I'll CRUSH you!"
+    ]
+  },
+  "beast": {
+    "friendly": [
+      "*Pant pant*",
+      "Whines",
+      "*Looks at you, clearly craving the validation of being called a 'good boy'.*",
+      "*Low growl*",
+      "*Growls at you*",
+      "*Drools*"
+    ],
+    "hostile": [
+      "*You can see the ferocity burning in its eyes.*"
+    ]
+  },
+  "brigand": {
+    "friendly": [
+      "Hand over yer valuables! Hah, just kidding.",
+      "We own these roads!",
+      "That last guy had some good loot on him.",
+      "Come, have a seat by the fire!",
+      "You don't look so tough.",
+      "What are you lookin' at?"
+    ],
+    "hostile": [
+      "Hand over yer valuables!"
+    ]
+  },
+  "buffloka": {
+    "friendly": [
+      "Friends of the Empire are not welcome here.",
+      "Come, have a seat by the fire!",
+      "The totem is not a landmark. It guards our people, with many powerful spirits.",
+      "The bison's meat feeds us; their fur keeps us warm. We would not survive without them for long.",
+      "Why do you cover your feet? Do they not yearn for the touch of the grass?",
+      "I once saw a little man, with furry feet! But no one believes me...",
+      "My grandmother was a Zimba shaman. I wonder if I can summon lions?",
+      "Will you be staying the night?",
+      "When you find the horse who your spirit bonds with, you will know. It is a feeling like no other.",
+      "You look hungry, traveler.",
+      "Each one of us has our place in nature. Even you, traveler."
+    ],
+    "hostile": [
+      "Have you no honor?!"
+    ]
+  },
+  "coven": {
+    "friendly": [
+      "Hello there, my pretty!",
+      "Well well, don't you look delicious!",
+      "Now, where did I put my stirring spoon..."
+    ],
+    "hostile": [
+      "You'll make a fine stew!"
+    ]
+  },
+  "demon": {
+    "friendly": [
+      "So, what are you doing tonight?",
+      "The boss wouldn't like me talking to a mortal...",
+      "Why would I ever go back to the Nether? The weather is much nicer up here."
+    ],
+    "hostile": [
+      "We will trap your soul in the Nether for eternity!"
+    ]
+  },
+  "dwarf": {
+    "friendly": [
+      "Diggy diggy hole...",
+      "That's a fine pickaxe ye got there!",
+      "Rock and stone, brothers!"
+    ],
+    "hostile": [
+      "Ye'll pay fer that!"
+    ]
+  },
+  "elf": {
+    "friendly": [
+      "The Ominous Woods is no place for a mortal like you.",
+      "Please, be kind to the trees.",
+      "Last time I lost a fight, you probably weren't even born yet."
+    ],
+    "hostile": [
+      "You will regret that!"
+    ]
+  },
+  "empire": {
+    "friendly": [
+      "The Empire only wishes to share its prosperity! Why do so many resist?",
+      "You're not a witch, are you?",
+      "Those Nogg folk are nice enough, but I prefer 'em away from our cities.",
+      "Greetings, traveler.",
+      "No funny business, understand?",
+      "Don't tell anyone, but I think the Emperor isn't even real!",
+      "We've got plenty of food to share... if you can pay for it.",
+      "The Empire's armies fear no man. But that chicken god... It scares us.",
+      "Keep a sharp eye out on the seas. Pirates have been raiding our ships recently.",
+      "I've got my eye on you, stranger.",
+      "Hi there!",
+      "There is a legend of a great warrior, who defeated hundreds of orcs in battle. Instead of hating him, the orcs treated him as an equal. He was the only human to ever walk among them peacefully."
+    ],
+    "hostile": [
+      "If you're not with us, you're against us!"
+    ]
+  },
+  "ent": {
+    "friendly": [
+      "*Tree noises*"
+    ],
+    "hostile": [
+      "*Angry tree noises*"
+    ]
+  },
+  "evil": {
+    "friendly": [
+      "Come to the dark side! We have cookies!",
+      "Darkest greetings, mortal.",
+      "Want to help plan the apocalypse?"
+    ],
+    "hostile": [
+      "Die, mortal!"
+    ]
+  },
+  "giant": {
+    "friendly": [
+      "Eek! A gnome!",
+      "Say, are your bones... gluten free?",
+      "Fee, fi, fo, fum...",
+      "What are you lookin' at?"
+    ],
+    "hostile": [
+      "FEE, FI, FO, FUM!"
+    ]
+  },
+  "gnome": {
+    "friendly": [
+      "Eek! A giant!",
+      "Huh? Giants are scared of us? Well, we do sneak up on 'em...",
+      "Shmebulock!"
+    ],
+    "hostile": [
+      "Begone, tall one!"
+    ]
+  },
+  "good": {
+    "friendly": [
+      "You are safe here with us.",
+      "We could use an adventurer like you.",
+      "Evil could be around every corner...",
+      "Light's blessings upon you!"
+    ],
+    "hostile": [
+      "You'll take nary another step, fiend!"
+    ]
+  },
+  "gremlin": {
+    "friendly": [
+      "Klee-hee!"
+    ],
+    "hostile": [
+      "KLEE-HEE!"
+    ]
+  },
+  "guild": {
+    "friendly": [
+      "Ah, I see you are an aspiring adventurer!",
+      "For the right price, our mercenaries will fight your wars for you!",
+      "We put our soldiers through rigorous training, so that they can handle whatever our customers throw at them!"
+    ],
+    "hostile": [
+      "Only a fool makes an enemy of the Guild!"
+    ]
+  },
+  "hobbit": {
+    "friendly": [
+      "I ne'er shoulda left the shire...",
+      "Is it time for second-breakfast already?",
+      "The Empire? We don't discuss such matters here."
+    ],
+    "hostile": [
+      "You leave us alone, y'hear?"
+    ]
+  },
+  "icelord": {
+    "friendly": [
+      "Winter is coming...",
+      "We're under orders to leave you alive... How many babies did you bribe the Night King with?",
+      "I'd rather be guarding a Mausoleum. Those guys just get to sit around all day!"
+    ],
+    "hostile": [
+      "Give up, mortal!"
+    ]
+  },
+  "ishtari": {
+    "friendly": [
+      "Let the dead rest!",
+      "For a thousand years, I have waited...",
+      "You should know not to meddle with the dead."
+    ],
+    "hostile": [
+      "You'll never leave this tomb alive!"
+    ]
+  },
+  "klown": {
+    "friendly": [
+      "Honk honk!",
+      "HOOOONK!",
+      "*Mournful honk*"
+    ],
+    "hostile": [
+      "HONK!"
+    ]
+  },
+  "kong": {
+    "friendly": [
+      "Bonifnif...",
+      "Pelala!",
+      "Bal liki liki!"
+    ],
+    "hostile": [
+      "Uzshatuf!"
+    ]
+  },
+  "lizardmen": {
+    "friendly": [
+      "Watch yourssself.",
+      "Ssstay away from our brood-mother, human!",
+      "I bet you tassste better than ssspidersss..."
+    ],
+    "hostile": [
+      "Can't wait to tassste your flesssh!"
+    ]
+  },
+  "mindflayer": {
+    "friendly": [
+      "Flayed any good minds lately?"
+    ],
+    "hostile": [
+      "Let us see what is inside that head of yours!"
+    ]
+  },
+  "minossian": {
+    "friendly": [
+      "You are on sacred ground. Watch yourself.",
+      "We were here long before you, and we will remain long after you are dust.",
+      "Slaying the weak does not make you strong.",
+      "We don't normally trade with outsiders.",
+      "You don't look so tough.",
+      "What are you lookin' at?"
+    ],
+    "hostile": [
+      "Flee, coward!"
+    ]
+  },
+  "monster": {
+    "friendly": [
+      "*Stares intently at you*",
+      "*Low growl*",
+      "*Growls at you*",
+      "*Drools*"
+    ],
+    "hostile": [
+      "ROOOAAARRR!!!"
+    ]
+  },
+  "nogg": {
+    "friendly": [
+      "It's not much, but it's honest work.",
+      "Empire folk don't like us much, though we always pay our tithes.",
+      "You are always welcome here!",
+      "We've had a strong harvest this year.",
+      "Come, have a seat by the fire!",
+      "We are always accommodating to travelers like yourself. Feel free to stay a while!",
+      "What could be more majestic than the simple goose!",
+      "Hey, we could use a few extra hands around here!",
+      "They say that the reason the Smingol raid settlements so far from home is that their Khan is searching for something. A one-of-a-kind artifact, perhaps?",
+      "Sorry, I'm busy at the moment!",
+      "I'd love to travel, but these animals won't feed themselves."
+    ],
+    "hostile": [
+      "Leave my family alone!"
+    ]
+  },
+  "norska": {
+    "friendly": [
+      "Come on in, out of the cold!",
+      "Who do you think would win in a fight? Me, or a bear? ...I'm betting on me.",
+      "Only the bravest warriors choose to live here, amongst the bitter cold and undead.",
+      "My grandpa once saw a dragon, with his own eyes!",
+      "I DARE a goose to fight me, just so I could show it who's boss!",
+      "Those weaklings from The Empire wouldn't last a night up here.",
+      "Those Nogg folk are far too friendly. I bet none of 'em have ever made it to Valhalla.",
+      "Most of us are not skilled in magic, but those Witchbane are such a worthy foe that we seek them out nonetheless.",
+      "Nothing like some roasted venison with a side of mead, am I right, traveler?",
+      "To die in battle is the highest honor.",
+      "You don't look so tough.",
+      "What are you lookin' at?",
+      "May Odin smile upon you!"
+    ],
+    "hostile": [
+      "Face me, and die in honor!"
+    ]
+  },
+  "orc": {
+    "friendly": [
+      "What should I have for supper... elf, or hobbit?",
+      "I smell the blood of my brothers on you... You are worthy.",
+      "Bring on the next battle!",
+      "To die in battle is the highest honor.",
+      "You don't look so tough.",
+      "What are you lookin' at?"
+    ],
+    "hostile": [
+      "RRRUUUUUURGH!!!"
+    ]
+  },
+  "pirate": {
+    "friendly": [
+      "Ahoy, matey!",
+      "Drink up, me hearties!",
+      "Ye lookin' to join my crew?"
+    ],
+    "hostile": [
+      "'Ello, poppet!"
+    ]
+  },
+  "rakshasa": {
+    "friendly": [
+      "You are puny... Not even a morsel for The Great Tiger."
+    ],
+    "hostile": [
+      "Bow before our might!"
+    ]
+  },
+  "reiksgard": {
+    "friendly": [
+      "Soon, ze Empire shall lick our boots!"
+    ],
+    "hostile": [
+      "Filthy foreigner!"
+    ]
+  },
+  "sarkonid": {
+    "friendly": [
+      "Greetings, traveler.",
+      "The first step to mastering any profession is to research it.",
+      "The sands of time eventually wear everything into dust. That is why we must preserve our knowledge as best we can.",
+      "Have you heard the tale of the man who fell out of the world?",
+      "The Empire would burn thousands of books, if it meant expanding their reach.",
+      "Can I help you?",
+      "What secrets are buried within the Ishtari tombs, I wonder?",
+      "Our library has the most complete collection of knowledge in the world.",
+      "How fare you, traveler?",
+      "One must never stop asking questions.",
+      "It's been far too long since we had a learned mage visit us."
+    ],
+    "hostile": [
+      "Intruder!"
+    ]
+  },
+  "sealsker": {
+    "friendly": [
+      "Have you heard the legend of Wally the Walrus?",
+      "Aren't you cold, dressed like that?",
+      "Plenty of fish to go around."
+    ],
+    "hostile": [
+      "You are no longer welcome here!"
+    ]
+  },
+  "shakayana": {
+    "friendly": [
+      "The Empire encroaches far too close to our borders."
+    ],
+    "hostile": [
+      "You shall rue this day!"
+    ]
+  },
+  "smingol": {
+    "friendly": [
+      "Stay out of my yurt!",
+      "You want to join us in our conquest?",
+      "The world shall bow before our great Khan!"
+    ],
+    "hostile": [
+      "Your loved ones are next!"
+    ]
+  },
+  "undead": {
+    "friendly": [
+      "Uuuuhhhhh...",
+      "*Drools*"
+    ],
+    "hostile": [
+      "Uuuuhhhhh!"
+    ]
+  },
+  "vampire": {
+    "friendly": [
+      "I vant to drink your blood! But, I vill control myself.",
+      "I sense great Life Essence within you.",
+      "You look like you could spare a few drops..."
+    ],
+    "hostile": [
+      "I vant to drink your blood!"
+    ]
+  },
+  "vyncan": {
+    "friendly": [
+      "May the Sun-god turn our enemies to dust!",
+      "The Zimba worship the sun. Xoltecs worship blood. The founder of our tribe understood that life was born of both.",
+      "We have fought the Kong people for this jungle for longer than we can remember.",
+      "There is a sacrifice coming up soon. You could volunteer!"
+    ],
+    "hostile": [
+      "The Sun-god will turn you to dust!"
+    ]
+  },
+  "witchbane": {
+    "friendly": [
+      "We will cleanse this land of its wicked magic!",
+      "The Empire pays well, but don't even think about becoming a Witchbane if you fear what lurks in the dark.",
+      "Be on your way, traveler. These lands are not safe."
+    ],
+    "hostile": [
+      "Heathen!"
+    ]
+  },
+  "wizardly": {
+    "friendly": [
+      "Can't talk, I am busy with important research!",
+      "Don't touch anything, please.",
+      "You're not with the Witchbane, are you?"
+    ],
+    "hostile": [
+      "Fool! Do you have any idea who you're dealing with?!"
+    ]
+  },
+  "xoltec": {
+    "friendly": [
+      "Blood for the Blood Gods!",
+      "You harness the power of Blood well. The demons are pleased with you!",
+      "Your spirit is strong, like the jaguar.",
+      "Demons, gods... you treat as separate, but to us, they are one and the same."
+    ],
+    "hostile": [
+      "Your blood is ours!"
+    ]
+  },
+  "zamurai": {
+    "friendly": [
+      "Live by the sword, die by the sword. There is no other way.",
+      "We do not train outsiders in the way of the blade.",
+      "Yes, I do have a tragic backstory. No, I will not tell you.",
+      "To die in battle is the highest honor.",
+      "What are you lookin' at?",
+      "How did you find our Hidden Leaf Village?"
+    ],
+    "hostile": [
+      "You will fall, like so many others!"
+    ]
+  },
+  "zimba": {
+    "friendly": [
+      "We knew nothing of war, until The Empire brought it to us.",
+      "Come, have a seat by the fire!",
+      "You seek an audience with our chief?",
+      "Look at me. I am the captain now!",
+      "May the Sun-god bless you."
+    ],
+    "hostile": [
+      "We never should have trusted you!"
+    ]
+  }
+}

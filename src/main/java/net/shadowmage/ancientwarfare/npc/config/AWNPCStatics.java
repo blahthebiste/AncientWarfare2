@@ -38,9 +38,7 @@ public class AWNPCStatics extends ModConfiguration {
 	public static boolean vanillaEquipmentDropRate = true;
 	public static double npcLevelDamageMultiplier = 0.05;//damage bonus per npc level.  @ level 10 they do 2x the damage as at lvl 0
 
-	/*
-	 * TODO add these to config
-	 */
+
 	/* ********************************************CLIENT SETTINGS************************************************ */
 	public static boolean loadDefaultSkinPack = true;
 

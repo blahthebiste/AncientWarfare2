@@ -72,7 +72,7 @@
             "color": "800080",
             "standing_settings": {
                 "player_default_standing": 0,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -10,
                     "trade": 2
@@ -749,7 +749,7 @@
             "color": "964b00",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -874,7 +874,7 @@
             "color": "000000",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -1018,7 +1018,7 @@
             "color": "b2b2b2",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -1764,7 +1764,7 @@
             "color": "FFC0CB",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -2354,7 +2354,7 @@
             "color": "FFC0CB",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0
@@ -2416,7 +2416,7 @@
             "color": "FFC0CB",
             "standing_settings": {
                 "player_default_standing": -1000,
-                "standing_can_change": false,
+                "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
                     "trade": 0

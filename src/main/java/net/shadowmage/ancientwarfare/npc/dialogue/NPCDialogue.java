@@ -2,78 +2,50 @@ package net.shadowmage.ancientwarfare.npc.dialogue;
 
 /*
     Helper class for determining what an NPC will say when interacted with.
+    Reads all dialogue from assets/ancientwarfarenpc/dialogue.json
  */
 
+import com.google.gson.Gson;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
+import net.shadowmage.ancientwarfare.npc.AncientWarfareNPC;
 import net.shadowmage.ancientwarfare.npc.entity.faction.NpcFaction;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class NPCDialogue {
-    // List of all possible dialogue messages
-    public static ArrayList<PossibleMessage> dialogueListAll = new ArrayList<>();
+
+    //public static final String DIALOGUE_FILE_PATH = "assets/" + AncientWarfareNPC.MOD_ID + "/dialogue.json";
+    public static DialogueJSON dialogueData;
 
     // Initializes the dialogue lists
-    public static void init(){
-        dialogueListAll.add(new PossibleMessage("Snoo-snoo? Never heard of it.","amazon"));
-        dialogueListAll.add(new PossibleMessage("I wanted to multiclass into Wizard, but my DM wouldn't allow it.","barbarian"));
-        dialogueListAll.add(new PossibleMessage("*Low growl*","beast"));
-        dialogueListAll.add(new PossibleMessage("Hand over yer valuables! Hah, I'm just kidding.","brigand"));
-        dialogueListAll.add(new PossibleMessage("Friends of the Empire are not welcome here.","buffloka"));
-        dialogueListAll.add(new PossibleMessage("Hello there, my pretty!","coven"));
-        dialogueListAll.add(new PossibleMessage("Why would I ever go back to the Nether? The weather is much nicer up here!","demon"));
-        dialogueListAll.add(new PossibleMessage("Diggy diggy hole!","dwarf"));
-        dialogueListAll.add(new PossibleMessage("Stay out of the Ominous Woods. It's dangerous for a mortal like you.","elf"));
-        dialogueListAll.add(new PossibleMessage("The Empire just wants to share its prosperity. Why do so many resist?","empire"));
-        dialogueListAll.add(new PossibleMessage("*Tree noises*","ent"));
-        dialogueListAll.add(new PossibleMessage("Come to the dark side! We have cookies!","evil"));
-        dialogueListAll.add(new PossibleMessage("Eek! A gnome!","giant"));
-        dialogueListAll.add(new PossibleMessage("Eek! A giant!","gnome"));
-        dialogueListAll.add(new PossibleMessage("Light's blessings upon you!","good"));
-        dialogueListAll.add(new PossibleMessage("Klee-hee!","gremlin"));
-        dialogueListAll.add(new PossibleMessage("Ah, I see you are an aspiring adventurer!","guild"));
-        dialogueListAll.add(new PossibleMessage("I never should have left the Shire...","hobbit"));
-        dialogueListAll.add(new PossibleMessage("Winter is coming!","icelord"));
-        dialogueListAll.add(new PossibleMessage("Who has disturbed the dead? They need their rest.","ishtari"));
-        dialogueListAll.add(new PossibleMessage("*HONK HONK*","klown"));
-        dialogueListAll.add(new PossibleMessage("Brave of an outsider like yourself to step foot in our domain.","kong"));
-        dialogueListAll.add(new PossibleMessage("The spiders around here are the tastiest!","lizardman"));
-        dialogueListAll.add(new PossibleMessage("Flayed any good minds lately?","mindflayer"));
-        dialogueListAll.add(new PossibleMessage("You are on sacred ground.","minossian"));
-        dialogueListAll.add(new PossibleMessage("*Growls at you*","monster"));
-        dialogueListAll.add(new PossibleMessage("We are always accommodating to travelers like yourself. Feel free to stay a while!","nogg"));
-        dialogueListAll.add(new PossibleMessage("Come on inside, out of the cold!","norska"));
-        dialogueListAll.add(new PossibleMessage("I smell the blood of my brothers on you... You are worthy.","orc"));
-        dialogueListAll.add(new PossibleMessage("Ahoy, matey!","pirate"));
-        dialogueListAll.add(new PossibleMessage("You are puny... Not even a morsel for The Great Tiger.","rakshasa"));
-        dialogueListAll.add(new PossibleMessage("Soon, ze Empire shall lick our boots!","reiksgard"));
-        dialogueListAll.add(new PossibleMessage("Ours is the grandest library in the world!","sarkonid"));
-        dialogueListAll.add(new PossibleMessage("Have you heard the legend of Wally the Walrus?","sealsker"));
-        dialogueListAll.add(new PossibleMessage("The Empire encroaches far too close to our borders.","shakayana"));
-        dialogueListAll.add(new PossibleMessage("Stay out of my yurt!","smingol"));
-        dialogueListAll.add(new PossibleMessage("Uuuuuuhhhhh...","undead"));
-        dialogueListAll.add(new PossibleMessage("I vant to suck you blood! ...But, I vill control myself.","vampire"));
-        dialogueListAll.add(new PossibleMessage("Halt, tresspasser!","vyncan"));
-        dialogueListAll.add(new PossibleMessage("This land must be cleansed!","witchbane"));
-        dialogueListAll.add(new PossibleMessage("Not now, I am conducting important research!","wizardly"));
-        dialogueListAll.add(new PossibleMessage("Blood for the blood gods!","xoltec"));
-        dialogueListAll.add(new PossibleMessage("How did you find our Hidden Leaf Village?","zamurai"));
-        dialogueListAll.add(new PossibleMessage("These are our hunting grounds.","zimba"));
+    public static void init() {
+        InputStream inStream = NPCDialogue.class.getResourceAsStream("/assets/"+AncientWarfareNPC.MOD_ID + "/dialogue.json");
+        Gson gson = new Gson();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
+        dialogueData = gson.fromJson(reader, DialogueJSON.class);
+        System.out.println("DialogueData JSON: "+dialogueData);
     }
 
     // Figures out what message to send the given player, based on a variety of factors.
     public static void speakToPlayer(EntityPlayer player, NpcFaction npc) {
         boolean isFemale = npc.isFemale();
         boolean isHostile = npc.isHostileTowards(player);
+        double seed = npc.dialogueSeed;
         String factionName = npc.getFaction();
         String npcName = npc.getName();
         String proffession = npc.getNpcType();
-        System.out.println("Faction: "+factionName);
-        System.out.println("Type: "+proffession);
-        String message = getRandomDialogue(isFemale, isHostile, factionName, proffession);
-        speakToPlayer(player, npcName+": \""+message+"\"");
+        System.out.println("Faction: " + factionName);
+        System.out.println("Type: " + proffession);
+        System.out.println("isFemale: " + isFemale);
+        System.out.println("isHostile: " + isHostile);
+        System.out.println("Debugging2!");
+        String message = getRandomDialogue(factionName, isHostile, seed);
+        speakToPlayer(player, TextFormatting.YELLOW+"[" + npcName + "] "+ TextFormatting.WHITE + message);
     }
 
     // Sends a chat message to the given player.
@@ -81,134 +53,268 @@ public class NPCDialogue {
         player.sendMessage(new TextComponentString(message));
     }
 
-    // Searches through all possible dialogue options and picks a valid one
-    private static String getRandomDialogue(boolean isFemale, boolean isHostile, String factionName, String proffession){
-        // Iterate over dialogueListAll, and compile a new list of only valid dialogue options:
-        ArrayList<PossibleMessage> validDialogueOptions = new ArrayList<>();
-        for(PossibleMessage msg : dialogueListAll) {
-            if(msg.inCombatOnly != isHostile) continue;
-            if(msg.femaleOnly && !isFemale) continue;
-            if(msg.validFactions.contains(factionName) && msg.validProfessions.contains(proffession)) {
-                validDialogueOptions.add(msg);
-            }
+    // Searches through all possible dialogue options and picks a valid one.
+    // Uses the seeded RNG that each NPC has.
+    private static String getRandomDialogue(String factionName, boolean isHostile, double seed) {
+        FactionJSON factionJSON;
+        ArrayList<String> validLines;
+        switch (factionName) {
+            case "empire":
+                factionJSON = dialogueData.empire;
+                break;
+            case "norska":
+                factionJSON = dialogueData.norska;
+                break;
+            case "sarkonid":
+                factionJSON = dialogueData.sarkonid;
+                break;
+            case "xoltec":
+                factionJSON = dialogueData.xoltec;
+                break;
+            case "witchbane":
+                factionJSON = dialogueData.witchbane;
+                break;
+            case "nogg":
+                factionJSON = dialogueData.nogg;
+                break;
+            case "reiksgard":
+                factionJSON = dialogueData.reiksgard;
+                break;
+            case "shakayana":
+                factionJSON = dialogueData.shakayana;
+                break;
+            case "zamurai":
+                factionJSON = dialogueData.zamurai;
+                break;
+            case "buffloka":
+                factionJSON = dialogueData.buffloka;
+                break;
+            case "zimba":
+                factionJSON = dialogueData.zimba;
+                break;
+            case "kong":
+                factionJSON = dialogueData.kong;
+                break;
+            case "orc":
+                factionJSON = dialogueData.orc;
+                break;
+            case "brigand":
+                factionJSON = dialogueData.brigand;
+                break;
+            case "pirate":
+                factionJSON = dialogueData.pirate;
+                break;
+            case "elf":
+                factionJSON = dialogueData.elf;
+                break;
+            case "dwarf":
+                factionJSON = dialogueData.dwarf;
+                break;
+            case "hobbit":
+                factionJSON = dialogueData.hobbit;
+                break;
+            case "ent":
+                factionJSON = dialogueData.ent;
+                break;
+            case "gnome":
+                factionJSON = dialogueData.gnome;
+                break;
+            case "gremlin":
+                factionJSON = dialogueData.gremlin;
+                break;
+            case "giant":
+                factionJSON = dialogueData.giant;
+                break;
+            case "smingol":
+                factionJSON = dialogueData.smingol;
+                break;
+            case "mindflayer":
+                factionJSON = dialogueData.mindflayer;
+                break;
+            case "minossian":
+                factionJSON = dialogueData.minossian;
+                break;
+            case "guild":
+                factionJSON = dialogueData.guild;
+                break;
+            case "sealsker":
+                factionJSON = dialogueData.sealsker;
+                break;
+            case "vyncan":
+                factionJSON = dialogueData.vyncan;
+                break;
+            case "lizardmen":
+                factionJSON = dialogueData.lizardmen;
+                break;
+            case "coven":
+                factionJSON = dialogueData.coven;
+                break;
+            case "rakshasa":
+                factionJSON = dialogueData.rakshasa;
+                break;
+            case "icelord":
+                factionJSON = dialogueData.icelord;
+                break;
+            case "amazon":
+                factionJSON = dialogueData.amazon;
+                break;
+            case "ishtari":
+                factionJSON = dialogueData.ishtari;
+                break;
+            case "barbarian":
+                factionJSON = dialogueData.barbarian;
+                break;
+            case "klown":
+                factionJSON = dialogueData.klown;
+                break;
+            case "evil":
+                factionJSON = dialogueData.evil;
+                break;
+            case "good":
+                factionJSON = dialogueData.good;
+                break;
+            case "undead":
+                factionJSON = dialogueData.undead;
+                break;
+            case "monster":
+                factionJSON = dialogueData.monster;
+                break;
+            case "vampire":
+                factionJSON = dialogueData.vampire;
+                break;
+            case "beast":
+                factionJSON = dialogueData.beast;
+                break;
+            case "wizardly":
+                factionJSON = dialogueData.wizardly;
+                break;
+            case "demonFaction":
+                factionJSON = dialogueData.demon;
+                break;
+            default:
+                System.out.println("ERROR: faction " + factionName + " not recognized!");
+                return "I have no valid dialogue! Please notify lumberjacksparrow in the AncientWarfare discord.";
         }
-        if(validDialogueOptions.size() < 1) {
-            return "I have no valid dialogue! Please notify lumberjacksparrow in the AncientWarfare discord.";
+        if (isHostile) {
+            validLines = factionJSON.hostile;
+        } else {
+            validLines = factionJSON.friendly;
         }
-        // Now pick a random valid option:
-        PossibleMessage selectedDialogue = validDialogueOptions.get(new Random().nextInt(validDialogueOptions.size()));
-        return selectedDialogue.message;
+        // TODO: filter dialogue lines by gender and profession as well
+        // Use the seed from the NPC to pick an option from the list:
+        int index = (int) (seed * validLines.size());
+        return validLines.get(index);
     }
 
-    public static class PossibleMessage {
-        public String message; // The message that will appear in chat
-        public boolean femaleOnly; // Whether this message can only be spoken by female NPCs
-        public boolean inCombatOnly; // Whether this message can only be spoken by NPCs who are actively hostile
-        public ArrayList<String> validFactions; // A list of factions that are allowed to use this dialogue
-        public ArrayList<String> validProfessions; // A list of types of NPCs that are allowed to use this dialogue
+    // Contains the data for all dialogue for all factions
+    public class DialogueJSON {
+        FactionJSON empire;
+        FactionJSON norska;
+        FactionJSON sarkonid;
+        FactionJSON xoltec;
+        FactionJSON witchbane;
+        FactionJSON nogg;
+        FactionJSON reiksgard;
+        FactionJSON shakayana;
+        FactionJSON zamurai;
+        FactionJSON buffloka;
+        FactionJSON zimba;
+        FactionJSON kong;
+        FactionJSON orc;
+        FactionJSON brigand;
+        FactionJSON pirate;
+        FactionJSON elf;
+        FactionJSON dwarf;
+        FactionJSON hobbit;
+        FactionJSON ent;
+        FactionJSON gnome;
+        FactionJSON gremlin;
+        FactionJSON giant;
+        FactionJSON smingol;
+        FactionJSON mindflayer;
+        FactionJSON minossian;
+        FactionJSON guild;
+        FactionJSON sealsker;
+        FactionJSON vyncan;
+        FactionJSON lizardmen;
+        FactionJSON coven;
+        FactionJSON rakshasa;
+        FactionJSON icelord;
+        FactionJSON amazon;
+        FactionJSON ishtari;
+        FactionJSON barbarian;
+        FactionJSON klown;
+        FactionJSON evil;
+        FactionJSON good;
+        FactionJSON undead;
+        FactionJSON monster;
+        FactionJSON vampire;
+        FactionJSON beast;
+        FactionJSON wizardly;
+        FactionJSON demon;
 
-        // Default constructor, allows any NPC to say it
-        public PossibleMessage(String message) {
-            this.message = message;
-            this.femaleOnly = false;
-            this.inCombatOnly = false;
-            this.validFactions = new ArrayList<String>();
-            validFactions.add("amazon");
-            validFactions.add("barbarian");
-            validFactions.add("beast");
-            validFactions.add("brigand");
-            validFactions.add("buffloka");
-            validFactions.add("coven");
-            validFactions.add("demon");
-            validFactions.add("dwarf");
-            validFactions.add("elf");
-            validFactions.add("empire");
-            validFactions.add("ent");
-            validFactions.add("evil");
-            validFactions.add("giant");
-            validFactions.add("gnome");
-            validFactions.add("good");
-            validFactions.add("gremlin");
-            validFactions.add("guild");
-            validFactions.add("hobbit");
-            validFactions.add("icelord");
-            validFactions.add("ishtari");
-            validFactions.add("klown");
-            validFactions.add("kong");
-            validFactions.add("lizardman");
-            validFactions.add("mindflayer");
-            validFactions.add("minossian");
-            validFactions.add("monster");
-            validFactions.add("nogg");
-            validFactions.add("norska");
-            validFactions.add("orc");
-            validFactions.add("pirate");
-            validFactions.add("rakshasa");
-            validFactions.add("reiksgard");
-            validFactions.add("sarkonid");
-            validFactions.add("sealsker");
-            validFactions.add("shakayana");
-            validFactions.add("smingol");
-            validFactions.add("undead");
-            validFactions.add("vampire");
-            validFactions.add("vyncan");
-            validFactions.add("witchbane");
-            validFactions.add("wizardly");
-            validFactions.add("xoltec");
-            validFactions.add("zamurai");
-            validFactions.add("zimba");
-            this.validProfessions = new ArrayList<String>();
-            validProfessions.add("archer.elite");
-            validProfessions.add("archer");
-            validProfessions.add("bard");
-            validProfessions.add("cavalry");
-            validProfessions.add("civilian.female");
-            validProfessions.add("civilian.male");
-            validProfessions.add("leader.elite");
-            validProfessions.add("leader");
-            validProfessions.add("mounted_archer");
-            validProfessions.add("priest");
-            validProfessions.add("siege_engineer");
-            validProfessions.add("soldier.elite");
-            validProfessions.add("soldier");
-            validProfessions.add("spellcaster");
-            validProfessions.add("trader"); // May remove traders in the future
+        @Override
+        public String toString() {
+            return "DialogueJSON{" +
+                    "empireJSON=" + empire +
+                    ", norskaJSON=" + norska +
+                    ", sarkonidJSON=" + sarkonid +
+                    ", xoltecJSON=" + xoltec +
+                    ", witchbaneJSON=" + witchbane +
+                    ", noggJSON=" + nogg +
+                    ", reiksgardJSON=" + reiksgard +
+                    ", shakayanaJSON=" + shakayana +
+                    ", zamuraiJSON=" + zamurai +
+                    ", bufflokaJSON=" + buffloka +
+                    ", zimbaJSON=" + zimba +
+                    ", kongJSON=" + kong +
+                    ", orcJSON=" + orc +
+                    ", brigandJSON=" + brigand +
+                    ", pirateJSON=" + pirate +
+                    ", elfJSON=" + elf +
+                    ", dwarfJSON=" + dwarf +
+                    ", hobbitJSON=" + hobbit +
+                    ", entJSON=" + ent +
+                    ", gnomeJSON=" + gnome +
+                    ", gremlinJSON=" + gremlin +
+                    ", giantJSON=" + giant +
+                    ", smingolJSON=" + smingol +
+                    ", mindflayerJSON=" + mindflayer +
+                    ", minossianJSON=" + minossian +
+                    ", guildJSON=" + guild +
+                    ", sealskerJSON=" + sealsker +
+                    ", vyncanJSON=" + vyncan +
+                    ", lizardmenJSON=" + lizardmen +
+                    ", covenJSON=" + coven +
+                    ", rakshasaJSON=" + rakshasa +
+                    ", icelordJSON=" + icelord +
+                    ", amazonJSON=" + amazon +
+                    ", ishtariJSON=" + ishtari +
+                    ", barbarianJSON=" + barbarian +
+                    ", klownJSON=" + klown +
+                    ", evilJSON=" + evil +
+                    ", goodJSON=" + good +
+                    ", undeadJSON=" + undead +
+                    ", monsterJSON=" + monster +
+                    ", vampireJSON=" + vampire +
+                    ", beastJSON=" + beast +
+                    ", wizardlyJSON=" + wizardly +
+                    ", demonJSON=" + demon +
+                    '}';
         }
+    }
 
-        // Constructor for specific faction
-        public PossibleMessage(String message, String faction) {
-            this.message = message;
-            this.femaleOnly = false;
-            this.inCombatOnly = false;
-            this.validFactions = new ArrayList<String>();
-            validFactions.add(faction);
-            this.validProfessions = new ArrayList<String>();
-            validProfessions.add("archer.elite");
-            validProfessions.add("archer");
-            validProfessions.add("bard");
-            validProfessions.add("cavalry");
-            validProfessions.add("civilian.female");
-            validProfessions.add("civilian.male");
-            validProfessions.add("leader.elite");
-            validProfessions.add("leader");
-            validProfessions.add("mounted_archer");
-            validProfessions.add("priest");
-            validProfessions.add("siege_engineer");
-            validProfessions.add("soldier.elite");
-            validProfessions.add("soldier");
-            validProfessions.add("spellcaster");
-            validProfessions.add("trader"); // May remove traders in the future
-        }
+    // Only used inside of DialogueJSON.
+    public class FactionJSON {
+        ArrayList<String> friendly;
+        ArrayList<String> hostile;
 
-        // Constructor for specific faction and NPC type
-        public PossibleMessage(String message, String faction, String npcType) {
-            this.message = message;
-            this.femaleOnly = false;
-            this.inCombatOnly = false;
-            this.validFactions = new ArrayList<String>();
-            validFactions.add(faction);
-            this.validProfessions = new ArrayList<String>();
-            validProfessions.add(npcType);
+        @Override
+        public String toString() {
+            return "FactionJSON{" +
+                    "friendlyDialogue=" + friendly +
+                    ", hostileDialogue=" + hostile +
+                    '}';
         }
     }
 
