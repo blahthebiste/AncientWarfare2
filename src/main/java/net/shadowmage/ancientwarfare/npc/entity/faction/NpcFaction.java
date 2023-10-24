@@ -465,7 +465,14 @@ public abstract class NpcFaction extends NpcBase {
 		if(player.capabilities.isCreativeMode) {
 			return super.processInteract(player, hand);
 		}
-		boolean baton = !player.getHeldItem(hand).isEmpty() && player.getHeldItem(hand).getItem() instanceof ItemCommandBaton;
+		boolean playerIsHoldingItem = !player.getHeldItem(hand).isEmpty();
+		// If the NPC is hostile to the player, and the player is holding an item, skip the dialogue.
+		// This is necessary so that dialogue does not take priority over the right-click action of weapons or shields.
+		// A player right-clicking a shield to a hostile NPC probably wants to block, not talk.
+		if(this.isHostileTowards(player) && playerIsHoldingItem) {
+			return super.processInteract(player, hand);
+		}
+		boolean baton = playerIsHoldingItem && player.getHeldItem(hand).getItem() instanceof ItemCommandBaton;
 		if (!baton && isEntityAlive()) {
 			if (!player.world.isRemote) {
 				// Say something to the player who right-clicked, pass in the NPC object containing important data

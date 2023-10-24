@@ -6,6 +6,7 @@ package net.shadowmage.ancientwarfare.npc.dialogue;
  */
 
 import com.google.gson.Gson;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
@@ -28,7 +29,9 @@ public class NPCDialogue {
         Gson gson = new Gson();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
         dialogueData = gson.fromJson(reader, DialogueJSON.class);
-        System.out.println("DialogueData JSON: "+dialogueData);
+        // For fun:
+//        Block.getBlockFromName("flowing_lava").setLightLevel(7);
+//        Block.getBlockFromName("lava").setLightLevel(7);
     }
 
     // Figures out what message to send the given player, based on a variety of factors.
@@ -39,11 +42,6 @@ public class NPCDialogue {
         String factionName = npc.getFaction();
         String npcName = npc.getName();
         String proffession = npc.getNpcType();
-        System.out.println("Faction: " + factionName);
-        System.out.println("Type: " + proffession);
-        System.out.println("isFemale: " + isFemale);
-        System.out.println("isHostile: " + isHostile);
-        System.out.println("Debugging2!");
         String message = getRandomDialogue(factionName, isHostile, seed);
         speakToPlayer(player, TextFormatting.YELLOW+"[" + npcName + "] "+ TextFormatting.WHITE + message);
     }
@@ -192,7 +190,7 @@ public class NPCDialogue {
                 factionJSON = dialogueData.demon;
                 break;
             default:
-                System.out.println("ERROR: faction " + factionName + " not recognized!");
+                AncientWarfareNPC.LOG.error("ERROR: faction " + factionName + " not recognized!");
                 return "I have no valid dialogue! Please notify lumberjacksparrow in the AncientWarfare discord.";
         }
         if (isHostile) {
