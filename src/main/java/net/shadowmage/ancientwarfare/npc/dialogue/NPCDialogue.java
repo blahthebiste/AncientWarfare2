@@ -30,8 +30,8 @@ public class NPCDialogue {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
         dialogueData = gson.fromJson(reader, DialogueJSON.class);
         // For fun:
-//        Block.getBlockFromName("flowing_lava").setLightLevel(7);
-//        Block.getBlockFromName("lava").setLightLevel(7);
+        //Block.getBlockFromName("flowing_lava").setLightLevel(1);
+        //Block.getBlockFromName("lava").setLightLevel(1);
     }
 
     // Figures out what message to send the given player, based on a variety of factors.

@@ -134,6 +134,11 @@ public class WorldGenStructureManager {
 		getTerritoryTemplates(territory.getTerritoryName()).ifPresent(potentialStructures::addAll);
 		getTerritoryTemplates(GENERIC_TERRITORY_NAME).ifPresent(potentialStructures::addAll);
 		Set<StructureTemplate> biomeTemplates = templatesByBiome.get(biomeName);
+		// biomeTemplates is sometimes null here with OTG. Maybe this happens any time a biome has no valid structures?
+		if (biomeTemplates.isEmpty()) {
+			System.out.println("[AW2t] ERROR: biome '"+biomeName+"' matched no valid templates");
+			return Optional.empty();
+		}
 		potentialStructures.removeIf(t -> !biomeTemplates.contains(t));
 		if (potentialStructures.isEmpty()) {
 			return Optional.empty();
