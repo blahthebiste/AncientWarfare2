@@ -38,6 +38,7 @@ public abstract class ModConfiguration {
 	public static final String generalOptions = "01_shared_settings";
 	public static final String serverOptions = "02_server_settings";
 	public static final String clientOptions = "03_client_settings";
+	public static final String tweakOptions = "04_tweaks";
 	public static final String configPathForFiles = "config/ancientwarfare/";
 	protected final Configuration config;
 	public boolean updatedVersion = false;

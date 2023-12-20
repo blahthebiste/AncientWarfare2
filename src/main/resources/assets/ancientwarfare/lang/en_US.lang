@@ -1847,7 +1847,8 @@ keybind.vehicle.mouse.aim=Enable/Disable Mouse Aim
 keybind.vehicle.ammo.select=Open Ammo Selection GUI
 
 gui.ancientwarfarevehicles.ammo.no_ammo=Vehicle is not loaded with any ammo
-gui.ancientwarfarenpc.no_chest_access=Cannot steal from the %s while someone is watching.
+gui.ancientwarfarenpc.no_chest_access=This inventory belongs to the %s. It will not open for you! The closest enemy marked for a bit.
+gui.ancientwarfarenpc.no_chest_stealing=Cannot steal from the %s while someone is watching.
 gui.ancientwarfarenpc.no_chest_access_flag_not_claimed=You can't open the inventory until you claim the flag at: %s
 
 gui.ancientwarfarestructure.structure_hostile_alive=Can't conquer structure with hostile entity inside. The witness is marked for a bit.

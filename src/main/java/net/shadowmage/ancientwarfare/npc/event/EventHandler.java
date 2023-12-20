@@ -21,6 +21,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.core.gamedata.AWGameData;
 import net.shadowmage.ancientwarfare.core.util.WorldTools;
 import net.shadowmage.ancientwarfare.npc.entity.NpcBase;
@@ -134,33 +135,52 @@ public class EventHandler {
 
 	@SubscribeEvent
 	public void onChestClicked(PlayerInteractEvent.RightClickBlock evt) {
+		if (!AWCoreStatics.chestProtection) return; // No need to check for locked chests when this config option is false
 		World world = evt.getWorld();
 		BlockPos pos = evt.getPos();
 		EntityPlayer player = evt.getEntityPlayer();
 		if (!player.capabilities.isCreativeMode && isLockedContainer(world, pos)) {
 			AWGameData.INSTANCE.getPerWorldData(world, StructureMap.class).getStructureAt(world, pos).ifPresent(structure -> {
 				Optional<TileProtectionFlag> tile = WorldTools.getTile(world, structure.getProtectionFlagPos(), TileProtectionFlag.class);
-				// Skip the flag protection. Always let the player loot chests if no one is around to see it
-//				if (tile.isPresent() && tile.get().shouldProtectAgainst(player)) {
-//					evt.setCanceled(true);
-//					evt.setCancellationResult(EnumActionResult.FAIL);
-//					if (world.isRemote) {
-//						player.sendStatusMessage(new TextComponentTranslation("gui.ancientwarfarenpc.no_chest_access_flag_not_claimed"), true);
-//					}
-//				} else {
-				for (NpcFaction factionNpc : world.getEntitiesWithinAABB(NpcFaction.class, structure.getBB().getAABB())) {
-					// If none of the entities can see the player, simply let them open the chest.
-					if (player.canEntityBeSeen(factionNpc)) {
+				if(AWCoreStatics.allowStealing) {
+					System.out.println("Allow stealing attempt!");
+					// Skip the flag protection. Always let the player loot chests if no one is around to see it
+					for (NpcFaction factionNpc : world.getEntitiesWithinAABB(NpcFaction.class, structure.getBB().getAABB())) {
+						// If none of the entities can see the player, simply let them open the chest.
+						if (player.canEntityBeSeen(factionNpc)) {
+							evt.setCanceled(true);
+							evt.setCancellationResult(EnumActionResult.FAIL);
+							factionNpc.addPotionEffect(new PotionEffect(MobEffects.GLOWING, AWCoreStatics.glowDuration));
+							if (world.isRemote) {
+								player.sendStatusMessage(new TextComponentTranslation("gui.ancientwarfarenpc.no_chest_stealing",
+										StringUtils.capitalize(factionNpc.getFaction())), true);
+							}
+							return;
+						}
+					}
+				}
+				else { // Old code for full loot chest protection. Player must clear enemies and claim the flag to open chests.
+					System.out.println("Old-school chest protection!");
+					if (tile.isPresent() && tile.get().shouldProtectAgainst(player)) {
 						evt.setCanceled(true);
 						evt.setCancellationResult(EnumActionResult.FAIL);
-						factionNpc.addPotionEffect(new PotionEffect(MobEffects.GLOWING, 6000));
 						if (world.isRemote) {
-							player.sendStatusMessage(new TextComponentTranslation("gui.ancientwarfarenpc.no_chest_access",
-									StringUtils.capitalize(factionNpc.getFaction())), true);
+							player.sendStatusMessage(new TextComponentTranslation("gui.ancientwarfarenpc.no_chest_access_flag_not_claimed"), true);
 						}
-						return;
+					} else {
+						for (NpcFaction factionNpc : world.getEntitiesWithinAABB(NpcFaction.class, structure.getBB().getAABB())) {
+							if (!factionNpc.isPassive()) {
+								evt.setCanceled(true);
+								evt.setCancellationResult(EnumActionResult.FAIL);
+								factionNpc.addPotionEffect(new PotionEffect(MobEffects.GLOWING, AWCoreStatics.glowDuration));
+								if (world.isRemote) {
+									player.sendStatusMessage(new TextComponentTranslation("gui.ancientwarfarenpc.no_chest_access",
+											StringUtils.capitalize(factionNpc.getFaction())), true);
+								}
+								return;
+							}
+						}
 					}
-//					}
 				}
 			});
 		}
@@ -176,12 +196,13 @@ public class EventHandler {
 		AWGameData.INSTANCE.getPerWorldData(world, StructureMap.class).getStructureAt(world, evt.getPos())
 				.flatMap(structureEntry -> WorldTools.getTile(world, structureEntry.getProtectionFlagPos(), TileProtectionFlag.class)).ifPresent(tile -> {
 			if (tile.shouldProtectAgainst(evt.getEntityPlayer()) && shouldBlockSlowDownDigging(world, evt.getPos())) {
-				evt.setNewSpeed(evt.getOriginalSpeed() * 0.01f);
+				evt.setNewSpeed(evt.getOriginalSpeed() / AWCoreStatics.blockProtectionMulti);
 			}
 		});
 	}
 
 	private boolean shouldBlockSlowDownDigging(World world, BlockPos pos) {
+		if(!AWCoreStatics.blockProtection) return false;
 		IBlockState state = world.getBlockState(pos);
 		if (!state.isFullBlock()) {
 			return isLockedContainer(world, pos);

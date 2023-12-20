@@ -29,6 +29,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.entity.living.PotionEvent;
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.core.util.NBTHelper;
 import net.shadowmage.ancientwarfare.npc.ai.AIHelper;
 import net.shadowmage.ancientwarfare.npc.ai.faction.NpcAIFactionFleeSun;
@@ -473,7 +474,7 @@ public abstract class NpcFaction extends NpcBase {
 			return super.processInteract(player, hand);
 		}
 		boolean baton = playerIsHoldingItem && player.getHeldItem(hand).getItem() instanceof ItemCommandBaton;
-		if (!baton && isEntityAlive()) {
+		if (AWCoreStatics.npcDialogue && !baton && isEntityAlive()) {
 			if (!player.world.isRemote) {
 				// Say something to the player who right-clicked, pass in the NPC object containing important data
 				NPCDialogue.speakToPlayer(player, this);

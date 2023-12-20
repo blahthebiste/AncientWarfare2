@@ -10,6 +10,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.core.network.NetworkHandler;
 import net.shadowmage.ancientwarfare.core.util.TextUtils;
 import net.shadowmage.ancientwarfare.core.util.WorldTools;
@@ -54,10 +55,21 @@ public class ConquerHelper {
 		AxisAlignedBB boundingBox = bb.getAABB();
 		ArrayList<NpcFaction> remainingEnemies = new ArrayList<>();
 		ArrayList<BlockPos> remainingEnemyBlocks = new ArrayList<>();
+		int resistanceValue = 0; // A measure of how much resistance is left in unkilled enemy NPCs.
 		for (NpcFaction factionNpc : world.getEntitiesWithinAABB(NpcFaction.class, boundingBox)) {
 			if (!factionNpc.isPassive()) {
 				onHostileNpcFound.accept(factionNpc);
 				remainingEnemies.add(factionNpc);
+				//System.out.println("Found NPC with type="+factionNpc.getNpcFullType());
+				if(factionNpc.getNpcFullType().contains("leader")) {
+					resistanceValue += AWCoreStatics.bossConquerResistance; // Boss enemies count as 5
+				}
+				else if(factionNpc.getNpcFullType().contains("elite")) {
+					resistanceValue += AWCoreStatics.eliteConquerResistance; // Elite enemies count as 2
+				}
+				else {
+					resistanceValue += AWCoreStatics.normalConquerResistance;
+				}
 			}
 		}
 
@@ -69,11 +81,12 @@ public class ConquerHelper {
 					WorldTools.getTile(world, blockPos, TileAdvancedSpawner.class).map(te -> SpawnerSettings.spawnsHostileNpcs(te.getSettings())).orElse(false)) {
 				onHostileSpawnerFound.accept(blockPos);
 				remainingEnemyBlocks.add(blockPos);
+				resistanceValue += AWCoreStatics.spawnerConquerResistance;
 			}
 		}
 
-		// If there are 5 or more enemies alive, structure cannot be claimed. Elites count as 2, bosses count as 10
-		if(remainingEnemies.size() + remainingEnemyBlocks.size() >= 5) {
+		// If there are 5 or more enemies alive, structure cannot be claimed. Elites count as 2, bosses count as 5
+		if(resistanceValue >= AWCoreStatics.conquerThreshold) {
 			return false;
 		}
 		else {

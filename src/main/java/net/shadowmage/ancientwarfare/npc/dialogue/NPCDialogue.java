@@ -20,7 +20,6 @@ import java.util.ArrayList;
 
 public class NPCDialogue {
 
-    //public static final String DIALOGUE_FILE_PATH = "assets/" + AncientWarfareNPC.MOD_ID + "/dialogue.json";
     public static DialogueJSON dialogueData;
 
     // Initializes the dialogue lists
@@ -29,9 +28,6 @@ public class NPCDialogue {
         Gson gson = new Gson();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
         dialogueData = gson.fromJson(reader, DialogueJSON.class);
-        // For fun:
-        //Block.getBlockFromName("flowing_lava").setLightLevel(1);
-        //Block.getBlockFromName("lava").setLightLevel(1);
     }
 
     // Figures out what message to send the given player, based on a variety of factors.

@@ -39,6 +39,21 @@ public class AWCoreStatics extends ModConfiguration {
 	public static boolean includeResearchInChests = true;
 	public static double energyPerWorkUnit = 50D;
 
+	/*
+	 * Tweaks
+	 */
+	public static int glowDuration = 6000;
+	public static int conquerThreshold = 5;
+	public static int normalConquerResistance = 1;
+	public static int spawnerConquerResistance = 1;
+	public static int eliteConquerResistance = 2;
+	public static int bossConquerResistance = 5;
+	public static float blockProtectionMulti = 100.0f;
+	public static boolean npcDialogue = true;
+	public static boolean allowStealing = true;
+	public static boolean chestProtection = true;
+	public static boolean blockProtection = true;
+
 	public AWCoreStatics(String modid) {
 		super(modid);
 	}
@@ -73,6 +88,25 @@ public class AWCoreStatics extends ModConfiguration {
 		useResearchSystem = config.getBoolean("use_research_system", researchSettings, useResearchSystem, "If set to false, research system will be disabled and all recipes will be available in normal crafting station.");
 
 		enableResearchResourceUse = config.getBoolean("use_research_resources", researchSettings, enableResearchResourceUse, "If set to false, research system will not use resources for research.");
+
+		/*
+		 * Tweaks
+		 */
+		npcDialogue = config.getBoolean("npc_dialogue", tweakOptions, true, "Toggles whether NPCs will chat with the player when right-clicked.");
+
+		allowStealing = config.getBoolean("allow_stealing", tweakOptions, true, "Toggles whether players can steal from NPC loot chests when no one is looking.\n"+"No effect if loot_chest_protection is disabled.");
+		chestProtection = config.getBoolean("loot_chest_protection", tweakOptions, true, "Toggles whether players need to steal or claim structures to open NPC loot chests.\n"+"If this is disabled, players can open any loot chests freely.");
+
+		blockProtection = config.getBoolean("block_protection", tweakOptions, true, "Toggles whether (some) blocks in faction-owned structures are harder to mine through.\n"+"If true, (some) blocks on faction-owned land take <block_protection_multiplier> as long to mine.");
+		blockProtectionMulti = config.getFloat("block_protection_multiplier", tweakOptions, 100.0f, 0.0f, 1000000.0f , "Controls how much longer it takes to mine blocks on faction-protected land.");
+
+		conquerThreshold = config.getInt("conquer_threshold", tweakOptions, 5, 0, 1000000 , "Controls the max number of enemies that will flee rather than prevent players from claiming a structure.\n"+"For example, if this is set to 1, then even a single enemy left alive will prevent you from claiming a structure.");
+		normalConquerResistance = config.getInt("normal_conquer_resistance", tweakOptions, 1, 0, 1000000 , "Controls how many points normal enemies are worth when calculating whether players can claim a structure.");
+		spawnerConquerResistance = config.getInt("spawner_conquer_resistance", tweakOptions, 1, 0, 1000000 , "Controls how many points un-spawned enemies are worth when calculating whether players can claim a structure.");
+		eliteConquerResistance = config.getInt("elite_conquer_resistance", tweakOptions, 2, 0, 1000000 , "Controls how many points elite enemies are worth when calculating whether players can claim a structure.");
+		bossConquerResistance = config.getInt("boss_conquer_resistance", tweakOptions, 5, 0, 1000000 , "Controls how many points boss enemies are worth when calculating whether players can claim a structure.");
+
+		glowDuration = config.getInt("highlight_duration", tweakOptions, 6000, 0, 1000000 , "Controls how long enemies and spawners glow when they are preventing you from claiming a structure or opening a chest, in ticks.\n"+"There are 20 ticks per second, so the default 6000 = 5 minutes.");
 	}
 
 	@Override
@@ -82,6 +116,8 @@ public class AWCoreStatics extends ModConfiguration {
 		config.addCustomCategoryComment(serverOptions, "Server Options\n" + "Affect only server-side operations.  Will need to be set for dedicated servers, and single\n" + "player (or LAN worlds).  Clients playing on remote servers can ignore these settings.");
 
 		config.addCustomCategoryComment(clientOptions, "Client Options\n" + "Affect only client-side operations.  Many of these options can be set from the in-game Options GUI.\n" + "Server admins can ignore these settings.");
+
+		config.addCustomCategoryComment(tweakOptions, "Options added by AW2 Tweaked.");
 
 		config.addCustomCategoryComment(worldGenSettings, "AW Core World Generation Settings\n" + "Server-side only settings.  These settings affect world generation settings for AWCore.");
 

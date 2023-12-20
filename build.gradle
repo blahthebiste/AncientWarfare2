@@ -122,7 +122,8 @@ def getStable() {
 }
 
 def isUnstable() {
-    return (System.getenv("GITHUB_REF") == null || System.getenv("GITHUB_REF").endsWith("-dev"));
+//    return (System.getenv("GITHUB_REF") == null || System.getenv("GITHUB_REF").endsWith("-dev"));
+    return false; // I don't want to deal with people not trusting the build
 }
 
 task minifyStructureTemplates(type: MinifyStructuresTask) {
