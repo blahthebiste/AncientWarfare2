@@ -1329,7 +1329,7 @@ rule:
 plugin=vanillaSign
 number=26
 data:
-JSON:{signContents0:"Uninvited§r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"south"}},signContents2:"will be§r",signContents1:"visitors§r",signContents3:"turned to rats§r",rotation:0}
+JSON:{signContents0:"Uninvitedï¿½r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"south"}},signContents2:"will beï¿½r",signContents1:"visitorsï¿½r",signContents3:"turned to ratsï¿½r",rotation:0}
 :enddata
 :endrule
 
@@ -1337,7 +1337,7 @@ rule:
 plugin=vanillaSign
 number=27
 data:
-JSON:{signContents0:"Imperial§r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"south"}},signContents2:"Tower§r",signContents1:"Wizards§r",signContents3:"No Entry§r",rotation:0}
+JSON:{signContents0:"Imperialï¿½r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"south"}},signContents2:"Towerï¿½r",signContents1:"Wizardsï¿½r",signContents3:"No Entryï¿½r",rotation:0}
 :enddata
 :endrule
 
@@ -1697,7 +1697,7 @@ rule:
 plugin=blockTile
 number=72
 data:
-JSON:{blockState:{blockName:"ancientwarfarestructure:advanced_spawner",properties:{transparent:"true"}},teData:{id:"ancientwarfarestructure:advanced_spawner_tile",spawnerSettings:{minDelay:10,spawnDelay:7,lightSensitive:0b,spawnGroups:[{settingsList:[{remainingSpawnCount:1,hostile:1b,customTag:{ArmorDropChances:[0.085f,0.085f,0.085f,0.085f],ArmorItems:[{},{},{},{}],HandDropChances:[0.085f,0.085f],HandItems:[{},{}]},maxToSpawn:1,entityId:"razak_demonmod:ranged_demon",minToSpawn:1}],groupWeight:1}],playerRange:16,respondToRedstone:0b,inventory:{Size:9,Items:[]},spawnRange:0,transparent:1b,maxDelay:10,xpToDrop:0,mobRange:0,debugMode:0b,maxNearbyMonsters:0}}}
+JSON:{blockState:{blockName:"ancientwarfarestructure:advanced_spawner",properties:{transparent:"true"}},teData:{id:"ancientwarfarestructure:advanced_spawner_tile",spawnerSettings:{minDelay:10,spawnDelay:7,lightSensitive:0b,spawnGroups:[{settingsList:[{remainingSpawnCount:1,hostile:1b,customTag:{ArmorDropChances:[0.085f,0.085f,0.085f,0.085f],ArmorItems:[{},{},{},{}],HandDropChances:[0.085f,0.085f],HandItems:[{},{}]},maxToSpawn:1,entityId:"twilightforest:skeleton_druid",minToSpawn:1}],groupWeight:1}],playerRange:16,respondToRedstone:0b,inventory:{Size:9,Items:[]},spawnRange:0,transparent:1b,maxDelay:10,xpToDrop:0,mobRange:0,debugMode:0b,maxNearbyMonsters:0}}}
 :enddata
 :endrule
 

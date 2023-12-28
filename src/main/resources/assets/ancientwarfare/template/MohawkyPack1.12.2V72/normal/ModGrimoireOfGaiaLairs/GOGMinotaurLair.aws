@@ -6,7 +6,7 @@
 header:
 version=2.11
 name=GOGMinotaurLair
-mods=
+mods=grimoireofgaia
 size=42,22,42
 offset=21,9,41
 :endheader

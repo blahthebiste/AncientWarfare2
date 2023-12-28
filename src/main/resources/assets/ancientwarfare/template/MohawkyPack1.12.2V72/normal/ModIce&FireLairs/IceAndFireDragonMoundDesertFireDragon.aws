@@ -6,7 +6,7 @@
 header:
 version=2.11
 name=IceAndFireDragonMoundDesertFireDragon
-mods=
+mods=iceandfire
 size=43,43,42
 offset=20,34,41
 :endheader

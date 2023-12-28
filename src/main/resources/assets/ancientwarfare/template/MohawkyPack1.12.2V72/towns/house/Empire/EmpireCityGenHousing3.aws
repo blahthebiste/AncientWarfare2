@@ -498,7 +498,7 @@ rule:
 plugin=vanillaSign
 number=22
 data:
-JSON:{signContents0:"empire§r",blockState:{blockName:"minecraft:standing_sign",properties:{rotation:"12"}},signContents2:"housing block §r",signContents1:"walled city§r",signContents3:"4§r",rotation:12}
+JSON:{signContents0:"empireï¿½r",blockState:{blockName:"minecraft:standing_sign",properties:{rotation:"12"}},signContents2:"housing block ï¿½r",signContents1:"walled cityï¿½r",signContents3:"4ï¿½r",rotation:12}
 :enddata
 :endrule
 
@@ -714,7 +714,7 @@ rule:
 plugin=vanillaSign
 number=49
 data:
-JSON:{signContents0:"Madame§r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"south"}},signContents2:"Tarot§r",signContents1:"Breota§r",signContents3:"Reader§r",rotation:0}
+JSON:{signContents0:"Madameï¿½r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"south"}},signContents2:"Tarotï¿½r",signContents1:"Breotaï¿½r",signContents3:"Readerï¿½r",rotation:0}
 :enddata
 :endrule
 
@@ -794,7 +794,7 @@ rule:
 plugin=blockTile
 number=59
 data:
-JSON:{blockState:{blockName:"ancientwarfarestructure:advanced_spawner",properties:{transparent:"true"}},teData:{id:"ancientwarfarestructure:advanced_spawner_tile",spawnerSettings:{minDelay:10,spawnDelay:5,lightSensitive:0b,spawnGroups:[{settingsList:[{remainingSpawnCount:1,hostile:1b,customTag:{ArmorDropChances:[0.085f,0.085f,0.085f,0.085f],ArmorItems:[{},{},{},{}],HandDropChances:[0.085f,0.085f],HandItems:[{},{}]},maxToSpawn:1,entityId:"razak_demonmod:ranged_demon",minToSpawn:1}],groupWeight:1}],playerRange:6,respondToRedstone:0b,inventory:{Size:9,Items:[]},spawnRange:0,transparent:1b,maxDelay:10,xpToDrop:0,mobRange:0,debugMode:0b,maxNearbyMonsters:0}}}
+JSON:{blockState:{blockName:"ancientwarfarestructure:advanced_spawner",properties:{transparent:"true"}},teData:{id:"ancientwarfarestructure:advanced_spawner_tile",spawnerSettings:{minDelay:10,spawnDelay:5,lightSensitive:0b,spawnGroups:[{settingsList:[{remainingSpawnCount:1,hostile:1b,customTag:{ArmorDropChances:[0.085f,0.085f,0.085f,0.085f],ArmorItems:[{},{},{},{}],HandDropChances:[0.085f,0.085f],HandItems:[{},{}]},maxToSpawn:1,entityId:"twilightforest:skeleton_druid",minToSpawn:1}],groupWeight:1}],playerRange:6,respondToRedstone:0b,inventory:{Size:9,Items:[]},spawnRange:0,transparent:1b,maxDelay:10,xpToDrop:0,mobRange:0,debugMode:0b,maxNearbyMonsters:0}}}
 :enddata
 :endrule
 
@@ -810,7 +810,7 @@ rule:
 plugin=vanillaSign
 number=61
 data:
-JSON:{signContents0:"Madame§r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"west"}},signContents2:"Palms§r",signContents1:"Zukalini§r",signContents3:"Read§r",rotation:0}
+JSON:{signContents0:"Madameï¿½r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"west"}},signContents2:"Palmsï¿½r",signContents1:"Zukaliniï¿½r",signContents3:"Readï¿½r",rotation:0}
 :enddata
 :endrule
 

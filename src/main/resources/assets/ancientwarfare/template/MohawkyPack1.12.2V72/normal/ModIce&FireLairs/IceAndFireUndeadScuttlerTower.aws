@@ -6,7 +6,7 @@
 header:
 version=2.11
 name=IceAndFireUndeadScuttlerTower
-mods=
+mods=iceandfire
 size=24,21,23
 offset=11,3,22
 :endheader

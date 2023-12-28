@@ -5,7 +5,7 @@
 
 header:
 version=2.11
-name=PMMOBSElderThingCircleSpruce
+name=HirschgeistCircleSpruce
 mods=
 size=56,21,56
 offset=26,9,55
@@ -1041,7 +1041,7 @@ rule:
 plugin=blockTile
 number=43
 data:
-JSON:{blockState:{blockName:"ancientwarfarestructure:advanced_spawner",properties:{transparent:"true"}},teData:{id:"ancientwarfarestructure:advanced_spawner_tile",spawnerSettings:{minDelay:10,spawnDelay:69,lightSensitive:0b,spawnGroups:[{settingsList:[{remainingSpawnCount:-11,hostile:1b,customTag:{ArmorDropChances:[0.085f,0.085f,0.085f,0.085f],ArmorItems:[{},{},{},{}],HandDropChances:[0.085f,0.085f],HandItems:[{},{}]},maxToSpawn:1,entityId:"minecraft:zombie",minToSpawn:1}],groupWeight:1}],playerRange:16,respondToRedstone:0b,inventory:{Size:9,Items:[]},spawnRange:0,transparent:0b,maxDelay:900,xpToDrop:40,mobRange:0,debugMode:0b,maxNearbyMonsters:0}}}
+JSON:{blockState:{blockName:"ancientwarfarestructure:advanced_spawner",properties:{transparent:"true"}},teData:{id:"ancientwarfarestructure:advanced_spawner_tile",spawnerSettings:{minDelay:10,spawnDelay:69,lightSensitive:0b,spawnGroups:[{settingsList:[{remainingSpawnCount:-11,hostile:1b,customTag:{ArmorDropChances:[0.085f,0.085f,0.085f,0.085f],ArmorItems:[{},{},{},{}],HandDropChances:[0.085f,0.085f],HandItems:[{},{}]},maxToSpawn:1,entityId:"betteranimalsplus:hirschgeist",minToSpawn:1}],groupWeight:1}],playerRange:16,respondToRedstone:0b,inventory:{Size:9,Items:[]},spawnRange:0,transparent:0b,maxDelay:900,xpToDrop:40,mobRange:0,debugMode:0b,maxNearbyMonsters:0}}}
 :enddata
 :endrule
 

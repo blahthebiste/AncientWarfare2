@@ -862,7 +862,7 @@ rule:
 plugin=vanillaSign
 number=36
 data:
-JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"Glass§r",signContents1:"Garry§r",signContents3:"",rotation:0}
+JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"Glassï¿½r",signContents1:"Garryï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 
@@ -982,7 +982,7 @@ rule:
 plugin=vanillaSign
 number=51
 data:
-JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"Assortments§r",signContents1:"Andy's§r",signContents3:"",rotation:0}
+JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"Assortmentsï¿½r",signContents1:"Andy'sï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 
@@ -1038,7 +1038,7 @@ rule:
 plugin=vanillaSign
 number=58
 data:
-JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"north"}},signContents2:"Entry§r",signContents1:"No§r",signContents3:"",rotation:0}
+JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"north"}},signContents2:"Entryï¿½r",signContents1:"Noï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 
@@ -1342,7 +1342,7 @@ rule:
 plugin=vanillaSign
 number=96
 data:
-JSON:{signContents0:"The§r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"north"}},signContents2:"Tavern§r",signContents1:"Hopping Frog§r",signContents3:"",rotation:0}
+JSON:{signContents0:"Theï¿½r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"north"}},signContents2:"Tavernï¿½r",signContents1:"Hopping Frogï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 
@@ -1422,7 +1422,7 @@ rule:
 plugin=vanillaSign
 number=106
 data:
-JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"Oliver§r",signContents1:"Oily§r",signContents3:"",rotation:0}
+JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"Oliverï¿½r",signContents1:"Oilyï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 
@@ -1430,7 +1430,7 @@ rule:
 plugin=vanillaSign
 number=107
 data:
-JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"north"}},signContents2:"& Stuff§r",signContents1:"Spells§r",signContents3:"",rotation:0}
+JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"north"}},signContents2:"& Stuffï¿½r",signContents1:"Spellsï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 
@@ -1518,7 +1518,7 @@ rule:
 plugin=vanillaSign
 number=118
 data:
-JSON:{signContents0:"Rapscallions§r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"north"}},signContents2:"Imports§r",signContents1:"Dwarvish§r",signContents3:"Quality Stuff!§r",rotation:0}
+JSON:{signContents0:"Rapscallionsï¿½r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"north"}},signContents2:"Importsï¿½r",signContents1:"Dwarvishï¿½r",signContents3:"Quality Stuff!ï¿½r",rotation:0}
 :enddata
 :endrule
 
@@ -1526,7 +1526,7 @@ rule:
 plugin=vanillaSign
 number=119
 data:
-JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"Carpentry§r",signContents1:"Compo's§r",signContents3:"",rotation:0}
+JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"Carpentryï¿½r",signContents1:"Compo'sï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 
@@ -1534,7 +1534,7 @@ rule:
 plugin=vanillaSign
 number=120
 data:
-JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"west"}},signContents2:"Rugge§r",signContents1:"Riley§r",signContents3:"",rotation:0}
+JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"west"}},signContents2:"Ruggeï¿½r",signContents1:"Rileyï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 
@@ -1550,7 +1550,7 @@ rule:
 plugin=vanillaSign
 number=122
 data:
-JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"",signContents1:"Getya Greenes§r",signContents3:"",rotation:0}
+JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"",signContents1:"Getya Greenesï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 
@@ -1558,7 +1558,7 @@ rule:
 plugin=vanillaSign
 number=123
 data:
-JSON:{signContents0:"Emmeroids§r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"Imports§r",signContents1:"Elvish§r",signContents3:"Only the Best!§r",rotation:0}
+JSON:{signContents0:"Emmeroidsï¿½r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"east"}},signContents2:"Importsï¿½r",signContents1:"Elvishï¿½r",signContents3:"Only the Best!ï¿½r",rotation:0}
 :enddata
 :endrule
 
@@ -1574,7 +1574,7 @@ rule:
 plugin=vanillaSign
 number=125
 data:
-JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"west"}},signContents2:"Grains§r",signContents1:"Grainy§r",signContents3:"",rotation:0}
+JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"west"}},signContents2:"Grainsï¿½r",signContents1:"Grainyï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 
@@ -1598,7 +1598,7 @@ rule:
 plugin=vanillaSign
 number=128
 data:
-JSON:{signContents0:"Arbuthnots§r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"north"}},signContents2:"Adventuring§r",signContents1:"Amazing§r",signContents3:"Supplies§r",rotation:0}
+JSON:{signContents0:"Arbuthnotsï¿½r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"north"}},signContents2:"Adventuringï¿½r",signContents1:"Amazingï¿½r",signContents3:"Suppliesï¿½r",rotation:0}
 :enddata
 :endrule
 
@@ -1727,7 +1727,7 @@ entity:
 plugin=entity
 number=5
 data:
-JSON:{yOffset:0.14999998f,xOffset:0.7f,rotation:267.27374f,mobID:"razak_demonmod:centaur",zOffset:0.3f,position:2199627235337L,entityData:{HurtByTimestamp:0,ForgeData:{"Potion Core - Health Fix":22.0f,"Potion Core - Jump Boost Updated":1b},Attributes:[{Base:1.0d,Name:"potioncore.projectileDamage"},{Base:1.0d,Name:"potioncore.magicDamage"},{Base:1.0d,Name:"potioncore.jumpHeight"},{Base:1.0d,Name:"potioncore.damageResistance"},{Base:0.0d,Name:"potioncore.magicShielding"},{Base:22.0d,Name:"generic.maxHealth"},{Base:0.0d,Name:"generic.knockbackResistance"},{Base:0.31d,Name:"generic.movementSpeed"},{Base:0.0d,Name:"generic.armor"},{Base:0.0d,Name:"generic.armorToughness"},{Base:1.0d,Name:"forge.swimSpeed"},{Base:16.0d,Modifiers:[{UUIDMost:7165399262037755384L,UUIDLeast:-8800971376763099302L,Amount:-0.002495594341240301d,Operation:1,Name:"Random spawn bonus"}],Name:"generic.followRange"},{Base:5.0d,Name:"generic.attackDamage"}],Invulnerable:0b,FallFlying:0b,PortalCooldown:0,AbsorptionAmount:0.0f,FallDistance:0.0f,DeathTime:0s,ForgeCaps:{"dsurround:data":{a:0b,f:0b},"llibrary:extendedentitydatacapability":{"mm:living":{frozenYaw:0.0f,freezeProgress:0.0f,frozenPitch:0.0f,prevHasAI:0b,frozenYawHead:0.0f,frozenEntityID:-1,frozenLimbSwingAmount:0.0f,frozenRenderYawOffset:0.0f,frozenSwingProgress:0.0f},"Ice And Fire - Siren Property Tracker":{CharmedBySiren:0b,SirenID:0},"Ice And Fire - Frozen Property Tracker":{TicksUntilUnfrozen:0,IsFrozen:0b},"Ice and Fire - Player Property Tracker":{DismountedDragon:0b,GauntletDamage:0,DreadPortalZ:0,DreadPortalY:0,DreadPortalX:0},"Ice And Fire - Chain Property Tracker":{ConnectedEntities:[]},"Ice And Fire - Stone Property Tracker":{StoneBreakLvl:0,TurnedToStone:0b}},"multimob:summonable":{SummonerUUID:"",Following:0b,TimeLimit:1000},"ancientwarfarestructure:respawn_data":{},"vampirism:iextendedcreature":{maxBlood:-1,poisonousBlood:0b,bloodLevel:-1}},HandDropChances:[0.085f,0.085f],PersistenceRequired:0b,Motion:[0.0d,0.11760000228881837d,0.0d],Leashed:0b,Health:22.0f,LeftHanded:0b,Air:300s,OnGround:0b,Dimension:0,Rotation:[87.27374f,0.0f],UpdateBlocked:0b,HandItems:[{},{}],ArmorDropChances:[0.085f,0.085f,0.085f,0.085f],Pos:[1292.300000011921d,167.14999997615814d,-240.30000001192093d],Fire:-1s,ArmorItems:[{},{},{},{}],CanPickUpLoot:0b,HurtTime:0s}}
+JSON:{yOffset:0.14999998f,xOffset:0.7f,rotation:267.27374f,mobID:"grimoireofgaia:centaur",zOffset:0.3f,position:2199627235337L,entityData:{HurtByTimestamp:0,ForgeData:{"Potion Core - Health Fix":22.0f,"Potion Core - Jump Boost Updated":1b},Attributes:[{Base:1.0d,Name:"potioncore.projectileDamage"},{Base:1.0d,Name:"potioncore.magicDamage"},{Base:1.0d,Name:"potioncore.jumpHeight"},{Base:1.0d,Name:"potioncore.damageResistance"},{Base:0.0d,Name:"potioncore.magicShielding"},{Base:22.0d,Name:"generic.maxHealth"},{Base:0.0d,Name:"generic.knockbackResistance"},{Base:0.31d,Name:"generic.movementSpeed"},{Base:0.0d,Name:"generic.armor"},{Base:0.0d,Name:"generic.armorToughness"},{Base:1.0d,Name:"forge.swimSpeed"},{Base:16.0d,Modifiers:[{UUIDMost:7165399262037755384L,UUIDLeast:-8800971376763099302L,Amount:-0.002495594341240301d,Operation:1,Name:"Random spawn bonus"}],Name:"generic.followRange"},{Base:5.0d,Name:"generic.attackDamage"}],Invulnerable:0b,FallFlying:0b,PortalCooldown:0,AbsorptionAmount:0.0f,FallDistance:0.0f,DeathTime:0s,ForgeCaps:{"dsurround:data":{a:0b,f:0b},"llibrary:extendedentitydatacapability":{"mm:living":{frozenYaw:0.0f,freezeProgress:0.0f,frozenPitch:0.0f,prevHasAI:0b,frozenYawHead:0.0f,frozenEntityID:-1,frozenLimbSwingAmount:0.0f,frozenRenderYawOffset:0.0f,frozenSwingProgress:0.0f},"Ice And Fire - Siren Property Tracker":{CharmedBySiren:0b,SirenID:0},"Ice And Fire - Frozen Property Tracker":{TicksUntilUnfrozen:0,IsFrozen:0b},"Ice and Fire - Player Property Tracker":{DismountedDragon:0b,GauntletDamage:0,DreadPortalZ:0,DreadPortalY:0,DreadPortalX:0},"Ice And Fire - Chain Property Tracker":{ConnectedEntities:[]},"Ice And Fire - Stone Property Tracker":{StoneBreakLvl:0,TurnedToStone:0b}},"multimob:summonable":{SummonerUUID:"",Following:0b,TimeLimit:1000},"ancientwarfarestructure:respawn_data":{},"vampirism:iextendedcreature":{maxBlood:-1,poisonousBlood:0b,bloodLevel:-1}},HandDropChances:[0.085f,0.085f],PersistenceRequired:0b,Motion:[0.0d,0.11760000228881837d,0.0d],Leashed:0b,Health:22.0f,LeftHanded:0b,Air:300s,OnGround:0b,Dimension:0,Rotation:[87.27374f,0.0f],UpdateBlocked:0b,HandItems:[{},{}],ArmorDropChances:[0.085f,0.085f,0.085f,0.085f],Pos:[1292.300000011921d,167.14999997615814d,-240.30000001192093d],Fire:-1s,ArmorItems:[{},{},{},{}],CanPickUpLoot:0b,HurtTime:0s}}
 :enddata
 :endentity
 

@@ -7,6 +7,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.Loader;
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.core.gamedata.AWGameData;
 import net.shadowmage.ancientwarfare.structure.AncientWarfareStructure;
 import net.shadowmage.ancientwarfare.structure.config.AWStructureStatics;
@@ -228,6 +229,20 @@ public class WorldGenStructureManager {
 			WorldGenDetailedLogHelper.log("Unique structure \"{}\" already generated", () -> template.name);
 			return false;
 		}
+		// Added by Tweaked
+		int distanceLimit = getMaxDistanceLimitation(settings);
+		// Calculate current distance from spawn:
+		BlockPos spawnRelative = new BlockPos(world.getSpawnPoint().getX(), world.getSpawnPoint().getY(), world.getSpawnPoint().getZ());
+		BlockPos structurePos = new BlockPos(x,y,z);
+		if(spawnRelative.distanceSq(structurePos) > distanceLimit * distanceLimit) {
+			WorldGenDetailedLogHelper.log("Structure \"{}\" is far enough from spawn.", () -> template.name);
+		}
+		else {
+			WorldGenStatistics.addStructureValidationRejection(template.name, ValidationRejectionReason.TOO_CLOSE_TO_SPAWN);
+			WorldGenDetailedLogHelper.log("Structure \"{}\" is too close to spawn!", () -> template.name);
+			return false;
+		}
+
 		if (settings.getClusterValue() > remainingValueCache) {
 			WorldGenStatistics.addStructureValidationRejection(template.name, ValidationRejectionReason.TOO_HIGH_CLUSTER_VALUE);
 			WorldGenDetailedLogHelper.log("Structure \"{}\" has too high cluster value {}", () -> template.name, () -> template.getValidationSettings().getClusterValue());
@@ -246,5 +261,25 @@ public class WorldGenStructureManager {
 
 	public Optional<Set<StructureTemplate>> getTerritoryTemplates(String territoryName) {
 		return Optional.ofNullable(templatesByTerritoryName.get(territoryName));
+	}
+
+	// Finds the largest number for how far the structure needs to be from spaw.
+	// Structures that rely on multiple mods may have multiple distance values in the config.
+	// We only care about the furthest one.
+	private int getMaxDistanceLimitation(StructureValidator settings) {
+		String[] modlist = settings.modList;
+		int largestDistanceLimitation = 0;
+		// Apply distance-from-spawn limitations
+		// Modlist limitions:
+		for(int i = 0; i < modlist.length; i++) {
+			if(AWCoreStatics.modDistanceFromSpawnMap.containsKey(modlist[i])) {
+				// Mod has a distance-from-spawn limit from the config file
+				int distance = (Integer) AWCoreStatics.modDistanceFromSpawnMap.get(modlist[i]);
+				if(distance > largestDistanceLimitation) {
+					largestDistanceLimitation = distance;
+				}
+			}
+		}
+		return largestDistanceLimitation;
 	}
 }

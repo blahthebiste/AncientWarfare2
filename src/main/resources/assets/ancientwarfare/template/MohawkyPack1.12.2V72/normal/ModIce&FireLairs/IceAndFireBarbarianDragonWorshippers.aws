@@ -6,7 +6,7 @@
 header:
 version=2.11
 name=IceAndFireBarbarianDragonWorshippers
-mods=
+mods=iceandfire
 size=90,86,75
 offset=32,13,74
 :endheader

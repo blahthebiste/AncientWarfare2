@@ -182,7 +182,7 @@ public class NPCDialogue {
             case "wizardly":
                 factionJSON = dialogueData.wizardly;
                 break;
-            case "demonFaction":
+            case "demon":
                 factionJSON = dialogueData.demon;
                 break;
             default:

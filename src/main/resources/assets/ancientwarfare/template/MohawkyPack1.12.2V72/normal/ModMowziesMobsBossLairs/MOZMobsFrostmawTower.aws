@@ -6,7 +6,7 @@
 header:
 version=2.11
 name=MOZMobsFrostmawTower
-mods=
+mods=mowziesmobs
 size=51,60,53
 offset=27,9,52
 :endheader

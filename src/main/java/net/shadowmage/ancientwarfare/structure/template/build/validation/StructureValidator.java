@@ -20,8 +20,6 @@ import net.shadowmage.ancientwarfare.structure.template.build.StructureBB;
 import net.shadowmage.ancientwarfare.structure.template.build.validation.properties.IStructureValidationProperty;
 import net.shadowmage.ancientwarfare.structure.worldgen.WorldGenDetailedLogHelper;
 import net.shadowmage.ancientwarfare.structure.worldgen.WorldStructureGenerator;
-import net.shadowmage.ancientwarfare.structure.worldgen.stats.PlacementRejectionReason;
-import net.shadowmage.ancientwarfare.structure.worldgen.stats.WorldGenStatistics;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -44,6 +42,7 @@ public abstract class StructureValidator {
 
 	private boolean riverBiomeChecked = false;
 	private boolean canSpawnInRiverBiome = false;
+	public String[] modList;
 
 	private HashMap<IStructureValidationProperty<?>, Object> properties = new LinkedHashMap<>();
 
@@ -532,4 +531,8 @@ public abstract class StructureValidator {
 	public void setBiomeGroupList(Set<String> biomeGroups) {
 		setPropertyValue(BIOME_GROUP_LIST, biomeGroups);
 	}
+
+    public void setModlist(String[] modDependencies) {
+		modList = modDependencies.clone();
+    }
 }

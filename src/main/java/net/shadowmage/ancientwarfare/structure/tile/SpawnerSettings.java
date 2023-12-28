@@ -20,6 +20,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.core.util.EntityTools;
 import net.shadowmage.ancientwarfare.npc.entity.faction.NpcFaction;
 import net.shadowmage.ancientwarfare.npc.entity.faction.NpcFactionArcher;
@@ -652,19 +653,30 @@ public class SpawnerSettings {
 
 		public final void setEntityToSpawn(ResourceLocation entityId) {
 			this.entityId = entityId;
-			if (!ForgeRegistries.ENTITIES.containsKey(this.entityId)) {
-				if (hostile) {
-					AncientWarfareStructure.LOG.debug("{} is not a valid entityId.  Spawner default to Zombie.", entityId);
-					this.entityId = new ResourceLocation("zombie");
-				} else {
-					remainingSpawnCount = 0;
+			if (!ForgeRegistries.ENTITIES.containsKey(this.entityId) || AWStructureStatics.excludedSpawnerEntities.contains(this.entityId.toString())) {
+				AncientWarfareStructure.LOG.debug("{} is not a valid entityId, or has been set as invalid for spawners. Searching for replacement.", entityId);
+				if(AWCoreStatics.mobReplacementMap.containsKey(this.entityId.toString())) {
+					String replacementId = (String)AWCoreStatics.mobReplacementMap.get(this.entityId.toString());
+					AncientWarfareStructure.LOG.debug("Found replacement entity for {}: {}", entityId, replacementId);
+					ResourceLocation replacementEntity = new ResourceLocation(replacementId);
+					if (!ForgeRegistries.ENTITIES.containsKey(replacementEntity)) {
+						if (hostile) {
+							AncientWarfareStructure.LOG.debug("Replacement found for entity {}, but it was invalid; spawning zombie", entityId);
+							this.entityId = new ResourceLocation("zombie");
+						}
+						else {
+							remainingSpawnCount = 0;
+						}
+					}
+					else {
+						this.entityId = replacementEntity;
+					}
 				}
-			}
-			if (AWStructureStatics.excludedSpawnerEntities.contains(this.entityId.toString())) {
-				if (hostile) {
-					AncientWarfareStructure.LOG.warn("{} has been set as an invalid entity for spawners!  Spawner default to Zombie.", entityId);
+				else if (hostile) {
+					AncientWarfareStructure.LOG.debug("No replacement found for entity {}; spawning zombie", entityId);
 					this.entityId = new ResourceLocation("zombie");
-				} else {
+				}
+				else {
 					remainingSpawnCount = 0;
 				}
 			}

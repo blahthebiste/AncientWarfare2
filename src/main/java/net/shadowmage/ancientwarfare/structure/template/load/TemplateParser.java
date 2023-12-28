@@ -113,6 +113,7 @@ public class TemplateParser {
 					groupedLines.add(line);
 				}
 				validation = StructureValidator.parseValidator(groupedLines);
+				validation.setModlist(modDependencies);
 				groupedLines.clear();
 			}
 

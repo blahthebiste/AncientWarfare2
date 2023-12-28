@@ -1,8 +1,13 @@
 package net.shadowmage.ancientwarfare.core.config;
 
+import codechicken.lib.util.ArrayUtils;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
 import net.shadowmage.ancientwarfare.core.AncientWarfareCore;
+import scala.Int;
+
+import java.util.HashMap;
+import java.util.Hashtable;
 
 public class AWCoreStatics extends ModConfiguration {
 
@@ -53,6 +58,50 @@ public class AWCoreStatics extends ModConfiguration {
 	public static boolean allowStealing = true;
 	public static boolean chestProtection = true;
 	public static boolean blockProtection = true;
+	public static HashMap modDistanceFromSpawnMap = new HashMap<String, Integer>();
+	public static HashMap mobReplacementMap = new HashMap<String, String>();
+	private static String[] modDistanceFromSpawnArray;
+	private static String[] mobReplacementArray;
+	private static String[] defaultMobReplacementArray = {
+			"primitivemobs:bewitched_tome > twilightforest:death_tome",
+			"grimoireofgaia:yeti > twilightforest:yeti",
+			"grimoireofgaia:mimic > primitivemobs:mimic",
+			"primitivemobs:mimic > grimoireofgaia:mimic",
+			"grimoireofgaia:minotaur > twilightforest:minotaur",
+			"grimoireofgaia:witch > minecraft:witch",
+			"grimoireofgaia:mummy > minecraft:husk",
+			"grimoireofgaia:siren > iceandfire:siren",
+			"iceandfire:siren > grimoireofgaia:siren",
+			"grimoireofgaia:banshee > mocreatures:wraith",
+			"grimoireofgaia:goblin > twilightforest:kobold",
+			"grimoireofgaia:goblin_feral > twilightforest:redcap",
+			"grimoireofgaia:vampire > dungeonmobs:dmvampire",
+			"dungeonmobs:dmvampire > grimoireofgaia:vampire",
+			"grimoireofgaia:sharko > oe:drowned",
+			"grimoireofgaia:gelatinous_slime > miencraft:slime",
+			"mod_lavacow:banshee > mocreatures:wraith",
+			"dungeonmobs:dmshrieker > iceandfire:dread_ghoul",
+			"dungeonmobs:dmrustmonster > mocreatures:dirtscorpion",
+			"dungeonmobs:dmillithid > minecraft:illusion_illager",
+			"dungeonmobs:dmeldermob > minecraft:ghast",
+			"dungeonmobs:dmhookhorror > iceandfire:dread_beast",
+			"dungeonmobs:dmbeholder > twilightforest:mini_ghast",
+			"dungeonmobs:dmghost > mocreatures:wraith",
+			"dungeonmobs:dmtroll > iceandfire:if_troll",
+			"dungeonmobs:dmcavefisher > mocreatures:cavescorpion",
+			"dungeonmobs:dmmanticore > mocreatures:plainmanticore",
+			"mocreatures:scorpion > mocreatures:dirtscorpion",
+			"mocreatures:manticore > mocreatures:plainmanticore",
+			"ebwizardry:wizard > primitivemobs:traveling_merchant",
+			"ebwizardry:evil_wizard > minecraft:evocation_illager",
+			"exoticbirds:owl > zawa:greathornedowl",
+			"owls:owl > zawa:greathornedowl",
+			"zawa:greathornedowl > owls:owl"
+	};
+	private static String[] defaultModDistanceFromSpawnArray = {
+			"iceandfire,1000",
+			"ebwizardry,500"
+	};
 
 	public AWCoreStatics(String modid) {
 		super(modid);
@@ -107,6 +156,52 @@ public class AWCoreStatics extends ModConfiguration {
 		bossConquerResistance = config.getInt("boss_conquer_resistance", tweakOptions, 5, 0, 1000000 , "Controls how many points boss enemies are worth when calculating whether players can claim a structure.");
 
 		glowDuration = config.getInt("highlight_duration", tweakOptions, 6000, 0, 1000000 , "Controls how long enemies and spawners glow when they are preventing you from claiming a structure or opening a chest, in ticks.\n"+"There are 20 ticks per second, so the default 6000 = 5 minutes.");
+
+		modDistanceFromSpawnArray = config.getStringList("mod_distance_from_spawn", tweakOptions, defaultModDistanceFromSpawnArray, "Set a minimum distance from spawn for AW2 structures containing specific mods.\nFor example, the default prevents AW2 structures containing ElectroBlob's Wizardry mobs from generating within 500 blocks of spawn, and IceandFire structures within 1000 blocks of spawn.");
+		// Populate modDistanceFromSpawnMap based on the array
+		for (int i = 0; i < modDistanceFromSpawnArray.length; i++) {
+			String line = modDistanceFromSpawnArray[i];
+			if(line.contains(",")){
+				String[] keyValue = line.split(",");
+				if(keyValue.length != 2) {
+					System.out.println("WARNING: syntax error in config. Line has too many/few commas: "+line);
+					continue;
+				}
+				String modid = keyValue[0];
+				String distanceString = keyValue[1];
+				try {
+					int distance = Integer.parseInt(distanceString);
+					modDistanceFromSpawnMap.put(modid, distance);
+				}
+				catch (NumberFormatException e) {
+					System.out.println("WARNING: syntax error in config. Distance must be an Integer: "+line);
+					continue;
+				}
+			}
+			else {
+				System.out.println("WARNING: syntax error in config. Line missing comma separator: "+line);
+				continue;
+			}
+		}
+		mobReplacementArray = config.getStringList("mod_replacement", tweakOptions, defaultMobReplacementArray, "When an AW2 spawner fails to spawn an entity (for example, if the entity is from a mod that is not installed), attempt to spawn the replacement instead.\nIf that fails too, and the mob is hostile, it will spawn a zombie.\nNote that the replacement is not going to happen if the original mob spawns successfully.");
+		// Populate mobReplacementMap based on the array
+		for (int i = 0; i < mobReplacementArray.length; i++) {
+			String line = mobReplacementArray[i];
+			if(line.contains(">")){
+				String[] keyValue = line.split(">");
+				if(keyValue.length != 2) {
+					System.out.println("WARNING: syntax error in config. Line has too many/few greater-than signs: "+line);
+					continue;
+				}
+				String originalMob = keyValue[0].trim();
+				String replacementMob = keyValue[1].trim();
+				mobReplacementMap.put(originalMob, replacementMob);
+			}
+			else {
+				System.out.println("WARNING: syntax error in config. Line missing greater-than separator: "+line);
+				continue;
+			}
+		}
 	}
 
 	@Override
