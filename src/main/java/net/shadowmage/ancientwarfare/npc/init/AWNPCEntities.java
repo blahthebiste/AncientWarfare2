@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.core.entity.AWEntityRegistry;
 import net.shadowmage.ancientwarfare.core.entity.AWEntityRegistry.EntityDeclaration;
 import net.shadowmage.ancientwarfare.core.init.AWCoreItems;
@@ -181,7 +183,7 @@ public class AWNPCEntities {
 		addNpcSubtypeEquipment(COMBAT_TYPE, SOLDIER_SUBTYPE, new ItemStack(Items.IRON_SWORD));
 		addNpcSubtypeEquipment(COMBAT_TYPE, ARCHER_SUBTYPE, new ItemStack(Items.BOW));
 		addNpcSubtypeEquipment(COMBAT_TYPE, "engineer", new ItemStack(AWCoreItems.IRON_HAMMER));
-		addNpcSubtypeEquipment(COMBAT_TYPE, "medic", new ItemStack(Items.IRON_AXE));
+		addNpcSubtypeEquipment(COMBAT_TYPE, "medic", new ItemStack(Item.REGISTRY.getObject(AWCoreStatics.medicItems.get(0))));
 	}
 
 	private static void addNpcRegistration(NpcDeclaration reg) {

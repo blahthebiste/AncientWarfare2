@@ -13,7 +13,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.npc.ai.NpcAIAttackMeleeLongRange;
 import net.shadowmage.ancientwarfare.npc.ai.NpcAIAttackNearest;
 import net.shadowmage.ancientwarfare.npc.ai.NpcAIDistressResponse;
@@ -154,8 +156,9 @@ public class NpcCombat extends NpcPlayerOwned implements IRangedAttackMob {
 		ItemStack stack = getHeldItemMainhand();
 		if (!stack.isEmpty()) {
 			Item item = stack.getItem();
+			ResourceLocation itemName = item.getRegistryName();
 			Collection<String> tools = item.getToolClasses(stack);
-			if (tools.contains("axe")) {
+			if (AWCoreStatics.medicItems.contains(itemName)) {
 				return "medic";
 			} else if (tools.contains("hammer")) {
 				return "engineer";
@@ -167,6 +170,7 @@ public class NpcCombat extends NpcPlayerOwned implements IRangedAttackMob {
 			} else if (item.isEnchantable(stack)) {
 				return "soldier";
 			}
+			System.out.println("[AW2t] WARNING: item does not match any Combat NPC subtype! item=" + item.toString());
 		}
 		return "";
 	}

@@ -1,11 +1,16 @@
 package net.shadowmage.ancientwarfare.core.config;
 
+import codechicken.lib.configuration.ConfigFile;
 import codechicken.lib.util.ArrayUtils;
+import com.typesafe.config.ConfigException;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
 import net.shadowmage.ancientwarfare.core.AncientWarfareCore;
 import scala.Int;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Hashtable;
 
@@ -53,6 +58,7 @@ public class AWCoreStatics extends ModConfiguration {
 	public static int spawnerConquerResistance = 1;
 	public static int eliteConquerResistance = 2;
 	public static int bossConquerResistance = 5;
+	public static int batteringRamBaseDamage = 5;
 	public static float blockProtectionMulti = 100.0f;
 	public static boolean npcDialogue = true;
 	public static boolean allowStealing = true;
@@ -60,8 +66,10 @@ public class AWCoreStatics extends ModConfiguration {
 	public static boolean blockProtection = true;
 	public static HashMap modDistanceFromSpawnMap = new HashMap<String, Integer>();
 	public static HashMap mobReplacementMap = new HashMap<String, String>();
+	public static ArrayList<ResourceLocation> medicItems = new ArrayList<>();
 	private static String[] modDistanceFromSpawnArray;
 	private static String[] mobReplacementArray;
+	private static String[] medicItemsPlaceholder;
 	private static String[] defaultMobReplacementArray = {
 			"primitivemobs:bewitched_tome > twilightforest:death_tome",
 			"grimoireofgaia:yeti > twilightforest:yeti",
@@ -101,6 +109,9 @@ public class AWCoreStatics extends ModConfiguration {
 	private static String[] defaultModDistanceFromSpawnArray = {
 			"iceandfire,1000",
 			"ebwizardry,500"
+	};
+	private static String[] defaultMedicItems = {
+			"minecraft:apple"
 	};
 
 	public AWCoreStatics(String modid) {
@@ -148,6 +159,8 @@ public class AWCoreStatics extends ModConfiguration {
 
 		blockProtection = config.getBoolean("block_protection", tweakOptions, true, "Toggles whether (some) blocks in faction-owned structures are harder to mine through.\n"+"If true, (some) blocks on faction-owned land take <block_protection_multiplier> as long to mine.");
 		blockProtectionMulti = config.getFloat("block_protection_multiplier", tweakOptions, 100.0f, 0.0f, 1000000.0f , "Controls how much longer it takes to mine blocks on faction-protected land.");
+
+		batteringRamBaseDamage = config.getInt("battering_ram_base_damage", tweakOptions, 5, 0, 1000000 , "Controls the amount of damage battering rams deal (before their material bonus is applied.)");
 
 		conquerThreshold = config.getInt("conquer_threshold", tweakOptions, 5, 0, 1000000 , "Controls the max number of enemies that will flee rather than prevent players from claiming a structure.\n"+"For example, if this is set to 1, then even a single enemy left alive will prevent you from claiming a structure.");
 		normalConquerResistance = config.getInt("normal_conquer_resistance", tweakOptions, 1, 0, 1000000 , "Controls how many points normal enemies are worth when calculating whether players can claim a structure.");
@@ -200,6 +213,28 @@ public class AWCoreStatics extends ModConfiguration {
 			else {
 				System.out.println("WARNING: syntax error in config. Line missing greater-than separator: "+line);
 				continue;
+			}
+		}
+
+		medicItemsPlaceholder = config.getStringList("medic_items", tweakOptions, defaultMedicItems, "Defines valid item IDs that will be used by NPC medics. Giving an NPC one of these items to equip turns them into a medic.\n"+"This must not be empty! You need to define at least 1 item for medics to use.\n"+"If you do not, the default item list will be used.");
+		// Populate medicItems based on the array
+		for (int i = 0; i < medicItemsPlaceholder.length; i++) {
+			String line = medicItemsPlaceholder[i].trim();
+			ResourceLocation itemResourceLocation = new ResourceLocation(line);
+			if(Item.REGISTRY.getObject(itemResourceLocation) != null) {
+				medicItems.add(itemResourceLocation);
+				System.out.println("INFO: medic item \""+line+"\" added.");
+			}
+			else {
+				System.out.println("WARNING: medic item \""+line+"\" could not be found in the registry. Skipping.");
+			}
+		}
+		if(medicItems.size() < 1) {
+			System.out.println("WARNING: no valid items found in medic_items! Using default instead.");
+			for (int i = 0; i < defaultMedicItems.length; i++) {
+				String line = defaultMedicItems[i].trim();
+				ResourceLocation itemResourceLocation = new ResourceLocation(line);
+				medicItems.add(itemResourceLocation);
 			}
 		}
 	}

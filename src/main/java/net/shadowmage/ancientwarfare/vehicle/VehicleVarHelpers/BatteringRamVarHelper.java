@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.core.util.BlockTools;
 import net.shadowmage.ancientwarfare.structure.entity.EntityGate;
 import net.shadowmage.ancientwarfare.vehicle.config.AWVehicleStatics;
@@ -93,7 +94,7 @@ public class BatteringRamVarHelper extends VehicleFiringVarsHelper {
 				boolean firstGateBlock = true; // only used if a gate was hit
 				for (Entity ent : hitEntities) {
 					System.out.println("entity: " + ent);
-					ent.attackEntityFrom(DamageType.batteringDamage, 5 + vehicle.vehicleMaterialLevel);
+					ent.attackEntityFrom(DamageType.batteringDamage, AWCoreStatics.batteringRamBaseDamage + vehicle.vehicleMaterialLevel);
 					if (ent instanceof EntityGate) {
 						String gateTypeName = (((EntityGate) ent).gateType.getVariant().toString().toLowerCase());
 						if (gateTypeName.contains("wood") && firstGateBlock) {
