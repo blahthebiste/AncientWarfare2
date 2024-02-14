@@ -14,6 +14,7 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.shadowmage.ancientwarfare.automation.tile.worksite.treefarm.DefaultTreeScanner;
 import net.shadowmage.ancientwarfare.automation.tile.worksite.treefarm.ITree;
 import net.shadowmage.ancientwarfare.automation.tile.worksite.treefarm.ITreeScanner;
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.structure.config.AWStructureStatics;
 import net.shadowmage.ancientwarfare.structure.template.StructureTemplate;
 import net.shadowmage.ancientwarfare.structure.template.build.StructureBB;
@@ -195,7 +196,8 @@ public abstract class StructureValidator {
 	private static StructureValidationType parseType(String line) {
 		Matcher matcher = NAME_VALUE_MATCHER.matcher(line);
 		if (matcher.matches() && matcher.group(1).equalsIgnoreCase("type")) {
-			return StructureValidationType.getTypeFromName(matcher.group(2)).orElse(StructureValidationType.GROUND);
+			StructureValidationType type = StructureValidationType.getTypeFromName(matcher.group(2)).orElse(StructureValidationType.GROUND);
+			return type;
 		}
 		return StructureValidationType.GROUND;
 	}
@@ -321,7 +323,6 @@ public abstract class StructureValidator {
 		int bx;
 		int bz;
 		int borderSize = getBorderSize();
-
 		for (bx = bb.min.getX() - borderSize; bx <= bb.max.getX() + borderSize; bx++) {
 			bz = bb.min.getZ() - borderSize;
 			if (!validateBlockHeightTypeAndBiome(world, bx, bz, minY, maxY, skipWater)) {
@@ -371,7 +372,6 @@ public abstract class StructureValidator {
 			WorldGenDetailedLogHelper.log("Rejected for placement into river biome at {}", () -> pos);
 			return false;
 		}
-
 		return validateBlockHeightAndType(world, x, z, min, max, skipWater, isValidState);
 	}
 
@@ -395,7 +395,7 @@ public abstract class StructureValidator {
 	/*
 	 * validates the target block at x,y,z is one of the input valid blocks
 	 */
-	private boolean validateBlockType(World world, int x, int y, int z, Predicate<IBlockState> isValidState) {
+	public boolean validateBlockType(World world, int x, int y, int z, Predicate<IBlockState> isValidState) {
 		if (y <= 0 || y >= world.getHeight()) {
 			return false;
 		}
@@ -433,6 +433,10 @@ public abstract class StructureValidator {
 	}
 
 	private void borderLeveling(World world, int x, int z, StructureTemplate template, StructureBB bb) {
+		if(validationType.equals(StructureValidationType.ISLAND) && AWCoreStatics.floatingIslands) {
+			System.out.println("Skipping border leveling for island!");
+			return;
+		}
 		if (getMaxLeveling() <= 0) {
 			return;
 		}
@@ -447,12 +451,16 @@ public abstract class StructureValidator {
 		BlockPos pos = new BlockPos(x, y, z);
 		IBlockState state = world.getBlockState(pos);
 		Block block = state.getBlock();
-		if (block != Blocks.AIR && state.getMaterial() != Material.WATER && !AWStructureStatics.isSkippable(state)) {
+		if (block != Blocks.AIR && state.getMaterial() != Material.LAVA && state.getMaterial() != Material.WATER && !AWStructureStatics.isSkippable(state)) {
 			world.setBlockState(pos, fillBlock);
 		}
 	}
 
 	private void borderFill(World world, int x, int z, StructureTemplate template, StructureBB bb) {
+		if(validationType.equals(StructureValidationType.ISLAND) && AWCoreStatics.floatingIslands) {
+			System.out.println("Skipping border fill for island!");
+			return;
+		}
 		if (getMaxFill() <= 0) {
 			return;
 		}
@@ -465,13 +473,17 @@ public abstract class StructureValidator {
 			BlockPos pos = new BlockPos(x, y, z);
 			IBlockState state = world.getBlockState(pos);
 			Block block = state.getBlock();
-			if (AWStructureStatics.isSkippable(state) || block == Blocks.WATER || block == Blocks.FLOWING_WATER) {
+			if (AWStructureStatics.isSkippable(state) || block == Blocks.WATER || block == Blocks.FLOWING_WATER|| block == Blocks.LAVA || block == Blocks.FLOWING_LAVA) {
 				world.setBlockState(pos, fillBlock);
 			}
 		}
 	}
 
 	private void underFill(World world, int x, int z, StructureBB bb) {
+		if(validationType.equals(StructureValidationType.ISLAND) && AWCoreStatics.floatingIslands) {
+			System.out.println("Skipping underFill for island!");
+			return;
+		}
 		int topFilledY = WorldStructureGenerator.getTargetY(world, x, z, true);
 		Biome biome = world.provider.getBiomeForCoords(new BlockPos(x, 1, z));
 		IBlockState fillBlock = biome.topBlock;
@@ -481,6 +493,10 @@ public abstract class StructureValidator {
 	}
 
 	void prePlacementUnderfill(World world, StructureBB bb) {
+		if(validationType.equals(StructureValidationType.ISLAND) && AWCoreStatics.floatingIslands) {
+			System.out.println("Skipping pre-placement underfill for island!");
+			return;
+		}
 		int bx;
 		int bz;
 		for (bx = bb.min.getX(); bx <= bb.max.getX(); bx++) {
@@ -491,6 +507,10 @@ public abstract class StructureValidator {
 	}
 
 	void prePlacementBorder(World world, StructureTemplate template, StructureBB bb) {
+		if(validationType.equals(StructureValidationType.ISLAND) && AWCoreStatics.floatingIslands) {
+			System.out.println("Skipping prePlacementBorder for island!");
+			return;
+		}
 		int borderSize = getBorderSize();
 		if (borderSize <= 0) {
 			return;

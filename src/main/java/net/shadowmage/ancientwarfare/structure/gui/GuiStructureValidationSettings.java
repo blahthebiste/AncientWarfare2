@@ -103,6 +103,7 @@ public class GuiStructureValidationSettings extends GuiContainerBase {
 		addValidationButton(86, 24, StructureValidationType.UNDERWATER);
 		addValidationButton(164, 24, StructureValidationType.ISLAND);
 		addValidationButton(8, 40, StructureValidationType.HARBOR);
+		addValidationButton(86, 40, StructureValidationType.LAVA);
 
 		totalHeight += 16 * 3 + 4 + 8;//type buttons height+buffer
 

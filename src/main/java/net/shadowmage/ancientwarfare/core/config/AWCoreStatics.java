@@ -1,18 +1,12 @@
 package net.shadowmage.ancientwarfare.core.config;
 
-import codechicken.lib.configuration.ConfigFile;
-import codechicken.lib.util.ArrayUtils;
-import com.typesafe.config.ConfigException;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
 import net.shadowmage.ancientwarfare.core.AncientWarfareCore;
-import scala.Int;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Hashtable;
 
 public class AWCoreStatics extends ModConfiguration {
 
@@ -64,6 +58,7 @@ public class AWCoreStatics extends ModConfiguration {
 	public static boolean allowStealing = true;
 	public static boolean chestProtection = true;
 	public static boolean blockProtection = true;
+	public static boolean floatingIslands = false;
 	public static HashMap modDistanceFromSpawnMap = new HashMap<String, Integer>();
 	public static HashMap mobReplacementMap = new HashMap<String, String>();
 	public static ArrayList<ResourceLocation> medicItems = new ArrayList<>();
@@ -72,6 +67,10 @@ public class AWCoreStatics extends ModConfiguration {
 	private static String[] medicItemsPlaceholder;
 	private static String[] defaultMobReplacementArray = {
 			"primitivemobs:bewitched_tome > twilightforest:death_tome",
+			"primitivemobs:support_creeper > minecraft:creeper",
+			"primitivemobs:skeleton_warrior > minecraft:skeleton",
+			"primitivemobs:baby_spider > minecraft:spider",
+			"primitivemobs:treasure_slime > minecraft:slime",
 			"grimoireofgaia:yeti > twilightforest:yeti",
 			"grimoireofgaia:mimic > primitivemobs:mimic",
 			"primitivemobs:mimic > grimoireofgaia:mimic",
@@ -159,6 +158,8 @@ public class AWCoreStatics extends ModConfiguration {
 
 		blockProtection = config.getBoolean("block_protection", tweakOptions, true, "Toggles whether (some) blocks in faction-owned structures are harder to mine through.\n"+"If true, (some) blocks on faction-owned land take <block_protection_multiplier> as long to mine.");
 		blockProtectionMulti = config.getFloat("block_protection_multiplier", tweakOptions, 100.0f, 0.0f, 1000000.0f , "Controls how much longer it takes to mine blocks on faction-protected land.");
+
+		floatingIslands = config.getBoolean("floating_islands", tweakOptions, false, "Toggles whether island structures in the ocean float on top of the water, or fill in the space beneath them with solid blocks.\n"+"\ttrue = islands float above water\n"+"\tfalse = islands replace all water beneath them with solid blocks (original AW2 style)");
 
 		batteringRamBaseDamage = config.getInt("battering_ram_base_damage", tweakOptions, 5, 0, 1000000 , "Controls the amount of damage battering rams deal (before their material bonus is applied.)");
 

@@ -19,7 +19,8 @@ public enum StructureValidationType {
 	WATER(StructureValidatorWater::new),
 	UNDERWATER(StructureValidatorUnderwater::new, MIN_WATER_DEPTH, MAX_WATER_DEPTH),
 	HARBOR(StructureValidatorHarbor::new),
-	ISLAND(StructureValidatorIsland::new, MIN_WATER_DEPTH, MAX_WATER_DEPTH);
+	ISLAND(StructureValidatorIsland::new, MIN_WATER_DEPTH, MAX_WATER_DEPTH),
+	LAVA(StructureValidatorLava::new);
 
 	private final Supplier<? extends StructureValidator> createValidator;
 

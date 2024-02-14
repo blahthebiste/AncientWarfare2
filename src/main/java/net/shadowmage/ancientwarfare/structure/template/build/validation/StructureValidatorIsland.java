@@ -4,6 +4,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.structure.template.StructureTemplate;
 import net.shadowmage.ancientwarfare.structure.template.build.StructureBB;
 import net.shadowmage.ancientwarfare.structure.worldgen.WorldStructureGenerator;
@@ -55,7 +56,9 @@ public class StructureValidatorIsland extends StructureValidator {
 
 	@Override
 	public void preGeneration(World world, BlockPos pos, EnumFacing face, StructureTemplate template, StructureBB bb) {
-		prePlacementUnderfill(world, bb);
+		if(!AWCoreStatics.floatingIslands) {
+			prePlacementUnderfill(world, bb);
+		}
 	}
 
 	@Override

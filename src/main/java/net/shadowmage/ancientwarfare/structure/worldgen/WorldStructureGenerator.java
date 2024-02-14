@@ -123,16 +123,21 @@ public class WorldStructureGenerator implements IWorldGenerator {
 		}
 	}
 
+
 	public static int getTargetY(World world, int x, int z, boolean skipWater) {
 		return getTargetY(world, x, z, skipWater, world.getActualHeight());
 	}
 
 	public static int getTargetY(World world, int x, int z, boolean skipWater, int startAtY) {
 		Block block;
+		if(world.provider.getDimension() == -1) {
+			// Special case to be able to generate in the Nether, assume sea-level is 31
+			return 31;
+		}
 		for (int y = startAtY; y > 0; y--) {
 			IBlockState state = world.getBlockState(new BlockPos(x, y, z));
 			block = state.getBlock();
-			if (AWStructureStatics.isSkippable(state) || skipWater && (block == Blocks.WATER || block == Blocks.FLOWING_WATER)) {
+			if (AWStructureStatics.isSkippable(state) || (skipWater && (block == Blocks.WATER || block == Blocks.FLOWING_WATER))) {
 				continue;
 			}
 			return y;

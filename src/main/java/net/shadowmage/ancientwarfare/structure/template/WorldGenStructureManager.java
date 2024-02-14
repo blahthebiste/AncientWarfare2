@@ -147,8 +147,8 @@ public class WorldGenStructureManager {
 
 		int remainingValueCache = territory.getRemainingClusterValue();
 
-		WorldGenDetailedLogHelper.log("Selecting template at x {} z {} in biome \"{}\" and territory \"{}\" with remaining cluster value of {}",
-				() -> x, () -> z, () -> biomeName, territory::getTerritoryName, territory::getRemainingClusterValue);
+		WorldGenDetailedLogHelper.log("Selecting template at x {} y {} z {} in biome \"{}\" and territory \"{}\" with remaining cluster value of {}",
+				() -> x, () -> y, () -> z, () -> biomeName, territory::getTerritoryName, territory::getRemainingClusterValue);
 
 		int duplicateSearchDistance = 0;
 		for (StructureTemplate template : potentialStructures) {
@@ -263,7 +263,7 @@ public class WorldGenStructureManager {
 		return Optional.ofNullable(templatesByTerritoryName.get(territoryName));
 	}
 
-	// Finds the largest number for how far the structure needs to be from spaw.
+	// Finds the largest number for how far the structure needs to be from spawn.
 	// Structures that rely on multiple mods may have multiple distance values in the config.
 	// We only care about the furthest one.
 	private int getMaxDistanceLimitation(StructureValidator settings) {
@@ -271,12 +271,14 @@ public class WorldGenStructureManager {
 		int largestDistanceLimitation = 0;
 		// Apply distance-from-spawn limitations
 		// Modlist limitions:
-		for(int i = 0; i < modlist.length; i++) {
-			if(AWCoreStatics.modDistanceFromSpawnMap.containsKey(modlist[i])) {
-				// Mod has a distance-from-spawn limit from the config file
-				int distance = (Integer) AWCoreStatics.modDistanceFromSpawnMap.get(modlist[i]);
-				if(distance > largestDistanceLimitation) {
-					largestDistanceLimitation = distance;
+		if(modlist != null) {
+			for (int i = 0; i < modlist.length; i++) {
+				if (AWCoreStatics.modDistanceFromSpawnMap.containsKey(modlist[i])) {
+					// Mod has a distance-from-spawn limit from the config file
+					int distance = (Integer) AWCoreStatics.modDistanceFromSpawnMap.get(modlist[i]);
+					if (distance > largestDistanceLimitation) {
+						largestDistanceLimitation = distance;
+					}
 				}
 			}
 		}
