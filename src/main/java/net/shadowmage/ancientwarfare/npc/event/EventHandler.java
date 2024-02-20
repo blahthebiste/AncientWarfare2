@@ -17,6 +17,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -223,4 +225,17 @@ public class EventHandler {
 
 		return WorldTools.getTile(world, pos).map(te -> te.getTileData().getBoolean(GENERATED_INVENTORY_TAG) || te instanceof ISpecialLootContainer).orElse(false);
 	}
+
+	@SubscribeEvent
+	public void onLivingAttack(LivingAttackEvent evt)
+	{
+		// When demons are going to take damage, if it is fire/lava/heat damage, ignore it.
+		if(AWCoreStatics.demonsImmuneToFire && evt.getSource().isFireDamage()) {
+			// Only active if the demons_immune_to_fire option is enabled in the config.
+			if (evt.getEntity() instanceof NpcFaction && ((NpcFaction) evt.getEntity()).getFaction().equals("demon")) {
+				evt.setCanceled(true);
+			}
+		}
+	}
+
 }

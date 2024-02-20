@@ -45,7 +45,34 @@ public class NpcDefaultsRegistry {
 	}
 
 	public static FactionNpcDefault getFactionNpcDefault(NpcFaction npc) {
-		return factionNpcDefaults.get(npc.getFaction()).get(npc.getNpcType());
+		String faction;
+		String npcType;
+
+		try {
+			if(npc == null) {
+				System.out.println("AW2t: null NPC! Cannot get factionNpcDefault.");
+				faction = "demon";
+				npcType = "soldier";
+				return factionNpcDefaults.get(faction).get(npcType);
+			}
+			faction = npc.getFaction();
+			npcType = npc.getNpcType();
+			if(faction == null) {
+				System.out.println("AW2t: null NPC faction! using demon as default.");
+				faction = "demon";
+			}
+			if(npcType == null) {
+				System.out.println("AW2t: null NPC type! Using soldier as default.");
+				npcType = "soldier";
+			}
+			return factionNpcDefaults.get(faction).get(npcType);
+		}
+		catch (NullPointerException e) {
+			System.out.println("AW2t: null pointer exception! Cannot get factionNpcDefault.");
+			faction = "demon";
+			npcType = "soldier";
+			return factionNpcDefaults.get(faction).get(npcType);
+		}
 	}
 
 	public static OwnedNpcDefault getOwnedNpcDefault(NpcPlayerOwned npc) {

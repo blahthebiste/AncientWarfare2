@@ -59,6 +59,7 @@ public class AWCoreStatics extends ModConfiguration {
 	public static boolean chestProtection = true;
 	public static boolean blockProtection = true;
 	public static boolean floatingIslands = false;
+	public static boolean demonsImmuneToFire = true;
 	public static HashMap modDistanceFromSpawnMap = new HashMap<String, Integer>();
 	public static HashMap mobReplacementMap = new HashMap<String, String>();
 	public static ArrayList<ResourceLocation> medicItems = new ArrayList<>();
@@ -155,6 +156,8 @@ public class AWCoreStatics extends ModConfiguration {
 
 		allowStealing = config.getBoolean("allow_stealing", tweakOptions, true, "Toggles whether players can steal from NPC loot chests when no one is looking.\n"+"No effect if loot_chest_protection is disabled.");
 		chestProtection = config.getBoolean("loot_chest_protection", tweakOptions, true, "Toggles whether players need to steal or claim structures to open NPC loot chests.\n"+"If this is disabled, players can open any loot chests freely.");
+
+		demonsImmuneToFire = config.getBoolean("demons_immune_to_fire", tweakOptions, true, "Toggles whether NPCs from the demon faction are immune to fire and lava damage.");
 
 		blockProtection = config.getBoolean("block_protection", tweakOptions, true, "Toggles whether (some) blocks in faction-owned structures are harder to mine through.\n"+"If true, (some) blocks on faction-owned land take <block_protection_multiplier> as long to mine.");
 		blockProtectionMulti = config.getFloat("block_protection_multiplier", tweakOptions, 100.0f, 0.0f, 1000000.0f , "Controls how much longer it takes to mine blocks on faction-protected land.");

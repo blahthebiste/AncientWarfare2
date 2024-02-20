@@ -55,7 +55,7 @@ public class StructureValidatorHarbor extends StructureValidator {
 				return false;
 			}
 			block = world.getBlockState(new BlockPos(testMin.getX(), by, testMin.getZ())).getBlock();
-			if (block == Blocks.WATER || block == Blocks.FLOWING_WATER || block == Blocks.LAVA || block == Blocks.FLOWING_LAVA) {
+			if (block == Blocks.WATER || block == Blocks.FLOWING_WATER) {
 				return true;
 			}
 		}
