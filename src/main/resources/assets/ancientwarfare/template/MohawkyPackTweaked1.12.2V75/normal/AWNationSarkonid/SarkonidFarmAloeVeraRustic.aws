@@ -1144,7 +1144,7 @@ rule:
 plugin=vanillaSign
 number=79
 data:
-JSON:{signContents0:"-Loeva-§r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"south"}},signContents2:"Aloe Vera§r",signContents1:"The§r",signContents3:"Farm§r",rotation:0}
+JSON:{signContents0:"-Loeva-Â§r",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"south"}},signContents2:"Aloe VeraÂ§r",signContents1:"TheÂ§r",signContents3:"FarmÂ§r",rotation:0}
 :enddata
 :endrule
 
