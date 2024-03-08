@@ -14,6 +14,7 @@ offset=23,5,26
 #### VALIDATION ####
 validation:
 type=ground
+structureAuthor=TheOddlySeagull
 survival=false
 worldGenEnabled=true
 unique=false
@@ -1369,7 +1370,7 @@ rule:
 plugin=vanillaSign
 number=95
 data:
-JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"west"}},signContents2:"ENTRY§r",signContents1:"NO§r",signContents3:"",rotation:0}
+JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"west"}},signContents2:"ENTRYï¿½r",signContents1:"NOï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 
@@ -1473,7 +1474,7 @@ rule:
 plugin=vanillaSign
 number=108
 data:
-JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"west"}},signContents2:"ENTRY§r",signContents1:"NO§r",signContents3:"",rotation:0}
+JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"west"}},signContents2:"ENTRYï¿½r",signContents1:"NOï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 
@@ -1497,7 +1498,7 @@ rule:
 plugin=vanillaSign
 number=111
 data:
-JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"south"}},signContents2:"ENTRY§r",signContents1:"NO§r",signContents3:"",rotation:0}
+JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"south"}},signContents2:"ENTRYï¿½r",signContents1:"NOï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 
@@ -1585,7 +1586,7 @@ rule:
 plugin=vanillaSign
 number=122
 data:
-JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"west"}},signContents2:"ENTRY§r",signContents1:"NO§r",signContents3:"",rotation:0}
+JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"west"}},signContents2:"ENTRYï¿½r",signContents1:"NOï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 
@@ -1593,7 +1594,7 @@ rule:
 plugin=vanillaSign
 number=123
 data:
-JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"north"}},signContents2:"ENTRY§r",signContents1:"NO§r",signContents3:"",rotation:0}
+JSON:{signContents0:"",blockState:{blockName:"minecraft:wall_sign",properties:{facing:"north"}},signContents2:"ENTRYï¿½r",signContents1:"NOï¿½r",signContents3:"",rotation:0}
 :enddata
 :endrule
 
