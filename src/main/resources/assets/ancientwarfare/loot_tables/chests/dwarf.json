@@ -1,86 +1,121 @@
 {
     "pools": [
         {
-            "name":"main", 
-            "rolls": {
-                "min": 3,
-                "max": 4
+            "name": "dwarf_weapon",
+            "rolls": 1,
+            "bonus_rolls": {
+                "min": 0,
+                "max": 1
             },
             "entries": [
                 {
                     "type": "item",
-                    "name": "stone",
-                    "weight": 6,
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 1,
-                                "max": 2
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "item",
-                    "name": "torch",
-                    "weight": 6,
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 1,
-                                "max": 6
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "item",
-                    "name": "mushroom_stew",
-                    "weight": 5,
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 1,
-                                "max": 5
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "item",
-                    "name": "iron_ore",
-                    "weight": 6,
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 1,
-                                "max": 6
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "item",
                     "name": "ancientwarfarenpc:iron_halberd",
-                    "weight": 5,
+                    "weight": 1
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:iron_axe",
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "name": "dwarf_tools",
+            "rolls": {
+                "min": 1,
+                "max": 2
+            },
+            "bonus_rolls": {
+                "min": 1,
+                "max": 3
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "minecraft:iron_pickaxe",
+                    "weight": 10
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:diamond_pickaxe",
+                    "weight": 1,
+                    "quality": 3,
                     "functions": [
                         {
-                            "function": "set_count",
-                            "count": {
-                                "min": 1,
-                                "max": 2
+                            "function": "enchant_with_levels",
+                            "treasure": true,
+                            "levels": {
+                                "min": 10,
+                                "max": 39
                             }
                         }
                     ]
                 },
                 {
                     "type": "item",
-                    "name": "iron_ingot",
-                    "weight": 2,
+                    "name": "minecraft:iron_shovel",
+                    "weight": 10
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:minecart",
+                    "weight": 5
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:rail",
+                    "weight": 5,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 16,
+                                "max": 64
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "raw_ores",
+            "rolls": {
+                "min": 2,
+                "max": 5
+            },
+            "bonus_rolls": {
+                "min": 1,
+                "max": 3
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "minecraft:iron_ore",
+                    "weight": 10
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:gold_ore",
+                    "weight": 5
+                }
+            ]
+        },
+        {
+            "name": "processed_ores",
+            "rolls": {
+                "min": 1,
+                "max": 3
+            },
+            "bonus_rolls": {
+                "min": 1,
+                "max": 2
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "minecraft:iron_ingot",
+                    "weight": 10,
                     "functions": [
                         {
                             "function": "set_count",
@@ -93,13 +128,68 @@
                 },
                 {
                     "type": "item",
-                    "name": "diamond",
+                    "name": "minecraft:gold_ingot",
+                    "weight": 5,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 2
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:diamond",
                     "weight": 1,
                     "functions": [
                         {
                             "function": "set_count",
                             "count": {
                                 "min": 1,
+                                "max": 2
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:emerald",
+                    "weight": 1,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 2
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "rubble",
+            "rolls": {
+                "min": 1,
+                "max": 3
+            },
+            "bonus_rolls": {
+                "min": -2,
+                "max": 0
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "minecraft:cobblestone",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
                                 "max": 3
                             }
                         }
@@ -107,57 +197,64 @@
                 },
                 {
                     "type": "item",
-                    "name": "red_mushroom",
-                    "weight": 3,
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 1,
-                                "max": 6
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "item",
-                    "name": "brown_mushroom",
-                    "weight": 3,
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 1,
-                                "max": 6
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "item",
-                    "name": "cooked_mutton",
+                    "name": "minecraft:gravel",
                     "weight": 5,
                     "functions": [
                         {
                             "function": "set_count",
                             "count": {
                                 "min": 1,
-                                "max": 6
+                                "max": 3
                             }
                         }
                     ]
                 },
                 {
                     "type": "item",
-                    "name": "gold_ingot",
-                    "weight": 3,
+                    "name": "minecraft:flint",
+                    "weight": 2,
                     "functions": [
                         {
                             "function": "set_count",
                             "count": {
                                 "min": 1,
-                                "max": 7
+                                "max": 2
                             }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "food",
+            "rolls": {
+                "min": 1,
+                "max": 2
+            },
+            "bonus_rolls": {
+                "min": 1,
+                "max": 2
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "minecraft:mushroom_stew",
+                    "weight": 5
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:rabbit_stew",
+                    "weight": 2
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:potion",
+                    "weight": 1,
+                    "quality": 3,
+                    "functions": [
+                        {
+                            "function": "set_nbt",
+                            "tag": "{CustomPotionEffects: [{ShowParticles: 1b, Duration: 4800, Id: 3b, Amplifier: 0b}], CustomPotionColor: 16776960, display: {Lore: [\"Known to make you mine faster\"], Name: \"Dwarf's Brew\"}}"
                         }
                     ]
                 }
