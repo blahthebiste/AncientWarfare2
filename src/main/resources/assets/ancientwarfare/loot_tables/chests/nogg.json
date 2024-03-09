@@ -65,15 +65,37 @@
                 },
                 {
                     "type": "item",
-                    "name": "ancientwarfarenpc:iron_halberd",
-                    "weight": 4,
+                    "name": "cooked_beef",
+                    "weight": 5,
                     "functions": [
                         {
                             "function": "set_count",
                             "count": {
                                 "min": 1,
-                                "max": 2
+                                "max": 5
                             }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "ancientwarfarenpc:iron_halberd",
+                    "weight": 4,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:iron_sword",
+                    "weight": 4,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": 1
                         }
                     ]
                 },
@@ -81,6 +103,17 @@
                     "type": "item",
                     "name": "ancientwarfarenpc:shield_round_5",
                     "weight": 3,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:emerald",
+                    "weight": 2,
                     "functions": [
                         {
                             "function": "set_count",
@@ -131,10 +164,7 @@
                     "functions": [
                         {
                             "function": "set_count",
-                            "count": {
-                                "min": 1,
-                                "max": 2
-                            }
+                            "count": 1
                         },
                         {
                             "function": "set_nbt",

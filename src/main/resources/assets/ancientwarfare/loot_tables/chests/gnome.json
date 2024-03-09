@@ -1,58 +1,63 @@
 {
     "pools": [
         {
-            "name":"main", 
+            "name": "weapons",
             "rolls": {
-                "min": 1,
-                "max": 4
+                "min": 0,
+                "max": 1
             },
             "entries": [
                 {
                     "type": "item",
-                    "name": "milk_bucket",
-                    "weight": 6,
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 1,
-                                "max": 2
-                            }
-                        }
-                    ]
+                    "name": "ancientwarfarenpc:iron_shield",
+                    "weight": 2
                 },
                 {
                     "type": "item",
-                    "name": "cooked_beef",
-                    "weight": 5,
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 1,
-                                "max": 5
-                            }
-                        }
-                    ]
+                    "name": "minecraft:bow",
+                    "weight": 5
                 },
                 {
                     "type": "item",
-                    "name": "leather",
-                    "weight": 6,
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 1,
-                                "max": 6
-                            }
-                        }
-                    ]
+                    "name": "minecraft:iron_sword",
+                    "weight": 2
                 },
                 {
                     "type": "item",
                     "name": "ancientwarfarenpc:iron_spear",
+                    "weight": 3
+                }
+            ]
+        },
+        {
+            "name": "ressources",
+            "rolls": {
+                "min": 1,
+                "max": 2
+            },
+            "bonus_rolls": {
+                "min": 1,
+                "max": 2
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "minecraft:sugar",
                     "weight": 5,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 3
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:glowstone_dust",
+                    "weight": 3,
                     "functions": [
                         {
                             "function": "set_count",
@@ -65,13 +70,41 @@
                 },
                 {
                     "type": "item",
-                    "name": "gold_ingot",
+                    "name": "minecraft:spider_eye",
+                    "weight": 4,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 3
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:fermented_spider_eye",
                     "weight": 2,
                     "functions": [
                         {
                             "function": "set_count",
                             "count": {
                                 "min": 1,
+                                "max": 2
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:speckled_melon",
+                    "weight": 4,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
                                 "max": 3
                             }
                         }
@@ -79,8 +112,68 @@
                 },
                 {
                     "type": "item",
-                    "name": "diamond",
+                    "name": "minecraft:rabbit_foot",
                     "weight": 1,
+                    "quality": 2
+                }
+            ]
+        },
+        {
+            "name": "potions",
+            "rolls": {
+                "min": 1,
+                "max": 2
+            },
+            "bonus_rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "minecraft:potion",
+                    "weight": 5,
+                    "functions": [
+                        {
+                            "function": "set_nbt",
+                            "tag": "{Potion:\"minecraft:water\"}"
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:potion",
+                    "weight": 3,
+                    "functions": [
+                        {
+                            "function": "set_nbt",
+                            "tag": "{Potion:\"minecraft:thick\"}"
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:potion",
+                    "weight": 3,
+                    "functions": [
+                        {
+                            "function": "set_nbt",
+                            "tag": "{Potion:\"minecraft:awkward\"}"
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:potion",
+                    "weight": 2,
+                    "functions": [
+                        {
+                            "function": "set_nbt",
+                            "tag": "{Potion:\"minecraft:mundane\"}"
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:experience_bottle",
+                    "weight": 3,
                     "functions": [
                         {
                             "function": "set_count",
@@ -93,56 +186,68 @@
                 },
                 {
                     "type": "item",
-                    "name": "ancientwarfarenpc:shield_tribal_1",
-                    "weight": 3,
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 1,
-                                "max": 2
-                            }
-                        }
-                    ]
+                    "name": "minecraft:glass_bottle",
+                    "weight": 3
                 },
                 {
                     "type": "item",
-                    "name": "ancientwarfarenpc:shield_tribal_2",
-                    "weight": 3,
+                    "name": "minecraft:potion",
+                    "weight": 1,
+                    "quality": 2,
                     "functions": [
                         {
-                            "function": "set_count",
-                            "count": {
-                                "min": 1,
-                                "max": 2
-                            }
+                            "function": "set_nbt",
+                            "tag": "{CustomPotionEffects:[{Duration:4800,Id:26b,Amplifier:1b},{Duration:600,Id:27b,Amplifier:0b}],CustomPotionColor:65459,HideFlags:32,display:{Lore:[\"Suspicious\"],Name:\"Gnome Juice\"}}"
                         }
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "name": "food",
+            "rolls": {
+                "min": 1,
+                "max": 2
+            },
+            "entries": [
                 {
                     "type": "item",
-                    "name": "beef",
+                    "name": "minecraft:red_mushroom",
                     "weight": 5,
                     "functions": [
                         {
                             "function": "set_count",
                             "count": {
                                 "min": 1,
-                                "max": 6
+                                "max": 3
                             }
                         }
                     ]
                 },
                 {
                     "type": "item",
-                    "name": "gold_nugget",
-                    "weight": 3,
+                    "name": "minecraft:brown_mushroom",
+                    "weight": 5,
                     "functions": [
                         {
                             "function": "set_count",
                             "count": {
                                 "min": 1,
-                                "max": 7
+                                "max": 3
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "minecraft:bread",
+                    "weight": 5,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 3
                             }
                         }
                     ]
