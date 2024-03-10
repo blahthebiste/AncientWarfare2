@@ -32,49 +32,6 @@ In order to develop on this project you will need to:
 
 At this point it should be completely setup to begin development.  
 
-## This fork
-
-This fork is used to allow us to add some new minor features such as loot tables. Here is the TODO list:
-
-### Loot Tables
-
-#### Farms
-
-- [ ] Pam's Harvestcraft rice
-- [ ] Explorercraft rice
-- [ ] Growwthcraft rice
-- [ ] Pam's Harvestcraft date
-- [ ] Pam's Harvestcraft garlic
-- [ ] Pam's Harvestcraft cotton
-- [ ] Pam's Harvestcraft beekeeping
-- [ ] Growthcraft beekeeping
-- [ ] FutureMC beekeeping
-- [ ] Pam's Harvestcraft turnip
-- [ ] Pam's Harvestcraft lentils
-- [ ] Pam's Harvestcraft radish
-- [ ] Pam's Harvestcraft chickpeas
-- [ ] Pam's Harvestcraft lettuce
-- [ ] Pam's Harvestcraft squash
-- [ ] Pam's Harvestcraft cucumber
-- [ ] Pam's Harvestcraft leek
-- [ ] Explorercraft leek
-- [ ] Pam's Harvestcraft spinach
-- [ ] Biomes O'Plenty berries
-- [ ] Minefantasy berries
-- [ ] FutureMC berries
-- [ ] Rustic berries
-
-#### Shops
-
-#### Factions
-
-#### Others
-
-- [ ] Reliquary loot tables for single relics, tired.
-- [ ] Reliquary loot tables for general relics, englobes all the relics
-  
-
-
 ## License
 
 Ancient Warfare 2.x - A mod for Minecraft
