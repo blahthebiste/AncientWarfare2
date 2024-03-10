@@ -31,8 +31,6 @@ In order to develop on this project you will need to:
 3) Run `gradlew idea` or `gradlew eclipse` based on the IDE you use to setup project files.
 
 At this point it should be completely setup to begin development.  
-  
-
 
 ## License
 

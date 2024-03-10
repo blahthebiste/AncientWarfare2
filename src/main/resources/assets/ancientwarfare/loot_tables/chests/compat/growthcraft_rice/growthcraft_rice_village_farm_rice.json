@@ -15,13 +15,8 @@
                 },
                 {
                     "type": "item",
-                    "name": "ancientwarfarenpc:scythe",
-                    "weight": 2
-                },
-                {
-                    "type": "item",
-                    "name": "ancientwarfarenpc:pitchfork",
-                    "weight": 2
+                    "name": "growthcraft_rice:cultivator",
+                    "weight": 4
                 },
                 {
                     "type": "item",
@@ -53,44 +48,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "harvestcraft:beanitem",
-                    "weight": 5,
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 2,
-                                "max": 8
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "item",
-                    "name": "harvestcraft:beanseeditem",
-                    "weight": 5,
-                    "functions": [
-                        {
-                            "function": "set_count",
-                            "count": {
-                                "min": 2,
-                                "max": 8
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name":"extra", 
-            "rolls": {
-                "min": 0,
-                "max": 1
-            },
-            "entries": [
-                {
-                    "type": "item",
-                    "name": "harvestcraft:refriedbeansitem",
+                    "name": "growthcraft_rice:rice",
                     "weight": 5,
                     "functions": [
                         {
@@ -104,6 +62,5 @@
                 }
             ]
         }
-        
     ]
 }

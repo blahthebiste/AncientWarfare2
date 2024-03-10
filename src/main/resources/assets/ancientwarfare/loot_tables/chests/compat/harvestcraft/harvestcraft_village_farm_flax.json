@@ -53,7 +53,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "harvestcraft:beanitem",
+                    "name": "harvestcraft:flaxitem",
                     "weight": 5,
                     "functions": [
                         {
@@ -67,7 +67,7 @@
                 },
                 {
                     "type": "item",
-                    "name": "harvestcraft:beanseeditem",
+                    "name": "harvestcraft:flaxseeditem",
                     "weight": 5,
                     "functions": [
                         {
@@ -90,7 +90,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "harvestcraft:refriedbeansitem",
+                    "name": "minecraft:string",
                     "weight": 5,
                     "functions": [
                         {
@@ -104,6 +104,5 @@
                 }
             ]
         }
-        
     ]
 }
