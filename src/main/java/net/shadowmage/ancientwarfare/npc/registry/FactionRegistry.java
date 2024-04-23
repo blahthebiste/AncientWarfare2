@@ -130,5 +130,5 @@ public class FactionRegistry {
 
 	}
 
-	private static final FactionDefinition EMPTY_FACTION = new FactionDefinition(new FactionDefinition.StandingSettings(0, false, new HashMap<>()), new HashSet<>(), new HashSet<>()).copy("", -1).build();
+	public static final FactionDefinition EMPTY_FACTION = new FactionDefinition(new FactionDefinition.StandingSettings(0, false, new HashMap<>()), new HashSet<>(), new HashSet<>()).copy("", -1).build();
 }

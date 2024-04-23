@@ -99,7 +99,8 @@ public class CommandFaction extends CommandBase {
 			return;
 		}
 		else if (cmd.equalsIgnoreCase("set")) {
-			// TODO
+			FactionTracker.INSTANCE.setStandingFor(world, playerName, factionName, adjustment);
+			return;
 		}
 		else {
 			throw new WrongUsageException(getUsage(cmd));

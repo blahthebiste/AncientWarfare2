@@ -53,6 +53,7 @@ public class AWCoreStatics extends ModConfiguration {
 	public static int eliteConquerResistance = 2;
 	public static int bossConquerResistance = 5;
 	public static int batteringRamBaseDamage = 5;
+	public static int nemesisRepChange = 1;
 	public static float blockProtectionMulti = 100.0f;
 	public static boolean npcDialogue = true;
 	public static boolean allowStealing = true;
@@ -60,11 +61,16 @@ public class AWCoreStatics extends ModConfiguration {
 	public static boolean blockProtection = true;
 	public static boolean floatingIslands = false;
 	public static boolean demonsImmuneToFire = true;
+	public static boolean nemesisFactions = true;
+	public static boolean showSmallNemesisRepChanges = true;
+	public static boolean showLargeNemesisRepChanges = true;
 	public static HashMap modDistanceFromSpawnMap = new HashMap<String, Integer>();
 	public static HashMap mobReplacementMap = new HashMap<String, String>();
+	public static HashMap nemesisFactionsMap = new HashMap<String, String>();
 	public static ArrayList<ResourceLocation> medicItems = new ArrayList<>();
 	private static String[] modDistanceFromSpawnArray;
 	private static String[] mobReplacementArray;
+	private static String[] nemesisFactionsArray;
 	private static String[] medicItemsPlaceholder;
 	private static String[] defaultMobReplacementArray = {
 			"primitivemobs:bewitched_tome > twilightforest:death_tome",
@@ -113,6 +119,21 @@ public class AWCoreStatics extends ModConfiguration {
 	private static String[] defaultMedicItems = {
 			"minecraft:apple"
 	};
+	private static String[] defaultNemesisFactionsArray = {
+			"good < evil",
+			"evil < good",
+			"pirate < empire",
+			"empire < buffloka",
+			"norska < icelord",
+			"icelord < norska",
+			"wizardly < witchbane",
+			"witchbane < wizardly",
+			"zimba < kong",
+			"kong < zimba",
+			"gnome < giant",
+			"giant < gnome",
+			"demon < zamurai"
+	};
 
 	public AWCoreStatics(String modid) {
 		super(modid);
@@ -154,6 +175,10 @@ public class AWCoreStatics extends ModConfiguration {
 		 */
 		npcDialogue = config.getBoolean("npc_dialogue", tweakOptions, true, "Toggles whether NPCs will chat with the player when right-clicked.");
 
+		nemesisFactions = config.getBoolean("nemesis_factions", tweakOptions, true, "Enables/disables the Nemesis Factions mechanic. This causes the player to gain rep when killing an NPC, in all factions that hate that NPC's faction.");
+		showSmallNemesisRepChanges = config.getBoolean("show_small_nemesis_rep_changes", tweakOptions, false, "Toggles whether players receive messages in chat telling them whenever they gain rep from the Nemesis Faction mechanic.");
+		showLargeNemesisRepChanges = config.getBoolean("show_large_nemesis_rep_changes", tweakOptions, true, "Toggles whether players receive messages in chat telling them that they have gained favor with a previously hostile faction via the Nemesis Faction mechanic.");
+
 		allowStealing = config.getBoolean("allow_stealing", tweakOptions, true, "Toggles whether players can steal from NPC loot chests when no one is looking.\n"+"No effect if loot_chest_protection is disabled.");
 		chestProtection = config.getBoolean("loot_chest_protection", tweakOptions, true, "Toggles whether players need to steal or claim structures to open NPC loot chests.\n"+"If this is disabled, players can open any loot chests freely.");
 
@@ -173,6 +198,8 @@ public class AWCoreStatics extends ModConfiguration {
 		bossConquerResistance = config.getInt("boss_conquer_resistance", tweakOptions, 5, 0, 1000000 , "Controls how many points boss enemies are worth when calculating whether players can claim a structure.");
 
 		glowDuration = config.getInt("highlight_duration", tweakOptions, 6000, 0, 1000000 , "Controls how long enemies and spawners glow when they are preventing you from claiming a structure or opening a chest, in ticks.\n"+"There are 20 ticks per second, so the default 6000 = 5 minutes.");
+
+		nemesisRepChange = config.getInt("nemesis_rep_change", tweakOptions, 1, -1000, 1000 , "Controls how much rep you gain/lose in a nemesis faction when you kill a member of their nemesis faction.\n"+"Does nothing if the nemesis_factions option is false.");
 
 		modDistanceFromSpawnArray = config.getStringList("mod_distance_from_spawn", tweakOptions, defaultModDistanceFromSpawnArray, "Set a minimum distance from spawn for AW2 structures containing specific mods.\nFor example, the default prevents AW2 structures containing ElectroBlob's Wizardry mobs from generating within 500 blocks of spawn, and IceandFire structures within 1000 blocks of spawn.");
 		// Populate modDistanceFromSpawnMap based on the array
@@ -200,7 +227,7 @@ public class AWCoreStatics extends ModConfiguration {
 				continue;
 			}
 		}
-		mobReplacementArray = config.getStringList("mod_replacement", tweakOptions, defaultMobReplacementArray, "When an AW2 spawner fails to spawn an entity (for example, if the entity is from a mod that is not installed), attempt to spawn the replacement instead.\nIf that fails too, and the mob is hostile, it will spawn a zombie.\nNote that the replacement is not going to happen if the original mob spawns successfully.");
+		mobReplacementArray = config.getStringList("mob_replacement", tweakOptions, defaultMobReplacementArray, "When an AW2 spawner fails to spawn an entity (for example, if the entity is from a mod that is not installed), attempt to spawn the replacement instead.\nIf that fails too, and the mob is hostile, it will spawn a zombie.\nNote that the replacement is not going to happen if the original mob spawns successfully.");
 		// Populate mobReplacementMap based on the array
 		for (int i = 0; i < mobReplacementArray.length; i++) {
 			String line = mobReplacementArray[i];
@@ -216,6 +243,26 @@ public class AWCoreStatics extends ModConfiguration {
 			}
 			else {
 				System.out.println("WARNING: syntax error in config. Line missing greater-than separator: "+line);
+				continue;
+			}
+		}
+
+		nemesisFactionsArray = config.getStringList("nemesis_factions_list", tweakOptions, defaultNemesisFactionsArray, "Defines faction Nemesis relations. Whenever you kill a member of the faction before the '<',\n"+"you gain favor with the faction after the '<'. Amount of rep gained is defined by nemesis_rep_change.");
+		// Populate mobReplacementMap based on the array
+		for (int i = 0; i < nemesisFactionsArray.length; i++) {
+			String line = nemesisFactionsArray[i];
+			if(line.contains("<")){
+				String[] keyValue = line.split("<");
+				if(keyValue.length != 2) {
+					System.out.println("WARNING: syntax error in config. Line has too many/few less-than signs: "+line);
+					continue;
+				}
+				String dyingFaction = keyValue[0].trim(); // The faction being killed
+				String beneficiaryFaction = keyValue[1].trim(); // The faction happy about it
+				nemesisFactionsMap.put(dyingFaction, beneficiaryFaction);
+			}
+			else {
+				System.out.println("WARNING: syntax error in config. Line missing less-than separator: "+line);
 				continue;
 			}
 		}
