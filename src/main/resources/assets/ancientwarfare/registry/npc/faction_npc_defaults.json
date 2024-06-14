@@ -762,7 +762,7 @@
             "generic.maxHealth": 50
           },
           "equipment": {
-            "mainhand": "minecraft:ender_pearl"
+            "mainhand": "minecraft:enchanted_book"
           },
           "experience_drop": 50
         },

@@ -64,6 +64,7 @@ public class AWCoreStatics extends ModConfiguration {
 	public static boolean nemesisFactions = true;
 	public static boolean showSmallNemesisRepChanges = true;
 	public static boolean showLargeNemesisRepChanges = true;
+//	public static boolean spawnersRequireLineOfSight = false;
 	public static HashMap modDistanceFromSpawnMap = new HashMap<String, Integer>();
 	public static HashMap mobReplacementMap = new HashMap<String, String>();
 	public static HashMap nemesisFactionsMap = new HashMap<String, String>();
@@ -182,12 +183,14 @@ public class AWCoreStatics extends ModConfiguration {
 		allowStealing = config.getBoolean("allow_stealing", tweakOptions, true, "Toggles whether players can steal from NPC loot chests when no one is looking.\n"+"No effect if loot_chest_protection is disabled.");
 		chestProtection = config.getBoolean("loot_chest_protection", tweakOptions, true, "Toggles whether players need to steal or claim structures to open NPC loot chests.\n"+"If this is disabled, players can open any loot chests freely.");
 
+//		spawnersRequireLineOfSight = config.getBoolean("spawners_require_line_of_sight", tweakOptions, true, "Toggles whether advanced spawners require line of sight to a player to spawn things.\n"+"In the original AW2, this is false.");
+
 		demonsImmuneToFire = config.getBoolean("demons_immune_to_fire", tweakOptions, true, "Toggles whether NPCs from the demon faction are immune to fire and lava damage.");
 
 		blockProtection = config.getBoolean("block_protection", tweakOptions, true, "Toggles whether (some) blocks in faction-owned structures are harder to mine through.\n"+"If true, (some) blocks on faction-owned land take <block_protection_multiplier> as long to mine.");
 		blockProtectionMulti = config.getFloat("block_protection_multiplier", tweakOptions, 100.0f, 0.0f, 1000000.0f , "Controls how much longer it takes to mine blocks on faction-protected land.");
 
-		floatingIslands = config.getBoolean("floating_islands", tweakOptions, false, "Toggles whether island structures in the ocean float on top of the water, or fill in the space beneath them with solid blocks.\n"+"\ttrue = islands float above water\n"+"\tfalse = islands replace all water beneath them with solid blocks (original AW2 style)");
+//		floatingIslands = config.getBoolean("floating_islands", tweakOptions, false, "Toggles whether island structures in the ocean float on top of the water, or fill in the space beneath them with solid blocks.\n"+"\ttrue = islands float above water\n"+"\tfalse = islands replace all water beneath them with solid blocks (original AW2 style)");
 
 		batteringRamBaseDamage = config.getInt("battering_ram_base_damage", tweakOptions, 5, 0, 1000000 , "Controls the amount of damage battering rams deal (before their material bonus is applied.)");
 
