@@ -1,15 +1,20 @@
-package net.shadowmage.ancientwarfare.npc.dialogue;
+package net.shadowmage.ancientwarfare.npc.registry;
 
 /*
     Helper class for determining what an NPC will say when interacted with.
-    Reads all dialogue from assets/ancientwarfarenpc/dialogue.json
+    Reads all dialogue from assets/ancientwarfare/registry/npc/dialogue.json
  */
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.JsonUtils;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+import net.shadowmage.ancientwarfare.core.AncientWarfareCore;
+import net.shadowmage.ancientwarfare.core.registry.IRegistryDataParser;
+import net.shadowmage.ancientwarfare.core.util.parsing.JsonHelper;
 import net.shadowmage.ancientwarfare.npc.AncientWarfareNPC;
 import net.shadowmage.ancientwarfare.npc.entity.faction.NpcFaction;
 
@@ -17,18 +22,27 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class NPCDialogue {
 
     public static DialogueJSON dialogueData;
 
     // Initializes the dialogue lists
-    public static void init() {
-        InputStream inStream = NPCDialogue.class.getResourceAsStream("/assets/"+AncientWarfareNPC.MOD_ID + "/dialogue.json");
-        Gson gson = new Gson();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
-        dialogueData = gson.fromJson(reader, DialogueJSON.class);
+    public static class Parser implements IRegistryDataParser {
+        @Override
+        public String getName() {
+            return "dialogue";
+        }
+
+        @SuppressWarnings("squid:S2696")
+        @Override
+        public void parse(JsonObject json) {
+            Gson gson = new Gson();
+            dialogueData = gson.fromJson(json, DialogueJSON.class);
+        }
     }
+
 
     // Figures out what message to send the given player, based on a variety of factors.
     public static void speakToPlayer(EntityPlayer player, NpcFaction npc) {

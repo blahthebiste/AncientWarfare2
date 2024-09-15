@@ -3,12 +3,13 @@ package net.shadowmage.ancientwarfare.npc.ai;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.npc.config.AWNPCStatics;
 import net.shadowmage.ancientwarfare.npc.entity.NpcBase;
 import net.shadowmage.ancientwarfare.npc.item.IExtendedReachWeapon;
 
 public class NpcAIAttackMeleeLongRange extends NpcAIAttack<NpcBase> {
-	private float attackReach = 2.5F;
+	private float attackReach = 2.5F + AWCoreStatics.meleeReachModifier;
 
 	public NpcAIAttackMeleeLongRange(NpcBase npc) {
 		super(npc);
@@ -16,9 +17,9 @@ public class NpcAIAttackMeleeLongRange extends NpcAIAttack<NpcBase> {
 	}
 
 	public void setAttackReachFromWeapon(ItemStack weapon) {
-		float reach = 2.5F;
+		float reach = 2.5F + AWCoreStatics.meleeReachModifier;
 		if (weapon.getItem() instanceof IExtendedReachWeapon) {
-			reach = ((IExtendedReachWeapon) weapon.getItem()).getReach() - 1F;
+			reach = ((IExtendedReachWeapon) weapon.getItem()).getReach() - 1F + AWCoreStatics.meleeReachModifier;
 		}
 		attackReach = reach;
 	}

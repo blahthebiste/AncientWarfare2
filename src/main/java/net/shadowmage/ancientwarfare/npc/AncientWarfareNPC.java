@@ -42,7 +42,7 @@ import net.shadowmage.ancientwarfare.npc.container.ContainerTownHall;
 import net.shadowmage.ancientwarfare.npc.container.ContainerTradeOrder;
 import net.shadowmage.ancientwarfare.npc.container.ContainerUpkeepOrder;
 import net.shadowmage.ancientwarfare.npc.container.ContainerWorkOrder;
-import net.shadowmage.ancientwarfare.npc.dialogue.NPCDialogue;
+import net.shadowmage.ancientwarfare.npc.registry.NPCDialogue;
 import net.shadowmage.ancientwarfare.npc.entity.faction.attributes.EntityVehicleProperty;
 import net.shadowmage.ancientwarfare.npc.faction.FactionTracker;
 import net.shadowmage.ancientwarfare.npc.init.AWNPCEntities;
@@ -133,6 +133,7 @@ public class AncientWarfareNPC {
 		RegistryLoader.registerParser(new NpcDefaultsRegistry.FactionNpcDefaultsParser());
 		RegistryLoader.registerParser(new NpcDefaultsRegistry.OwnedNpcDefaultsParser());
 		RegistryLoader.registerParser(new FactionTradeListRegistry.Parser());
+		RegistryLoader.registerParser(new NPCDialogue.Parser());
 	}
 
 	@EventHandler
@@ -149,7 +150,6 @@ public class AncientWarfareNPC {
 		statics.save();
 
 		AWNPCItems.addFactionBlocks();
-		NPCDialogue.init();
 	}
 
 	@SubscribeEvent
