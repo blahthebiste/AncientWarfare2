@@ -145,11 +145,11 @@ public class EventHandler {
 			AWGameData.INSTANCE.getPerWorldData(world, StructureMap.class).getStructureAt(world, pos).ifPresent(structure -> {
 				Optional<TileProtectionFlag> tile = WorldTools.getTile(world, structure.getProtectionFlagPos(), TileProtectionFlag.class);
 				if(AWCoreStatics.allowStealing) {
-					System.out.println("Allow stealing attempt!");
+//					System.out.println("Allow stealing attempt!");
 					// Skip the flag protection. Always let the player loot chests if no one is around to see it
 					for (NpcFaction factionNpc : world.getEntitiesWithinAABB(NpcFaction.class, structure.getBB().getAABB())) {
-						// If none of the entities can see the player, simply let them open the chest.
-						if (player.canEntityBeSeen(factionNpc)) {
+						// If one of the entities can see the player, prevent them from opening the chest.
+						if (factionNpc.canTarget(player) && player.canEntityBeSeen(factionNpc)) {
 							evt.setCanceled(true);
 							evt.setCancellationResult(EnumActionResult.FAIL);
 							factionNpc.addPotionEffect(new PotionEffect(MobEffects.GLOWING, AWCoreStatics.glowDuration));
@@ -162,7 +162,7 @@ public class EventHandler {
 					}
 				}
 				else { // Old code for full loot chest protection. Player must clear enemies and claim the flag to open chests.
-					System.out.println("Old-school chest protection!");
+//					System.out.println("Old-school chest protection!");
 					if (tile.isPresent() && tile.get().shouldProtectAgainst(player)) {
 						evt.setCanceled(true);
 						evt.setCancellationResult(EnumActionResult.FAIL);

@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -348,6 +349,27 @@ public abstract class NpcFaction extends NpcBase {
 
 	@Override
 	public boolean canTarget(Entity e) {
+		// Stealth code, takes into account invisibility, line of sight, sneaking, etc
+		// If invis, range multiplier is 0.1x
+		// If LOS is blocked, range multiplier is 0.75x
+		// If sneaking, range multiplier is 0.5x
+		// (These values are configurable.)
+		// These can all stack if they are enabled. Base follow range uses the attribute.
+		double adjustedTargettingRange = this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue();
+		if(e.isInvisible()) {
+			adjustedTargettingRange *= AWCoreStatics.invisibilityFollowRangePenalty;
+		}
+		if(e.isSneaking()) {
+			adjustedTargettingRange *= AWCoreStatics.sneakingFollowRangePenalty;
+		}
+		if(!this.getEntitySenses().canSee(e)) {
+			adjustedTargettingRange *= AWCoreStatics.obscuredFollowRangePenalty;
+		}
+		if(this.getDistance(e) > adjustedTargettingRange) {
+			// Cannot detect the target entity.
+			return false;
+		}
+
 		if (e instanceof NpcFaction) {
 			return !((NpcFaction) e).getFaction().equals(getFaction());
 		}

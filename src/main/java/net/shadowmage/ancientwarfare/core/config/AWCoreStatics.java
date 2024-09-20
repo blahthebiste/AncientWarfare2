@@ -55,6 +55,8 @@ public class AWCoreStatics extends ModConfiguration {
 	public static int batteringRamBaseDamage = 5;
 	public static int nemesisRepChange = 1;
 	public static float invisibilityFollowRangePenalty = 0.1f;
+	public static float sneakingFollowRangePenalty = 0.5f;
+	public static float obscuredFollowRangePenalty = 0.75f;
 	public static float blockProtectionMulti = 100.0f;
 	public static boolean npcDialogue = true;
 	public static boolean allowStealing = true;
@@ -193,6 +195,8 @@ public class AWCoreStatics extends ModConfiguration {
 		blockProtectionMulti = config.getFloat("block_protection_multiplier", tweakOptions, 100.0f, 0.0f, 1000000.0f , "Controls how much longer it takes to mine blocks on faction-protected land.");
 
 		invisibilityFollowRangePenalty = config.getFloat("invisibility_follow_range_penalty", tweakOptions, 0.1f, 0.0f, 1.0f , "NPCs follow range is multiplied by this when they are targeting invisible entities.\n"+"For example, the default value of 0.1 means that you cannot be targeted by NPCs while invisible until you are 90% of the way to them (very close).\n"+"If you set this to 1, then NPCs can target invisible entities just as well as non-invisible ones.");
+		sneakingFollowRangePenalty = config.getFloat("sneaking_follow_range_penalty", tweakOptions, 0.5f, 0.0f, 1.0f , "NPCs follow range is multiplied by this when they are targeting sneaking entities.\n"+"For example, the default value of 0.5 means that you cannot be targeted by NPCs while sneaking until you are 50% of the way to them.\n"+"If you set this to 1, then NPCs can target sneaking entities just as well as non-sneaking ones.");
+		obscuredFollowRangePenalty = config.getFloat("obscured_follow_range_penalty", tweakOptions, 0.75f, 0.0f, 1.0f , "NPCs follow range is multiplied by this when they are targeting entities obscured behind blocks.\n"+"For example, the default value of 0.75 means that you cannot be targeted by NPCs while they do until you are 75% of the way to them.\n"+"If you set this to 1, then NPCs can target obscured entities just as well as ones they can directly see.");
 		meleeReachModifier = config.getFloat("melee_reach_modifier", tweakOptions, 0.0f, -10.0f, +10.0f , "Add this number to the melee reach of NPCs. Put a negative number here to lower their reach.\n"+"Default reach when this is 0 is about 2.5 blocks.");
 
 //		floatingIslands = config.getBoolean("floating_islands", tweakOptions, false, "Toggles whether island structures in the ocean float on top of the water, or fill in the space beneath them with solid blocks.\n"+"\ttrue = islands float above water\n"+"\tfalse = islands replace all water beneath them with solid blocks (original AW2 style)");
