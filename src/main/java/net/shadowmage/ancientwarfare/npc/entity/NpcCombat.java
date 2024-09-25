@@ -203,6 +203,17 @@ public class NpcCombat extends NpcPlayerOwned implements IRangedAttackMob {
 		RangeAttackHelper.doRangedAttack(this, target, force, inaccuracy);
 	}
 
+	@Override
+	public boolean requiresUpkeep() {
+		// Tweak config option for combat NPCs to never need food
+		if(AWCoreStatics.combatNPCsRequireFood) {
+			return super.requiresUpkeep();
+		}
+		else {
+			return false;
+		}
+	}
+
 	public void respondToDistress(NpcBase source) {
 		// TODO: Target prioritizing or something...?
 		distressedTarget = source;

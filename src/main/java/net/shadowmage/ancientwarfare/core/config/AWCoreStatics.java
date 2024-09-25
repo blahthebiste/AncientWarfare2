@@ -54,10 +54,13 @@ public class AWCoreStatics extends ModConfiguration {
 	public static int bossConquerResistance = 5;
 	public static int batteringRamBaseDamage = 5;
 	public static int nemesisRepChange = 1;
+
 	public static float invisibilityFollowRangePenalty = 0.1f;
 	public static float sneakingFollowRangePenalty = 0.5f;
 	public static float obscuredFollowRangePenalty = 0.75f;
 	public static float blockProtectionMulti = 100.0f;
+
+	public static boolean combatNPCsRequireFood = true;
 	public static boolean npcDialogue = true;
 	public static boolean allowStealing = true;
 	public static boolean chestProtection = true;
@@ -68,11 +71,13 @@ public class AWCoreStatics extends ModConfiguration {
 	public static boolean showSmallNemesisRepChanges = true;
 	public static boolean showLargeNemesisRepChanges = true;
 //	public static boolean spawnersRequireLineOfSight = false;
+
 	public static HashMap modDistanceFromSpawnMap = new HashMap<String, Integer>();
 	public static HashMap mobReplacementMap = new HashMap<String, String>();
 	public static HashMap nemesisFactionsMap = new HashMap<String, String>();
 	public static ArrayList<ResourceLocation> medicItems = new ArrayList<>();
     public static float meleeReachModifier = 0.0F;
+
     private static String[] modDistanceFromSpawnArray;
 	private static String[] mobReplacementArray;
 	private static String[] nemesisFactionsArray;
@@ -190,6 +195,7 @@ public class AWCoreStatics extends ModConfiguration {
 //		spawnersRequireLineOfSight = config.getBoolean("spawners_require_line_of_sight", tweakOptions, true, "Toggles whether advanced spawners require line of sight to a player to spawn things.\n"+"In the original AW2, this is false.");
 
 		demonsImmuneToFire = config.getBoolean("demons_immune_to_fire", tweakOptions, true, "Toggles whether NPCs from the demon faction are immune to fire and lava damage.");
+		combatNPCsRequireFood = config.getBoolean("combat_NPCs_require_food", tweakOptions, true, "Toggles whether player-owned combat NPCs require food the same way that workers do. If this is set to false, combat NPCs will NEVER need to eat.");
 
 		blockProtection = config.getBoolean("block_protection", tweakOptions, true, "Toggles whether (some) blocks in faction-owned structures are harder to mine through.\n"+"If true, (some) blocks on faction-owned land take <block_protection_multiplier> as long to mine.");
 		blockProtectionMulti = config.getFloat("block_protection_multiplier", tweakOptions, 100.0f, 0.0f, 1000000.0f , "Controls how much longer it takes to mine blocks on faction-protected land.");
