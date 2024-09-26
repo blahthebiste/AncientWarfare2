@@ -30,6 +30,7 @@ import net.shadowmage.ancientwarfare.npc.orders.UpkeepOrder;
 import net.shadowmage.ancientwarfare.npc.registry.NpcDefault;
 import net.shadowmage.ancientwarfare.npc.registry.NpcDefaultsRegistry;
 import net.shadowmage.ancientwarfare.npc.tile.TileTownHall;
+import static net.shadowmage.ancientwarfare.npc.config.AWNPCStatics.npcKeepEquipment;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -275,12 +276,14 @@ public abstract class NpcPlayerOwned extends NpcBase implements IKeepFood, INpc 
 
 	@Override
 	protected void dropEquipment(boolean wasRecentlyHit, int lootingModifier) {
-		for (EntityEquipmentSlot slot : EntityEquipmentSlot.values()) {
-			ItemStack itemstack = this.getItemStackFromSlot(slot);
-			if (!itemstack.isEmpty()) {
-				this.entityDropItem(itemstack, 0.0F);
+		if (!npcKeepEquipment) {
+			for (EntityEquipmentSlot slot : EntityEquipmentSlot.values()) {
+				ItemStack itemstack = this.getItemStackFromSlot(slot);
+				if (!itemstack.isEmpty()) {
+					this.entityDropItem(itemstack, 0.0F);
+				}
+				setItemStackToSlot(slot, ItemStack.EMPTY);			
 			}
-			setItemStackToSlot(slot, ItemStack.EMPTY);
 		}
 		if (!AWNPCStatics.persistOrdersOnDeath) {
 			if (!ordersStack.isEmpty()) {
