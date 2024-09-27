@@ -37,6 +37,7 @@ public class AWNPCStatics extends ModConfiguration {
 	public static double archerRange = 60.0;
 	public static boolean vanillaEquipmentDropRate = true;
 	public static double npcLevelDamageMultiplier = 0.05;//damage bonus per npc level.  @ level 10 they do 2x the damage as at lvl 0
+	public static boolean npcKeepEquipment = false;
 
 
 	/* ********************************************CLIENT SETTINGS************************************************ */
@@ -99,8 +100,10 @@ public class AWNPCStatics extends ModConfiguration {
 
 		npcAllowUpkeepAnyInventory = config.get(serverOptions, "allow_upkeep_any_inventory", npcAllowUpkeepAnyInventory, "Allow NPC upkeep location at any inventory\nDefault=" + npcAllowUpkeepAnyInventory + "\n" + "By default, the Upkeep Order slip can be used to assign upkeep locations to any valid inventory block.\n" + "If set to false, only Town Hall blocks will be allowed as valid upkeep locations.").getBoolean();
 
-		townMaxRange = config.get(serverOptions, "town_hall_max_range", townMaxRange, "Town Hall Max Activation Range\nDefault=" + townMaxRange + "\n" + "How many blocks can a Town Hall be away from an NPC, while still detecting their death for possible resurrection.\n" + "This is a maximum, for server efficiency sake. Lower individual values can be setup from each block interaction GUI.").getInt();
+		npcKeepEquipment = config.get(serverOptions, "npc_keep_equipment", npcKeepEquipment, "Allow owned NPCs to keep their equipment after death\nDefault=" + npcKeepEquipment + "\n" + "By default, player owned NPCs drop their items after death.\n" + "If set to true, player owned NPCs respawn with all their items and will not drop equipment on death").getBoolean();
 
+		townMaxRange = config.get(serverOptions, "town_hall_max_range", townMaxRange, "Town Hall Max Activation Range\nDefault=" + townMaxRange + "\n" + "How many blocks can a Town Hall be away from an NPC, while still detecting their death for possible resurrection.\n" + "This is a maximum, for server efficiency sake. Lower individual values can be setup from each block interaction GUI.").getInt();
+		
 		townUpdateFreq = config.get(serverOptions, "town_hall_ticks", townUpdateFreq, "Default=" + townUpdateFreq + "\n" + "How many game ticks should pass between Town Hall updates." + "This affect how an NPC can change its selected Town Hall by moving to different places.\n" + "Lower values will make an NPC change its Town Hall faster, but is more costly for a server.\n").getInt();
 
 		loadDefaultSkinPack = config.get(clientOptions, "load_default_skin_pack", loadDefaultSkinPack, "Load Default Skin Pack\nDefault=true\n" + "If true, default skin pack will be loaded.\n" + "If false, default skin pack will NOT be loaded -- you will need to supply your own\n" + "skin packs or all npcs will use the default skin.").getBoolean();

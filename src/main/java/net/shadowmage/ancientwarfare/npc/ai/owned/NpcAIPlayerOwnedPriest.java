@@ -11,6 +11,7 @@ import net.shadowmage.ancientwarfare.npc.entity.NpcPlayerOwned;
 import net.shadowmage.ancientwarfare.npc.item.ItemNpcSpawner;
 import net.shadowmage.ancientwarfare.npc.tile.TileTownHall;
 import net.shadowmage.ancientwarfare.npc.tile.TileTownHall.NpcDeathEntry;
+import static net.shadowmage.ancientwarfare.npc.config.AWNPCStatics.npcKeepEquipment;
 
 import java.util.Collections;
 import java.util.List;
@@ -81,14 +82,12 @@ public class NpcAIPlayerOwnedPriest extends NpcAI<NpcPlayerOwned> {
 		NpcBase resdNpc = ItemNpcSpawner.createNpcFromItem(npc.world, entryToRes.stackToSpawn);
 		entryToRes.beingResurrected = false;
 		if (resdNpc != null) {
-			if (!AWNPCStatics.persistOrdersOnDeath) {
-				resdNpc.ordersStack = ItemStack.EMPTY;
-				resdNpc.upkeepStack = ItemStack.EMPTY;
+			if (!npcKeepEquipment) {
+				for (EntityEquipmentSlot slot : EntityEquipmentSlot.values()) {
+					resdNpc.setItemStackToSlot(slot, ItemStack.EMPTY);
+				}
+				resdNpc.setShieldStack(ItemStack.EMPTY);
 			}
-			for (EntityEquipmentSlot slot : EntityEquipmentSlot.values()) {
-				resdNpc.setItemStackToSlot(slot, ItemStack.EMPTY);
-			}
-			resdNpc.setShieldStack(ItemStack.EMPTY);
 			resdNpc.setOwner(npc.getOwner());
 			resdNpc.setHealth(resdNpc.getMaxHealth() / 2);
 			resdNpc.setPositionAndRotation(npc.posX, npc.posY, npc.posZ, npc.rotationYaw, npc.rotationPitch);
