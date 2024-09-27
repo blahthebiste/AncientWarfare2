@@ -28,6 +28,7 @@ import net.shadowmage.ancientwarfare.npc.init.AWNPCEntities;
 import net.shadowmage.ancientwarfare.npc.init.AWNPCItems;
 import net.shadowmage.ancientwarfare.npc.registry.FactionRegistry;
 import net.shadowmage.ancientwarfare.npc.registry.NpcDefaultsRegistry;
+import net.shadowmage.ancientwarfare.npc.registry.NpcRandomNames;
 import static net.shadowmage.ancientwarfare.npc.config.AWNPCStatics.npcRandomNames;
 
 import javax.annotation.Nonnull;
@@ -37,11 +38,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Random;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.InputStream;
 
 public class ItemNpcSpawner extends ItemBaseNPC {
 
@@ -49,43 +45,13 @@ public class ItemNpcSpawner extends ItemBaseNPC {
 	private static final String NPC_SUBTYPE_TAG = "npcSubtype";
 	private static final String FACTION_TAG = "faction";
 	private static final String NPC_STORED_DATA_TAG = "npcStoredData";
-	
-    private List<String> names = new ArrayList<>();
-    private boolean namesLoaded = false;
+	private NpcRandomNames npcNames;
 
 	public ItemNpcSpawner() {
 		super("npc_spawner");
 		maxStackSize = 16;
-		loadNames();
-	}
-	
-	private void loadNames() {
-	    InputStream is = getClass().getResourceAsStream("/assets/ancientwarfarenpc/npc_names_list.txt");
-	    if (is == null) {
-	        System.out.println("npc_names_list.txt not found");
-	        return;
-	    }
-	    try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
-	        String line;
-	        while ((line = br.readLine()) != null) {
-	            names.add(line);
-	        }
-	    } catch (IOException e) {
-	        System.out.println("Exception while loading names: " + e.getMessage());
-	        e.printStackTrace();
-	    } finally {
-	        namesLoaded = true;
-	    }
-	}
-
-	public String getRandomName() {
-	    if (!namesLoaded || names.isEmpty()) {
-	        System.out.println("Names not loaded. loaded:" + namesLoaded + ", size:" + names.size()); //Debug print
-	        return "Human";
-	    } else {
-	        Random rand = new Random();
-	        return names.get(rand.nextInt(names.size()));
-	    }
+        npcNames = new NpcRandomNames();
+        npcNames.loadNames();
 	}
 
 	@Override
@@ -141,10 +107,10 @@ public class ItemNpcSpawner extends ItemBaseNPC {
 			if (npc instanceof NpcPlayerOwned) {
 				npc.setOwner(player);
 				if (npcRandomNames) {
-					if (!npc.hasCustomName()) {
-						npc.setCustomNameTag(getRandomName());
-					}
-				}
+                    if (!npc.hasCustomName()) {
+                        npc.setCustomNameTag(npcNames.getRandomName());
+                    }
+                }
 			}
 			npc.setPosition(hit.getX() + 0.5d, hit.getY(), hit.getZ() + 0.5d);
 			npc.setHomeAreaAtCurrentPosition();
