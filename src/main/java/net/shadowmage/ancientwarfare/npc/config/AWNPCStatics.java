@@ -38,6 +38,7 @@ public class AWNPCStatics extends ModConfiguration {
 	public static boolean vanillaEquipmentDropRate = true;
 	public static double npcLevelDamageMultiplier = 0.05;//damage bonus per npc level.  @ level 10 they do 2x the damage as at lvl 0
 	public static boolean npcKeepEquipment = false;
+	public static boolean npcRandomNames = false;
 
 
 	/* ********************************************CLIENT SETTINGS************************************************ */
@@ -102,6 +103,8 @@ public class AWNPCStatics extends ModConfiguration {
 
 		npcKeepEquipment = config.get(serverOptions, "npc_keep_equipment", npcKeepEquipment, "Allow owned NPCs to keep their equipment after death\nDefault=" + npcKeepEquipment + "\n" + "By default, player owned NPCs drop their items after death.\n" + "If set to true, player owned NPCs respawn with all their items and will not drop equipment on death").getBoolean();
 
+		npcRandomNames = config.get(serverOptions, "npc_random_names", npcRandomNames, "Player owned NPCs will have random names when spawned.\nDefault=" + npcRandomNames + "\n" + "By default, player owned NPCs will spawn without random names.\n" + "If set to true, player owned NPCs will spawn with a random name.").getBoolean();
+		
 		townMaxRange = config.get(serverOptions, "town_hall_max_range", townMaxRange, "Town Hall Max Activation Range\nDefault=" + townMaxRange + "\n" + "How many blocks can a Town Hall be away from an NPC, while still detecting their death for possible resurrection.\n" + "This is a maximum, for server efficiency sake. Lower individual values can be setup from each block interaction GUI.").getInt();
 		
 		townUpdateFreq = config.get(serverOptions, "town_hall_ticks", townUpdateFreq, "Default=" + townUpdateFreq + "\n" + "How many game ticks should pass between Town Hall updates." + "This affect how an NPC can change its selected Town Hall by moving to different places.\n" + "Lower values will make an NPC change its Town Hall faster, but is more costly for a server.\n").getInt();
