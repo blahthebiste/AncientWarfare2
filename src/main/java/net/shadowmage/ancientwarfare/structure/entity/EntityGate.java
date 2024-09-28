@@ -307,8 +307,8 @@ public class EntityGate extends Entity implements IEntityAdditionalSpawnData, IE
 		}
 		boolean activate = false;
 		int y = Math.min(pos2.getY(), pos1.getY());
-		boolean foundPowerA = world.isBlockIndirectlyGettingPowered(new BlockPos(pos1.getX(), y, pos1.getZ())) > 0;
-		boolean foundPowerB = world.isBlockIndirectlyGettingPowered(new BlockPos(pos2.getX(), y, pos2.getZ())) > 0;
+		boolean foundPowerA = world.getRedstonePowerFromNeighbors(new BlockPos(pos1.getX(), y, pos1.getZ())) > 0;
+		boolean foundPowerB = world.getRedstonePowerFromNeighbors(new BlockPos(pos2.getX(), y, pos2.getZ())) > 0;
 		if (foundPowerA && !wasPoweredA) {
 			activate = true;
 		}

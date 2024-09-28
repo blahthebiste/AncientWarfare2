@@ -25,7 +25,7 @@ public class WoodenCoffinFixer extends TileRuleDataFixer implements IFixableData
 	@SubscribeEvent
 	public void missingMappingBlock(RegistryEvent.MissingMappings<Block> event) {
 		for (RegistryEvent.MissingMappings.Mapping<Block> entry : event.getAllMappings()) {
-			if (entry.key.getResourceDomain().equals("ancientwarfarestructure") && entry.key.getResourcePath().equals("coffin")) {
+			if (entry.key.getNamespace().equals("ancientwarfarestructure") && entry.key.getPath().equals("coffin")) {
 				entry.remap(AWStructureBlocks.WOODEN_COFFIN);
 			}
 		}
@@ -34,7 +34,7 @@ public class WoodenCoffinFixer extends TileRuleDataFixer implements IFixableData
 	@SubscribeEvent
 	public void missingMappingItem(RegistryEvent.MissingMappings<Item> event) {
 		for (RegistryEvent.MissingMappings.Mapping<Item> entry : event.getAllMappings()) {
-			if (entry.key.getResourceDomain().equals("ancientwarfarestructure") && entry.key.getResourcePath().equals("coffin")) {
+			if (entry.key.getNamespace().equals("ancientwarfarestructure") && entry.key.getPath().equals("coffin")) {
 				entry.ignore();
 			}
 		}

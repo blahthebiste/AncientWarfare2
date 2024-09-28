@@ -32,7 +32,7 @@ public class ItemMisc extends ItemBaseVehicle {
 	@SideOnly(Side.CLIENT)
 
 	public void registerClient() {
-		ModelLoaderHelper.registerItem(this, (i, m) -> new ModelResourceLocation(new ResourceLocation(AncientWarfareCore.MOD_ID, "vehicle/misc"), "variant=" + getRegistryName().getResourcePath()));
+		ModelLoaderHelper.registerItem(this, (i, m) -> new ModelResourceLocation(new ResourceLocation(AncientWarfareCore.MOD_ID, "vehicle/misc"), "variant=" + getRegistryName().getPath()));
 	}
 
 	public enum VehicleItemType {

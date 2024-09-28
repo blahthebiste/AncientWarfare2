@@ -28,7 +28,7 @@ public class StakeRenderer extends TileEntitySpecialRenderer<TileStake> {
 			}
 			e.setRenderYawOffset(facing.getHorizontalAngle());
 			e.setRotationYawHead(facing.getHorizontalAngle());
-			rendermanager.renderEntity(e, x + 0.5 + facing.getFrontOffsetX() * 0.3, y + 0.6, z + 0.5 + facing.getFrontOffsetZ() * 0.3, facing.getHorizontalAngle(), 1.0F, false);
+			rendermanager.renderEntity(e, x + 0.5 + facing.getXOffset() * 0.3, y + 0.6, z + 0.5 + facing.getZOffset() * 0.3, facing.getHorizontalAngle(), 1.0F, false);
 		});
 	}
 }

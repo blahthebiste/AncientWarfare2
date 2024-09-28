@@ -42,7 +42,7 @@ public class BlockResearchStation extends BlockBaseCore {
 	}
 
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(HAS_BOOK, (meta & 4) != 0).withProperty(FACING, EnumFacing.getHorizontal(meta & 3));
+		return getDefaultState().withProperty(HAS_BOOK, (meta & 4) != 0).withProperty(FACING, EnumFacing.byHorizontalIndex(meta & 3));
 	}
 
 	public int getMetaFromState(IBlockState state) {

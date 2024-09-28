@@ -121,7 +121,7 @@ public abstract class NpcAI<T extends NpcBase> extends EntityAIBase {
 		vec = vec.scale(maxPFDist);
 
 		//finally re-offset by npc position to get an actual target position
-		vec = vec.addVector(npc.posX, npc.posY, npc.posZ);
+		vec = vec.add(npc.posX, npc.posY, npc.posZ);
 
 		//move npc towards the calculated partial target
 		setPath(vec.x, vec.y, vec.z);

@@ -37,8 +37,8 @@ public class ItemBardInstrument extends ItemBaseNPC {
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack par1ItemStack) {
-		return super.getUnlocalizedName(par1ItemStack) + "." + instrumentNames[par1ItemStack.getItemDamage()];
+	public String getTranslationKey(ItemStack par1ItemStack) {
+		return super.getTranslationKey(par1ItemStack) + "." + instrumentNames[par1ItemStack.getItemDamage()];
 	}
 
 	@Override

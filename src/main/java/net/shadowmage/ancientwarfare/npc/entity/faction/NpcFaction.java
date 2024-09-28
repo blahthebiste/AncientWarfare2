@@ -240,7 +240,7 @@ public abstract class NpcFaction extends NpcBase {
 	public int getMaxFallHeight() {
 		int i = super.getMaxFallHeight();
 		if (i > 4) {
-			i += world.getDifficulty().getDifficultyId() * getMaxHealth() / 5;
+			i += (int) (world.getDifficulty().getId() * getMaxHealth() / 5);
 		}
 		if (i >= getHealth()) {
 			return (int) getHealth();

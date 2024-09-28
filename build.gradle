@@ -1,77 +1,132 @@
-import org.apache.tools.ant.filters.ReplaceTokens
-
 buildscript {
     repositories {
-        jcenter()
         maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            name 'MinecraftForge'
+            url 'https://maven.minecraftforge.net/'
         }
         maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+            name 'Garden of Fancy'
+            url 'https://maven.gofancy.wtf/releases'
         }
         maven {
             url "https://plugins.gradle.org/m2/"
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:6.+'
+        classpath group: 'wtf.gofancy.fancygradle', name: 'wtf.gofancy.fancygradle.gradle.plugin', version: '1.1.3-0'
+        classpath("gradle.plugin.de.fuerstenau:BuildConfigPlugin:1.1.8")
     }
 }
 
-plugins {
-    id "org.sonarqube" version "2.6.2"
-    id "maven-publish"
-    id "com.wynprice.cursemaven" version "2.1.1"
-    id "de.fuerstenau.buildconfig" version "1.1.8"
+// We apply the 'forge' plugin, so ForgeGradle can do it's stuff.
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'idea'
+apply plugin: 'maven-publish'
+apply plugin: 'wtf.gofancy.fancygradle'
+apply plugin: 'de.fuerstenau.buildconfig'
+
+fancyGradle {
+    patches {
+        mergetool
+        resources
+        codeChickenLib
+        coremods
+        asm
+    }
 }
 
-// We apply the 'forge' plugin, so ForgeGradle can do it's stuff.
-apply plugin: 'net.minecraftforge.gradle.forge'
-apply plugin: 'idea'
+group = "shadowmage"
+archivesBaseName = "ancientwarfare"
+version = project.minecraft_version + "-" + project.major +"."+ project.minor +"."+ project.patch
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+
+minecraft{
+    // The mappings can be changed at any time, and must be in the following format.
+    // snapshot_YYYYMMDD   Snapshot are built nightly.
+    // stable_#            Stables are built at the discretion of the MCP team.
+    // Use non-default mappings at your own risk. they may not always work.
+    // Simply re-run your setup task after changing the mappings to update your workspace.
+    //mappings channel: 'snapshot', version: '20171003-1.12'
+
+    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+    mappings channel: project.mappings_channel, version: "${project.mappings_version}-${project.mappings_mc_version}"
+    accessTransformer = file('src/main/resources/ancientwarfare_at.cfg')
+
+    // Default run configurations.
+    // These can be tweaked, removed, or duplicated as needed.
+    runs {
+        client {
+            workingDirectory project.file('run\\client')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'info'
+
+            jvmArg "-Dmixin.hotSwap=true"
+            jvmArg "-Dmixin.checks.interfaces=true"
+        }
+
+        server {
+            workingDirectory project.file('run\\server')
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'info'
+
+            jvmArg "-Dmixin.hotSwap=true"
+            jvmArg "-Dmixin.checks.interfaces=true"
+        }
+    }
+}
+
+sourceSets.all {
+    it.output.resourcesDir = it.output.classesDirs.getFiles().iterator().next()
+}
 
 repositories {
     maven {
         name = "CoFH Maven"
-        url = "http://maven.covers1624.net"
+        url = "https://maven.covers1624.net"
     }
     maven {
-        name "Curse Maven"
-        url = "https://cursemaven.com"
+        url = uri('https://www.cursemaven.com')
+        content {
+            includeGroup 'curse.maven'
+        }
     }
-    maven { 
-        url "http://dvs1.progwml6.com/files/maven" 
+    maven {
+        url "https://chickenbones.net/maven/"
+    }
+    maven {
+        name = 'Modrinth'
+        url = uri('https://api.modrinth.com/maven')
+        content {
+            includeGroup 'maven.modrinth'
+        }
+    }
+    maven {
+        url = uri('https://maven.blamejared.com')
+    }
+    maven {
+        url = uri('https://m2.dv8tion.net/releases')
     }
 }
-
-minecraft{
-    version = minecraft_version + "-" + forge_version
-    mappings = mcp_mappings
-    runDir = "run"
-    replaceIn "automation/AncientWarfareAutomation.java"
-    replaceIn "core/AncientWarfareCore.java"
-    replaceIn "npc/AncientWarfareNPC.java"
-    replaceIn "structure/AncientWarfareStructure.java"
-    replaceIn "vehicle/AncientWarfareVehicles.java"
-    replace "@VERSION@", "${project.minecraft.version}-${project.major}.${project.minor}.${project.patch}"
-    replace "0.000.000.001", "$forge_version"
-}
-version = minecraft.version + "-" + project.major +"."+ project.minor +"."+ project.patch
-group = "shadowmage"
-archivesBaseName = "ancientwarfare"
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 dependencies {
-    deobfCompile "cofh:RedstoneFlux:${rf_version}:universal"
-    deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
-    deobfCompile "codechicken:CodeChickenLib:${ccl_version}:deobf"
-    deobfCompile "curse.maven:FTBLib-237167:2832410"
-    compile "curse.maven:ElectroblobsWizardry-265642:4284076"
-    compile "curse.maven:infinitylib-251396:3317119"
-    compile "curse.maven:agricraft-225635:3317747"
+    minecraft "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
+
+    implementation fg.deobf("cofh:RedstoneFlux:${rf_version}:universal")
+    implementation fg.deobf("mezz.jei:jei_${minecraft_version}:${jei_version}")
+    implementation fg.deobf("codechicken:CodeChickenLib:${minecraft_version}-${ccl_version}:universal")
+    implementation "curse.maven:FTBLib-237167:2832410"
+    implementation "curse.maven:ElectroblobsWizardry-265642:4284076"
+    implementation "curse.maven:infinitylib-251396:3317119"
+    implementation "curse.maven:agricraft-225635:3317747"
 }
 
 buildConfig {
@@ -86,14 +141,15 @@ buildConfig {
 }
 
 processResources{
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
+
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version':project.version, 'mcversion':project.minecraft_version
     }
-        
+
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
@@ -150,9 +206,6 @@ publishing {
     }
 }
 
-sonarqube {
-    properties {
-        property "sonar.projectName", "Ancient Warfare 2"
-        property "sonar.projectKey", "ancientwarfare"
-    }
+configurations {
+    create("compile")
 }

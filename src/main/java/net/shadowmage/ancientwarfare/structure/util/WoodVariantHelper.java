@@ -60,7 +60,7 @@ public class WoodVariantHelper {
 	@SideOnly(Side.CLIENT)
 	public static void registerClient(Block block, UnaryOperator<String> updatePropertyString) {
 		//noinspection ConstantConditions
-		ResourceLocation baseLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "structure/" + block.getRegistryName().getResourcePath());
+		ResourceLocation baseLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "structure/" + block.getRegistryName().getPath());
 
 		ModelLoader.setCustomStateMapper(block, new StateMapperBase() {
 			@Override

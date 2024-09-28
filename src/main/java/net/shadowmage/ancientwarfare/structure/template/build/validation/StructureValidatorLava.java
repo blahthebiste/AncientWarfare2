@@ -22,7 +22,7 @@ public class StructureValidatorLava extends StructureValidator {
 	@Override
 	public boolean shouldIncludeForSelection(World world, int x, int y, int z, EnumFacing face, StructureTemplate template) {
 		Block block = world.getBlockState(new BlockPos(x, y - 1, z)).getBlock();
-		WorldGenDetailedLogHelper.log("AW2t: LAVA shouldInclude; y={}, block={}",()->y-1, block::getUnlocalizedName);
+		WorldGenDetailedLogHelper.log("AW2t: LAVA shouldInclude; y={}, block={}",()->y-1, block::getTranslationKey);
 		return block == Blocks.LAVA || block == Blocks.FLOWING_LAVA;
 	}
 

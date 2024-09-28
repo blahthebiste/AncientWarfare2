@@ -235,7 +235,7 @@ public abstract class Ammo implements IAmmo {
 
 	protected void spawnGroundBurst(World world, RayTraceResult hit, float maxVelocity, IAmmo type, int count, float minPitch, Entity shooter) {
 		Vec3i dirVec = hit.sideHit.getDirectionVec();
-		Vec3d hitVec = hit.hitVec.addVector(dirVec.getX() * 0.2f, dirVec.getY() * 0.2f, dirVec.getZ() * 0.2f);
+		Vec3d hitVec = hit.hitVec.add(dirVec.getX() * 0.2f, dirVec.getY() * 0.2f, dirVec.getZ() * 0.2f);
 		spawnBurst(world, maxVelocity, type, count, minPitch, shooter, hit.sideHit, (float) hitVec.x, (float) hitVec.y, (float) hitVec.z);
 	}
 

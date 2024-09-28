@@ -156,7 +156,7 @@ public class BlockFirePit extends BlockBaseStructure {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
@@ -229,7 +229,7 @@ public class BlockFirePit extends BlockBaseStructure {
 	@SideOnly(Side.CLIENT)
 	public void registerClient() {
 		//noinspection ConstantConditions
-		ResourceLocation baseLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "structure/" + getRegistryName().getResourcePath());
+		ResourceLocation baseLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "structure/" + getRegistryName().getPath());
 
 		ModelLoader.setCustomStateMapper(this, new StateMapperBase() {
 			@Override

@@ -26,7 +26,7 @@ public class RayTraceUtils {
 		float yOffset = player.getEyeHeight();
 		Vec3d look = player.getLookVec();
 		look = look.scale(range);
-		look = look.addVector(player.posX, player.posY + yOffset, player.posZ);
+		look = look.add(player.posX, player.posY + yOffset, player.posZ);
 		return tracePath(player.world, player.posX, player.posY + yOffset, player.posZ, look.x, look.y, look.z, border, excluded);
 	}
 
@@ -146,7 +146,7 @@ public class RayTraceUtils {
 		Vec3d vecA = start.subtract(pos.getX(), pos.getY(), pos.getZ());
 		Vec3d vecB = end.subtract(pos.getX(), pos.getY(), pos.getZ());
 		RayTraceResult raytraceresult = boundingBox.calculateIntercept(vecA, vecB);
-		return raytraceresult == null ? null : new RayTraceResult(raytraceresult.hitVec.addVector(pos.getX(), pos.getY(), pos.getZ()), raytraceresult.sideHit, pos);
+		return raytraceresult == null ? null : new RayTraceResult(raytraceresult.hitVec.add(pos.getX(), pos.getY(), pos.getZ()), raytraceresult.sideHit, pos);
 	}
 
 	public static AxisAlignedBB getSelectedBoundingBox(List<AxisAlignedBB> aabbs, BlockPos pos, EntityPlayer player) {

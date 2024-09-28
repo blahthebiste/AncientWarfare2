@@ -33,7 +33,7 @@ public class AmmoExplosiveShot extends Ammo {
 	public void onImpactWorld(World world, float x, float y, float z, MissileBase missile, RayTraceResult hit) {
 		if (!world.isRemote) {
 			Vec3i dirVec = hit.sideHit.getDirectionVec();
-			Vec3d hitVec = hit.hitVec.addVector(dirVec.getX() * 0.2d, dirVec.getY() * 0.2d, dirVec.getZ() * 0.2d);
+			Vec3d hitVec = hit.hitVec.add(dirVec.getX() * 0.2d, dirVec.getY() * 0.2d, dirVec.getZ() * 0.2d);
 			explode(world, (float) hitVec.x, (float) hitVec.y, (float) hitVec.z, missile);
 		}
 	}

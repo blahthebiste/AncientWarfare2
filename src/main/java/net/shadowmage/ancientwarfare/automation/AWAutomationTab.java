@@ -22,7 +22,8 @@ public class AWAutomationTab extends CreativeTabs {
 	}
 
 	@Override
-	public ItemStack getTabIconItem() {
+	@SideOnly(Side.CLIENT)
+	public ItemStack createIcon() {
 		return new ItemStack(AWCoreItems.IRON_HAMMER);
 	}
 

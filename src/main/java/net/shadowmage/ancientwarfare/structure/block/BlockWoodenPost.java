@@ -51,7 +51,7 @@ public class BlockWoodenPost extends BlockBaseStructure {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal((meta >> 2) & 3)).withProperty(VISIBLE, ((meta >> 1) & 1) == 1)
+		return getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex((meta >> 2) & 3)).withProperty(VISIBLE, ((meta >> 1) & 1) == 1)
 				.withProperty(PART, Part.byMeta(meta & 1));
 	}
 
@@ -223,7 +223,7 @@ public class BlockWoodenPost extends BlockBaseStructure {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerClient() {
-		final ResourceLocation assetLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "structure/" + getRegistryName().getResourcePath());
+		final ResourceLocation assetLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "structure/" + getRegistryName().getPath());
 		ModelLoader.setCustomStateMapper(this, new StateMapperBase() {
 			@Override
 			@SideOnly(Side.CLIENT)

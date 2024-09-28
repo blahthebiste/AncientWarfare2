@@ -11,13 +11,13 @@ public class ItemBlockBrazierFlame extends ItemBlockBase {
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack stack) {
+	public String getTranslationKey(ItemStack stack) {
 		if (!stack.hasTagCompound()) {
-			return super.getUnlocalizedName(stack);
+			return super.getTranslationKey(stack);
 		}
 
 		//noinspection ConstantConditions
-		return String.format("%s.%s", super.getUnlocalizedName(stack),
+		return String.format("%s.%s", super.getTranslationKey(stack),
 				stack.getTagCompound().getBoolean(BlockBrazierFlame.LIT_TAG) ? "lit" : "unlit");
 	}
 }

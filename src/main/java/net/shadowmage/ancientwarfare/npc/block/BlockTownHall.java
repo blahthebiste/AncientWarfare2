@@ -39,7 +39,7 @@ public class BlockTownHall extends BlockBaseNPC {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
@@ -54,7 +54,7 @@ public class BlockTownHall extends BlockBaseNPC {
 	@Override
 	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
 		if (!world.isRemote) {
-			WorldTools.getTile(world, pos, TileTownHall.class).ifPresent(t -> t.alarmActive = world.isBlockIndirectlyGettingPowered(pos) > 0);
+			WorldTools.getTile(world, pos, TileTownHall.class).ifPresent(t -> t.alarmActive = world.getRedstonePowerFromNeighbors(pos) > 0);
 		}
 	}
 }

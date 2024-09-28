@@ -60,7 +60,7 @@ public class ItemManual extends ItemBaseCore {
 		}
 
 		Item item = evt.crafting.getItem();
-		if (item != AWCoreItems.MANUAL && item.getRegistryName() != null && item.getRegistryName().getResourceDomain().startsWith("ancientwarfare")) {
+		if (item != AWCoreItems.MANUAL && item.getRegistryName() != null && item.getRegistryName().getNamespace().startsWith("ancientwarfare")) {
 			WorldData data = AWGameData.INSTANCE.getPerWorldData(player.getEntityWorld(), WorldData.class);
 			if (!data.wasPlayerGivenManual(player)) {
 				EntityItem manualDrop = new EntityItem(player.world, player.posX, player.posY, player.posZ, new ItemStack(AWCoreItems.MANUAL));

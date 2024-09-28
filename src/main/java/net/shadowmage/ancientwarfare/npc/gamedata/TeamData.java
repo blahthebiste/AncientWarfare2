@@ -179,7 +179,7 @@ public class TeamData extends WorldSavedData {
 		Set<Team> playerTeams = playerTeamsLookup.getOrDefault(playerName, new HashSet<>());
 		for (Team team : playerTeams) {
 			ResourceLocation teamName = team.getName();
-			if (domainsToRefresh.contains(teamName.getResourceDomain()) && !currentPlayerTeamNames.contains(teamName)) {
+			if (domainsToRefresh.contains(teamName.getNamespace()) && !currentPlayerTeamNames.contains(teamName)) {
 				teamsToRemoveFrom.add(teamName);
 			}
 		}

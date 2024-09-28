@@ -11,7 +11,7 @@ public class WoodItemBlock extends ItemBlockBase {
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName(stack) + "_" + WoodVariantHelper.getVariant(stack).getName();
+	public String getTranslationKey(ItemStack stack) {
+		return super.getTranslationKey(stack) + "_" + WoodVariantHelper.getVariant(stack).getName();
 	}
 }

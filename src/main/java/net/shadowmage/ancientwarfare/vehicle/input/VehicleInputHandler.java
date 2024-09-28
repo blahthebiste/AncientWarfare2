@@ -160,7 +160,7 @@ public class VehicleInputHandler {
 	private static RayTraceResult getPlayerLookTargetClient(EntityPlayer player, Entity excludedEntity) {
 		Vec3d playerEyesPos = RayTracer.getCorrectedHeadVec(player);
 		Vec3d lookVector = player.getLook(0);
-		Vec3d endVector = playerEyesPos.addVector(lookVector.x * MAX_RANGE, lookVector.y * MAX_RANGE, lookVector.z * MAX_RANGE);
+		Vec3d endVector = playerEyesPos.add(lookVector.x * MAX_RANGE, lookVector.y * MAX_RANGE, lookVector.z * MAX_RANGE);
 		RayTraceResult blockHit = player.world.rayTraceBlocks(playerEyesPos, endVector);
 
 		Optional<Tuple<Double, Entity>> closestEntityFound = getClosestCollidedEntity(excludedEntity, playerEyesPos, lookVector, endVector);

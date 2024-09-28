@@ -32,7 +32,7 @@ public class BlockGoldenIdol extends BlockBaseStructure {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta)).withProperty(BOTTOM_PART, ((meta >> 2) & 1) > 0);
+		return getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta)).withProperty(BOTTOM_PART, ((meta >> 2) & 1) > 0);
 	}
 
 	@Override

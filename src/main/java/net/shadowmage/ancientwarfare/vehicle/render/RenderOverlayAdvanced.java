@@ -100,7 +100,7 @@ public class RenderOverlayAdvanced {
 
 		Vec3d adjustedAccelerationVector = accelerationVector;
 		if (vehicle.vehicleType.getMovementType() == VehicleMovementType.AIR1 || vehicle.vehicleType.getMovementType() == VehicleMovementType.AIR2) {
-			adjustedAccelerationVector = adjustedAccelerationVector.addVector(vehicle.motionX, vehicle.motionY, vehicle.motionZ);
+			adjustedAccelerationVector = adjustedAccelerationVector.add(vehicle.motionX, vehicle.motionY, vehicle.motionZ);
 			floorY = -player.posY;
 		}
 
@@ -116,9 +116,9 @@ public class RenderOverlayAdvanced {
 			y2 += adjustedAccelerationVector.y;
 			if (rocketBurnTime > 0) {
 				rocketBurnTime--;
-				adjustedAccelerationVector = adjustedAccelerationVector.addVector(xAcc, yAcc, zAcc);
+				adjustedAccelerationVector = adjustedAccelerationVector.add(xAcc, yAcc, zAcc);
 			} else {
-				adjustedAccelerationVector = adjustedAccelerationVector.addVector(0, -gravity, 0);
+				adjustedAccelerationVector = adjustedAccelerationVector.add(0, -gravity, 0);
 			}
 			GL11.glVertex3d(x2, y2, z2);
 		}
@@ -134,7 +134,7 @@ public class RenderOverlayAdvanced {
 
 		Vec3d adjustedAccelerationVector = accelerationVector;
 		if (vehicle.vehicleType.getMovementType() == VehicleMovementType.AIR1 || vehicle.vehicleType.getMovementType() == VehicleMovementType.AIR2) {
-			adjustedAccelerationVector = adjustedAccelerationVector.addVector(vehicle.motionX, vehicle.motionY, vehicle.motionZ);
+			adjustedAccelerationVector = adjustedAccelerationVector.add(vehicle.motionX, vehicle.motionY, vehicle.motionZ);
 			floorY = -player.posY;
 		}
 
@@ -143,7 +143,7 @@ public class RenderOverlayAdvanced {
 			x2 += adjustedAccelerationVector.x;
 			z2 += adjustedAccelerationVector.z;
 			y2 += adjustedAccelerationVector.y;
-			adjustedAccelerationVector = adjustedAccelerationVector.addVector(0, -gravity, 0);
+			adjustedAccelerationVector = adjustedAccelerationVector.add(0, -gravity, 0);
 			GL11.glVertex3d(x2, y2, z2);
 		}
 	}

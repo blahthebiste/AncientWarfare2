@@ -69,8 +69,8 @@ public class ItemCoin extends ItemBaseNPC {
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName(stack) + "." + getMetalName(stack);
+	public String getTranslationKey(ItemStack stack) {
+		return super.getTranslationKey(stack) + "." + getMetalName(stack);
 	}
 
 	public static CoinMetal getMetal(ItemStack stack) {

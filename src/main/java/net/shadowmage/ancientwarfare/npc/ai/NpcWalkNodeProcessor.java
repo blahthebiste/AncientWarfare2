@@ -125,8 +125,8 @@ public class NpcWalkNodeProcessor extends WalkNodeProcessor {
 					pathpoint = this.getSafePoint(x, y + 1, z, p_186332_4_ - 1, p_186332_5_, facing);
 
 					if (pathpoint != null && (pathpoint.nodeType == PathNodeType.OPEN || pathpoint.nodeType == PathNodeType.WALKABLE) && this.entity.width < 1.0F) {
-						double d2 = (double) (x - facing.getFrontOffsetX()) + 0.5D;
-						double d3 = (double) (z - facing.getFrontOffsetZ()) + 0.5D;
+						double d2 = (double) (x - facing.getXOffset()) + 0.5D;
+						double d3 = (double) (z - facing.getZOffset()) + 0.5D;
 						AxisAlignedBB axisalignedbb = new AxisAlignedBB(d2 - d1, (double) y + 0.001D, d3 - d1, d2 + d1, (double) ((float) y + this.entity.height), d3 + d1);
 						AxisAlignedBB axisalignedbb1 = this.blockaccess.getBlockState(blockpos).getBoundingBox(this.blockaccess, blockpos);
 						AxisAlignedBB axisalignedbb2 = axisalignedbb.expand(0.0D, axisalignedbb1.maxY - 0.002D, 0.0D);

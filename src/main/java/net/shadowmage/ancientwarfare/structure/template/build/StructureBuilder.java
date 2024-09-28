@@ -133,7 +133,7 @@ public class StructureBuilder implements IStructureBuilder {
 	}
 
 	private boolean isTopBlockSolid(World world, BlockPos pos) {
-		Chunk chunk = world.getChunkFromBlockCoords(pos);
+		Chunk chunk = world.getChunk(pos);
 		BlockPos posDown;
 		for (BlockPos currentPos = new BlockPos(pos.getX(), chunk.getTopFilledSegment() + 16, pos.getZ()); currentPos.getY() >= 0; currentPos = posDown) {
 			posDown = currentPos.down();

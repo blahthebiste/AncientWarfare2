@@ -12,7 +12,7 @@ public class ItemFoodBundle extends ItemFood implements IClientRegister {
 	public ItemFoodBundle() {
 		super(15, 1, true);
 
-		setUnlocalizedName("food_bundle");
+		setTranslationKey("food_bundle");
 		setRegistryName(new ResourceLocation(AncientWarfareNPC.MOD_ID, "food_bundle"));
 		setCreativeTab(AncientWarfareNPC.TAB);
 		AncientWarfareNPC.proxy.addClientRegister(this);

@@ -250,7 +250,7 @@ public class GuiTradeOrder extends GuiContainerBase<ContainerTradeOrder> {
 		Label blockName = new Label(8, startHeight, "Unknown Block");
 		Label posLabel = new Label(8, startHeight + 12, StringTools.formatPos(pos));
 		if (player.world.isBlockLoaded(pos)) {
-			blockName.setText(player.world.getBlockState(pos).getBlock().getUnlocalizedName());
+			blockName.setText(player.world.getBlockState(pos).getBlock().getTranslationKey());
 		}
 		routeArea.addGuiElement(blockName);
 		routeArea.addGuiElement(posLabel);

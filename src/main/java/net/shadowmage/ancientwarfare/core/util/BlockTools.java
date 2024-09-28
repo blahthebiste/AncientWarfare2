@@ -122,7 +122,7 @@ public class BlockTools {
 		float vectorX = var15 * var16;
 		float vectorZ = var14 * var16;
 		double reachLength = 5.0D;
-		Vec3d testVectorFar = testVector.addVector(vectorX * reachLength, vectorY * reachLength, vectorZ * reachLength);
+		Vec3d testVectorFar = testVector.add(vectorX * reachLength, vectorY * reachLength, vectorZ * reachLength);
 		RayTraceResult testHitPosition = world.rayTraceBlocks(testVector, testVectorFar, true);
 
         /*
@@ -527,11 +527,11 @@ public class BlockTools {
 	}
 
 	public static int getTopFilledHeight(World world, int x, int z, boolean skippables, int maxY) {
-		return getTopFilledHeight(world.getChunkFromChunkCoords(x >> 4, z >> 4), x, z, skippables, maxY);
+		return getTopFilledHeight(world.getChunk(x >> 4, z >> 4), x, z, skippables, maxY);
 	}
 
 	public static int getTopFilledHeight(World world, int x, int z, boolean skippables) {
-		return getTopFilledHeight(world.getChunkFromChunkCoords(x >> 4, z >> 4), x, z, skippables);
+		return getTopFilledHeight(world.getChunk(x >> 4, z >> 4), x, z, skippables);
 	}
 
 	public static int getTopFilledHeight(Chunk chunk, int x, int z, boolean skippables) {

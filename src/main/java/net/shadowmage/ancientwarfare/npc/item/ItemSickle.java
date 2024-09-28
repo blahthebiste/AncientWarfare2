@@ -21,7 +21,7 @@ public class ItemSickle extends ItemBaseNPC {
 		setMaxDamage(material.getMaxUses());
 		this.attackDamage = material.getAttackDamage();
 		this.attackSpeed = attackSpeed;
-		setUnlocalizedName("sickle");
+		setTranslationKey("sickle");
 		setCreativeTab(AncientWarfareNPC.TAB);
 	}
 

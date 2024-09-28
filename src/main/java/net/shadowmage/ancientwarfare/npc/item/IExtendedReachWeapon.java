@@ -52,7 +52,7 @@ public interface IExtendedReachWeapon {
 			Entity renderViewEntity = mc.getRenderViewEntity();
 
 			if (renderViewEntity != null && mc.world != null) {
-				mc.mcProfiler.startSection("pick");
+				mc.profiler.startSection("pick");
 				double d0 = reach;
 				ret = renderViewEntity.rayTrace(d0, 0);
 				Vec3d positionEyes = renderViewEntity.getPositionEyes(0);
@@ -63,7 +63,7 @@ public interface IExtendedReachWeapon {
 				}
 
 				Vec3d vec3d1 = renderViewEntity.getLook(1.0F);
-				Vec3d vec3d2 = positionEyes.addVector(vec3d1.x * d0, vec3d1.y * d0, vec3d1.z * d0);
+				Vec3d vec3d2 = positionEyes.add(vec3d1.x * d0, vec3d1.y * d0, vec3d1.z * d0);
 				List<Entity> list = mc.world.getEntitiesInAABBexcluding(renderViewEntity,
 						renderViewEntity.getEntityBoundingBox().expand(vec3d1.x * d0, vec3d1.y * d0, vec3d1.z * d0).grow(1.0D, 1.0D, 1.0D),
 						Predicates.and(EntitySelectors.NOT_SPECTATING, e -> e != null && e.canBeCollidedWith()));

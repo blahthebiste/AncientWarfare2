@@ -484,7 +484,7 @@ public class VehicleBase extends Entity implements IEntityAdditionalSpawnData, I
 						IBlockState iblockstate = world.getBlockState(currentPos);
 
 						try {
-							iblockstate.getBlock().onEntityCollidedWithBlock(world, currentPos, iblockstate, this);
+							iblockstate.getBlock().onEntityCollision(world, currentPos, iblockstate, this);
 							onInsideBlock(iblockstate, currentPos);
 						}
 						catch (Throwable throwable) {

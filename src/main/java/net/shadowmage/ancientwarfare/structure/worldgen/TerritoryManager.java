@@ -30,7 +30,7 @@ public class TerritoryManager {
 	private TerritoryManager() {}
 
 	public static Optional<Territory> getTerritory(int chunkX, int chunkZ, World world) {
-		Chunk chunk = world.getChunkFromChunkCoords(chunkX, chunkZ);
+		Chunk chunk = world.getChunk(chunkX, chunkZ);
 		long chunkPosValue = ChunkPos.asLong(chunk.x, chunk.z);
 		ITerritoryData territoryData = world.getCapability(CapabilityTerritoryData.TERRITORY_DATA, null);
 		if (territoryData == null) {

@@ -104,7 +104,7 @@ public class BlockTotemPart extends BlockBaseStructure {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta)).withProperty(VISIBLE, ((meta >> 2) & 1) > 0);
+		return getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta)).withProperty(VISIBLE, ((meta >> 2) & 1) > 0);
 	}
 
 	@Override
@@ -141,7 +141,7 @@ public class BlockTotemPart extends BlockBaseStructure {
 	}
 
 	@Override
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
@@ -169,7 +169,7 @@ public class BlockTotemPart extends BlockBaseStructure {
 	@SideOnly(Side.CLIENT)
 	public void registerClient() {
 		//noinspection ConstantConditions
-		ResourceLocation baseLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "structure/" + getRegistryName().getResourcePath());
+		ResourceLocation baseLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "structure/" + getRegistryName().getPath());
 
 		ModelLoader.setCustomStateMapper(this, new StateMapperBase() {
 			@Override

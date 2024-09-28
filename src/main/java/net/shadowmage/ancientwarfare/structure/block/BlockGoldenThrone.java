@@ -41,7 +41,7 @@ public class BlockGoldenThrone extends BlockSeat {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta & 3)).withProperty(TOP_BOTTOM_PART, TopBottomPart.byMeta((meta >> 2) & 1));
+		return getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta & 3)).withProperty(TOP_BOTTOM_PART, TopBottomPart.byMeta((meta >> 2) & 1));
 	}
 
 	@Override
@@ -100,7 +100,7 @@ public class BlockGoldenThrone extends BlockSeat {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerClient() {
-		final ResourceLocation assetLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "structure/" + getRegistryName().getResourcePath());
+		final ResourceLocation assetLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "structure/" + getRegistryName().getPath());
 		ModelLoader.setCustomStateMapper(this, new StateMapperBase() {
 			@Override
 			@SideOnly(Side.CLIENT)

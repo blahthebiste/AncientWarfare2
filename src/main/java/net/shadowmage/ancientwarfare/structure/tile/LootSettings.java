@@ -42,7 +42,7 @@ public class LootSettings {
 		ret.setBoolean("spawnEntity", spawnEntity);
 		if (entity != null) {
 			ret.setString("entity", entity.toString());
-			if (!entityNBT.hasNoTags()) {
+			if (!entityNBT.isEmpty()) {
 				ret.setTag("entityNBT", entityNBT);
 			}
 		}

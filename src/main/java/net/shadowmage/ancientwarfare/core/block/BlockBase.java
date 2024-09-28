@@ -12,7 +12,7 @@ import net.shadowmage.ancientwarfare.core.util.WorldTools;
 public abstract class BlockBase extends Block {
 	public BlockBase(Material material, String modID, String regName) {
 		super(material);
-		setUnlocalizedName(regName);
+		setTranslationKey(regName);
 		setRegistryName(new ResourceLocation(modID, regName));
 		setHardness(2);
 	}

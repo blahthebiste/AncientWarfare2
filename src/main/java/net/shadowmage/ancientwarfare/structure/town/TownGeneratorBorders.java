@@ -44,8 +44,8 @@ public class TownGeneratorBorders {
 	}
 
 	private static void handleBorderBlock(World world, int x, int z, int fillLevel, int cutLevel, IBlockState fillBlock, IBlockState topBlock) {
-		int y = BlockTools.getTopFilledHeight(world.getChunkFromBlockCoords(new BlockPos(x, 1, z)), x, z, false);
-		int topSolidY = BlockTools.getTopFilledHeight(world.getChunkFromBlockCoords(new BlockPos(x, 1, z)), x, z, true);
+		int y = BlockTools.getTopFilledHeight(world.getChunk(new BlockPos(x, 1, z)), x, z, false);
+		int topSolidY = BlockTools.getTopFilledHeight(world.getChunk(new BlockPos(x, 1, z)), x, z, true);
 		if (y >= cutLevel) {
 			for (int py = y; py > Math.min(topSolidY, cutLevel); py--) {
 				BlockPos clearPos = new BlockPos(x, py, z);

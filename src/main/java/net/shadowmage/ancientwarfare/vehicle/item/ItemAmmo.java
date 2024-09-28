@@ -20,11 +20,11 @@ public class ItemAmmo extends ItemBaseVehicle {
 	private String tooltipVehicleList;
 
 	public ItemAmmo(ResourceLocation registryName, IAmmo ammo) {
-		super(registryName.getResourcePath());
+		super(registryName.getPath());
 		if (!ammo.isAvailableAsItem())
 			setCreativeTab(null);
-		tooltipName = "item." + registryName.getResourcePath() + ".tooltip";
-		tooltipVehicleList = "item." + registryName.getResourcePath() + ".tooltipVehicleList";
+		tooltipName = "item." + registryName.getPath() + ".tooltip";
+		tooltipVehicleList = "item." + registryName.getPath() + ".tooltipVehicleList";
 	}
 
 	@Override
@@ -37,6 +37,6 @@ public class ItemAmmo extends ItemBaseVehicle {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerClient() {
-		ModelLoaderHelper.registerItem(this, (i, m) -> new ModelResourceLocation(new ResourceLocation(AncientWarfareCore.MOD_ID, "vehicle/ammo"), "variant=" + getRegistryName().getResourcePath()));
+		ModelLoaderHelper.registerItem(this, (i, m) -> new ModelResourceLocation(new ResourceLocation(AncientWarfareCore.MOD_ID, "vehicle/ammo"), "variant=" + getRegistryName().getPath()));
 	}
 }

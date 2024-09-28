@@ -72,8 +72,8 @@ public class ItemTownBuilder extends ItemBaseStructure implements IItemKeyInterf
 		int maxY = Math.min(minY + 40, 255);
 
 		if (horizontalFacing.getAxis() == EnumFacing.Axis.X) {
-			int chunkMinX = (pos.getX() >> 4) - (horizontalFacing.getFrontOffsetX() < 0 ? chunkLength : 0);
-			int chunkMaxX = (pos.getX() >> 4) + (horizontalFacing.getFrontOffsetX() > 0 ? chunkLength : 0);
+			int chunkMinX = (pos.getX() >> 4) - (horizontalFacing.getXOffset() < 0 ? chunkLength : 0);
+			int chunkMaxX = (pos.getX() >> 4) + (horizontalFacing.getXOffset() > 0 ? chunkLength : 0);
 			int chunkMinZ = (pos.getZ() >> 4) - (chunkWidth / 2);
 			int chunkMaxZ = chunkMinZ + chunkWidth;
 			return new TownBoundingArea(chunkMinX, chunkMinZ, chunkMaxX, chunkMaxZ, minY, maxY);
@@ -81,8 +81,8 @@ public class ItemTownBuilder extends ItemBaseStructure implements IItemKeyInterf
 
 		int chunkMinX = (pos.getX() >> 4) - (chunkWidth / 2);
 		int chunkMaxX = chunkMinX + chunkWidth;
-		int chunkMinZ = (pos.getZ() >> 4) - (horizontalFacing.getFrontOffsetZ() < 0 ? chunkLength : 0);
-		int chunkMaxZ = (pos.getZ() >> 4) + (horizontalFacing.getFrontOffsetZ() > 0 ? chunkLength : 0);
+		int chunkMinZ = (pos.getZ() >> 4) - (horizontalFacing.getZOffset() < 0 ? chunkLength : 0);
+		int chunkMaxZ = (pos.getZ() >> 4) + (horizontalFacing.getZOffset() > 0 ? chunkLength : 0);
 		return new TownBoundingArea(chunkMinX, chunkMinZ, chunkMaxX, chunkMaxZ, minY, maxY);
 	}
 

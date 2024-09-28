@@ -40,7 +40,7 @@ public class TownPlacementValidator {
 		int cx = x >> 4;
 		int cz = z >> 4;
 
-		int height = getTopFilledHeight(world.getChunkFromChunkCoords(cx, cz), x, z);
+		int height = getTopFilledHeight(world.getChunk(cx, cz), x, z);
 		if (height <= 0) {
 			return Optional.empty();
 		}
@@ -220,7 +220,7 @@ public class TownPlacementValidator {
 	}
 
 	private static boolean isAverageHeightWithin(World world, int cx, int cz, int min, int max) {
-		Chunk chunk = world.getChunkFromChunkCoords(cx, cz);
+		Chunk chunk = world.getChunk(cx, cz);
 		int val;
 		int total = 0;
 		for (int x = (cx << 4); x < ((cx << 4) + 16); x++) {

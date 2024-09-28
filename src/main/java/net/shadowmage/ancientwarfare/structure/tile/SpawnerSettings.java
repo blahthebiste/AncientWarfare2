@@ -146,7 +146,7 @@ public class SpawnerSettings {
 	}
 
 	private void updateRedstoneModeToggle() {
-		prevRedstoneState = world.isBlockIndirectlyGettingPowered(pos) > 0 || world.getStrongPower(pos) > 0;
+		prevRedstoneState = world.getRedstonePowerFromNeighbors(pos) > 0 || world.getStrongPower(pos) > 0;
 		if (respondToRedstone && !redstoneMode && !prevRedstoneState) {
 			//noop
 			return;
@@ -155,7 +155,7 @@ public class SpawnerSettings {
 	}
 
 	private void updateRedstoneModePulse() {
-		boolean powered = world.isBlockIndirectlyGettingPowered(pos) > 0 || world.getStrongPower(pos) > 0;
+		boolean powered = world.getRedstonePowerFromNeighbors(pos) > 0 || world.getStrongPower(pos) > 0;
 		if (!prevRedstoneState && powered) {
 			spawnEntities();
 		}

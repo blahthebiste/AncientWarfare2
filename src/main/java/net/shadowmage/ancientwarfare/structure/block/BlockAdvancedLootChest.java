@@ -35,7 +35,7 @@ public class BlockAdvancedLootChest extends BlockChest implements IClientRegiste
 	public BlockAdvancedLootChest() {
 		super(Type.BASIC);
 		setRegistryName(AncientWarfareStructure.MOD_ID, "advanced_loot_chest");
-		setUnlocalizedName("advanced_loot_chest");
+		setTranslationKey("advanced_loot_chest");
 		setCreativeTab(AncientWarfareStructure.TAB);
 		AncientWarfareStructure.proxy.addClientRegister(this);
 

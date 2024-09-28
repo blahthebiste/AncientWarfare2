@@ -29,7 +29,7 @@ public class ItemScythe extends ItemBaseNPC {
 		setMaxDamage(material.getMaxUses());
 		attackDamage = material.getAttackDamage() + attackOffset;
 		this.attackSpeed = attackSpeed;
-		setUnlocalizedName(registryName);
+		setTranslationKey(registryName);
 		setCreativeTab(AncientWarfareNPC.TAB);
 	}
 

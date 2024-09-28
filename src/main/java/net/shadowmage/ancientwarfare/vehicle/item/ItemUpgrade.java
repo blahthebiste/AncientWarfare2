@@ -19,8 +19,8 @@ public class ItemUpgrade extends ItemBaseVehicle {
 	private String vehicleUpgradeTooltipName;
 
 	public ItemUpgrade(ResourceLocation registryName) {
-		super(registryName.getResourcePath());
-		tooltipName = "item." + registryName.getResourcePath() + ".tooltip";
+		super(registryName.getPath());
+		tooltipName = "item." + registryName.getPath() + ".tooltip";
 		vehicleUpgradeTooltipName = "item.vehicle_upgrade_tooltip";
 	}
 
@@ -34,6 +34,6 @@ public class ItemUpgrade extends ItemBaseVehicle {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerClient() {
-		ModelLoaderHelper.registerItem(this, (i, m) -> new ModelResourceLocation(new ResourceLocation(AncientWarfareCore.MOD_ID, "vehicle/upgrade"), "variant=" + getRegistryName().getResourcePath()));
+		ModelLoaderHelper.registerItem(this, (i, m) -> new ModelResourceLocation(new ResourceLocation(AncientWarfareCore.MOD_ID, "vehicle/upgrade"), "variant=" + getRegistryName().getPath()));
 	}
 }

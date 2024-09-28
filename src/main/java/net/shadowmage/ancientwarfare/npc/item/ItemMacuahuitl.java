@@ -22,7 +22,7 @@ import java.util.List;
 public class ItemMacuahuitl extends ItemSword implements IClientRegister {
 	public ItemMacuahuitl(ToolMaterial material, String registryName) {
 		super(material);
-		setUnlocalizedName(registryName);
+		setTranslationKey(registryName);
 		setRegistryName(new ResourceLocation(AncientWarfareNPC.MOD_ID, registryName));
 		setCreativeTab(AncientWarfareNPC.TAB);
 		setMaxDamage(material.getMaxUses() - 100);

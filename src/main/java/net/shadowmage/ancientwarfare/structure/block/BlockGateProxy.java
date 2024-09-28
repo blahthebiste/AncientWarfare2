@@ -39,7 +39,7 @@ public final class BlockGateProxy extends BlockContainer implements IClientRegis
 	public BlockGateProxy() {
 		super(Material.ROCK);
 		setCreativeTab(null);
-		setUnlocalizedName("gate_proxy");
+		setTranslationKey("gate_proxy");
 		setRegistryName(new ResourceLocation(AncientWarfareStructure.MOD_ID, "gate_proxy"));
 		setBlockUnbreakable();
 		setResistance(6000000);

@@ -53,13 +53,13 @@ public class ItemNpcSpawner extends ItemBaseNPC {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (getNpcDisplayNameFromTag(stack).isPresent()) {
-			tooltip.add(I18n.format(getUnlocalizedName(stack) + ".name"));
+			tooltip.add(I18n.format(getTranslationKey(stack) + ".name"));
 		}
 		tooltip.add(I18n.format("guistrings.npc.spawner.right_click_to_place"));
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack stack) {
+	public String getTranslationKey(ItemStack stack) {
 		String npcName = getNpcType(stack);
 		if (npcName != null) {
 			npcName = npcName.replace("faction.", "");
@@ -69,7 +69,7 @@ public class ItemNpcSpawner extends ItemBaseNPC {
 			}
 			return "entity.ancientwarfarenpc." + (getFaction(stack).map(s -> s + ".").orElse("")) + npcName;
 		}
-		return super.getUnlocalizedName(stack);
+		return super.getTranslationKey(stack);
 	}
 
 	@Override

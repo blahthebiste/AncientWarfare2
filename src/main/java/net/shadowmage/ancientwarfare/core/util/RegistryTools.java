@@ -29,9 +29,9 @@ public class RegistryTools {
 	private static <T extends IForgeRegistryEntry<T>> T getRegistryEntry(String registryName, IForgeRegistry<T> registry, T defaultValue) {
 		ResourceLocation key = new ResourceLocation(registryName);
 		if (!registry.containsKey(key)) {
-			if (!Loader.isModLoaded(key.getResourceDomain())) {
+			if (!Loader.isModLoaded(key.getNamespace())) {
 				//noinspection ConstantConditions - registered value does not have null registry name
-				AncientWarfareCore.LOG.debug("Mod {} is not loaded. Replacing {} with {}", key::getResourceDomain, key::toString, () -> defaultValue.getRegistryName().toString());
+				AncientWarfareCore.LOG.debug("Mod {} is not loaded. Replacing {} with {}", key::getNamespace, key::toString, () -> defaultValue.getRegistryName().toString());
 				return defaultValue;
 			}
 			throw new MissingResourceException("Unable to find entry with registry name \"" + registryName + "\"",

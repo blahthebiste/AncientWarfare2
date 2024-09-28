@@ -105,7 +105,7 @@ public class ItemBlockColored extends ItemBlockBase {
 					StringUtils.capitalize(tag.getString(CUSTOM_DATA_TAG)));
 		}
 
-		String color = I18n.translateToLocal(getDyeColor(stack).map(EnumDyeColor::getUnlocalizedName).orElse("white"));
+		String color = I18n.translateToLocal(getDyeColor(stack).map(EnumDyeColor::getTranslationKey).orElse("white"));
 		return I18n.translateToLocalFormatted((getUnlocalizedNameInefficiently(stack) + ".name").trim(), color);
 	}
 

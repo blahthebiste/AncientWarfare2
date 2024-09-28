@@ -49,8 +49,8 @@ public class ItemBackpack extends ItemBaseCore {
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack par1ItemStack) {
-		return super.getUnlocalizedName(par1ItemStack) + "." + par1ItemStack.getItemDamage();
+	public String getTranslationKey(ItemStack par1ItemStack) {
+		return super.getTranslationKey(par1ItemStack) + "." + par1ItemStack.getItemDamage();
 	}
 
 	@Override

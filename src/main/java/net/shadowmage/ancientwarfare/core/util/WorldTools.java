@@ -46,7 +46,7 @@ public class WorldTools {
 	}
 
 	private static void addValidTilesInChunkArea(World world, BlockPos min, BlockPos max, List<TileEntity> tileEntities, int x, int z) {
-		Chunk chunk = world.getChunkFromChunkCoords(x, z);
+		Chunk chunk = world.getChunk(x, z);
 		for (TileEntity tile : chunk.getTileEntityMap().values()) {
 			if (!tile.isInvalid() && isTileInArea(min, max, tile)) {
 				tileEntities.add(tile);
@@ -125,7 +125,7 @@ public class WorldTools {
 	}
 
 	public static void changeBiome(World world, BlockPos pos, Biome biome) {
-		Chunk c = world.getChunkFromBlockCoords(pos);
+		Chunk c = world.getChunk(pos);
 		c.getBiomeArray()[(pos.getZ() & 15) << 4 | pos.getX() & 15] = (byte) Biome.getIdForBiome(biome);
 		c.setModified(true);
 	}

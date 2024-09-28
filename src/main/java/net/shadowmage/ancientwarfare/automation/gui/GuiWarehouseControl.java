@@ -159,7 +159,7 @@ public class GuiWarehouseControl extends GuiContainerBase<ContainerWarehouseCont
 			String[] searchStrings = searchInput.split(" ");
 			String modName = searchStrings[0].substring(1);
 			ResourceLocation registryName = stack.getItem().getRegistryName();
-			if (registryName == null || !registryName.getResourceDomain().contains(modName)) {
+			if (registryName == null || !registryName.getNamespace().contains(modName)) {
 				return false;
 			} else if (searchStrings.length <= 1) {
 				return true;

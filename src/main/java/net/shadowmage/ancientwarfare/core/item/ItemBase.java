@@ -6,7 +6,7 @@ import net.minecraft.util.ResourceLocation;
 public abstract class ItemBase extends Item {
 	public ItemBase(String modID, String regName) {
 		super();
-		setUnlocalizedName(regName);
+		setTranslationKey(regName);
 		setRegistryName(new ResourceLocation(modID, regName));
 	}
 }

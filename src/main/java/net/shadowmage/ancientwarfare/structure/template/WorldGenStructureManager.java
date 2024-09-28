@@ -98,7 +98,7 @@ public class WorldGenStructureManager {
 		for (String biomeName : biomeGroupBiomes) {
 			if (templatesByBiome.containsKey(biomeName) && checkBiome.test(biomeName)) {
 				addBiomeTemplate(template, territoryName, biomeName);
-			} else if (Loader.isModLoaded((new ResourceLocation(biomeName)).getResourceDomain())) {
+			} else if (Loader.isModLoaded((new ResourceLocation(biomeName)).getNamespace())) {
 				AncientWarfareStructure.LOG.warn("Could not locate biome: {} while registering template: {} for world generation.", biomeName, template.name);
 			}
 		}

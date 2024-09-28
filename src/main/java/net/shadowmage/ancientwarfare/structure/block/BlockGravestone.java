@@ -69,7 +69,7 @@ public class BlockGravestone extends BlockBaseStructure {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
+		return getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
 	}
 
 	@Override
@@ -158,7 +158,7 @@ public class BlockGravestone extends BlockBaseStructure {
 	@SideOnly(Side.CLIENT)
 	public void registerClient() {
 		//noinspection ConstantConditions
-		ResourceLocation baseLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "structure/" + getRegistryName().getResourcePath());
+		ResourceLocation baseLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "structure/" + getRegistryName().getPath());
 
 		ModelLoader.setCustomStateMapper(this, new StateMapperBase() {
 			@Override

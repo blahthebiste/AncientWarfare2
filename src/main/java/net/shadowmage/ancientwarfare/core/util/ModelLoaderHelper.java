@@ -44,7 +44,7 @@ public class ModelLoaderHelper {
 
 	public static void registerItem(Item item, String prefix, boolean metaSuffix, Function<Integer, String> getVariant) {
 		registerItem(item, (it, meta) -> {
-			String modelName = AncientWarfareCore.MOD_ID + ":" + (prefix.isEmpty() ? "" : prefix + "/") + it.getRegistryName().getResourcePath();
+			String modelName = AncientWarfareCore.MOD_ID + ":" + (prefix.isEmpty() ? "" : prefix + "/") + it.getRegistryName().getPath();
 			String suffix = it.getHasSubtypes() && metaSuffix ? "_" + meta : "";
 			return new ModelResourceLocation(modelName + suffix, getVariant.apply(meta));
 		});

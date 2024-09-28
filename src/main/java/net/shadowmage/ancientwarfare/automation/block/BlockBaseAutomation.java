@@ -26,7 +26,7 @@ public abstract class BlockBaseAutomation extends BlockBase implements IClientRe
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerClient() {
-		final ResourceLocation assetLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "automation/" + getRegistryName().getResourcePath());
+		final ResourceLocation assetLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "automation/" + getRegistryName().getPath());
 
 		ModelLoader.setCustomStateMapper(this, new StateMapperBase() {
 			@Override

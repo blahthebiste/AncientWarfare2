@@ -119,7 +119,7 @@ public class NpcAIDoor extends NpcAI<NpcBase> {
 	}
 
 	private boolean isFriendlyInDoor(BlockPos doorPos) {
-		Vec3d doorCenter = new Vec3d(doorPos).addVector(0.5D, 0.5D, 0.5D);
+		Vec3d doorCenter = new Vec3d(doorPos).add(0.5D, 0.5D, 0.5D);
 		return !npc.world.getEntitiesWithinAABB(NpcBase.class,
 				new AxisAlignedBB(doorCenter.x, doorCenter.y, doorCenter.z, doorCenter.x, doorCenter.y, doorCenter.z).grow(2.1D),
 				n -> n != null && !n.isHostileTowards(npc)).isEmpty();

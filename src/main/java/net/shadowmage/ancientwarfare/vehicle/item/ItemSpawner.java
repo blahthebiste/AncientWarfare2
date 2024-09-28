@@ -100,7 +100,7 @@ public class ItemSpawner extends ItemBaseVehicle {
 		if (rayTrace.sideHit.getAxis().isHorizontal()) {
 			Vec3i dirVec = rayTrace.sideHit.getDirectionVec();
 			float halfWidth = vehicle.width / 2f;
-			hitVec = hitVec.addVector(dirVec.getX() * halfWidth, 0, dirVec.getZ() * halfWidth);
+			hitVec = hitVec.add(dirVec.getX() * halfWidth, 0, dirVec.getZ() * halfWidth);
 		}
 
 		vehicle.setPosition(hitVec.x, hitVec.y, hitVec.z);
@@ -134,7 +134,7 @@ public class ItemSpawner extends ItemBaseVehicle {
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack stack) {
+	public String getTranslationKey(ItemStack stack) {
 		IVehicleType vehicle = VehicleType.vehicleTypes[stack.getItemDamage()];
 		return vehicle == null ? "" : vehicle.getDisplayName();
 	}
@@ -150,7 +150,7 @@ public class ItemSpawner extends ItemBaseVehicle {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerClient() {
-		ResourceLocation baseLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "vehicle/" + getRegistryName().getResourcePath());
+		ResourceLocation baseLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "vehicle/" + getRegistryName().getPath());
 		String modelPropString = "variant=%s";
 
 		ModelLoader.setCustomMeshDefinition(this, stack -> {

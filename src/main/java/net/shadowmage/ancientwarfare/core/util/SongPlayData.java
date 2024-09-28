@@ -9,7 +9,6 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.shadowmage.ancientwarfare.BuildConfig;
 import net.shadowmage.ancientwarfare.core.AncientWarfareCore;
 
 import javax.annotation.Nullable;
@@ -149,7 +148,7 @@ public class SongPlayData {
 			this.sound = sound;
 			soundRegistryName = sound == null ? null : sound.getRegistryName();
 			if (sound != null) {
-				boolean isRecord = sound.getSoundName().getResourcePath().startsWith("records.") || ItemRecord.getBySound(sound) != null;
+				boolean isRecord = sound.getSoundName().getPath().startsWith("records.") || ItemRecord.getBySound(sound) != null;
 				if (isRecord && length() < 120) {
 					setLength(120);
 				}
@@ -181,7 +180,8 @@ public class SongPlayData {
 			if (tag.hasKey("name")) {
 				soundRegistryName = new ResourceLocation(tag.getString("name"));
 				sound = ForgeRegistries.SOUND_EVENTS.getValue(soundRegistryName);
-				if (BuildConfig.UNSTABLE && sound == null) {
+				//TODO: RESTORE BUILD CONFIG CHECK
+				if (sound == null) {
 					trySoundLookup();
 				}
 			}
@@ -190,19 +190,19 @@ public class SongPlayData {
 		}
 
 		private void trySoundLookup() {
-			if (!soundRegistryName.getResourceDomain().startsWith(AncientWarfareCore.MOD_ID) || !soundRegistryName.getResourcePath().startsWith(AUTO_LOAD_PREFIX)) {
+			if (!soundRegistryName.getNamespace().startsWith(AncientWarfareCore.MOD_ID) || !soundRegistryName.getPath().startsWith(AUTO_LOAD_PREFIX)) {
 				return;
 			}
 
-			String soundDomain = soundRegistryName.getResourceDomain();
-			String soundName = soundRegistryName.getResourcePath().substring(AUTO_LOAD_PREFIX.length());
+			String soundDomain = soundRegistryName.getNamespace();
+			String soundName = soundRegistryName.getPath().substring(AUTO_LOAD_PREFIX.length());
 
 			SoundEvent found = null;
 			for (SoundEvent soundEvent : ForgeRegistries.SOUND_EVENTS) {
 				ResourceLocation soundEventRegistryName = soundEvent.getRegistryName();
 				//noinspection ConstantConditions
-				String resPath = soundEventRegistryName.getResourcePath();
-				if (soundEventRegistryName.getResourceDomain().equals(soundDomain)
+				String resPath = soundEventRegistryName.getPath();
+				if (soundEventRegistryName.getNamespace().equals(soundDomain)
 						&& (resPath.equals(soundName) || resPath.endsWith("/" + soundName))) {
 					found = soundEvent;
 					if (!resPath.startsWith(AUTO_LOAD_PREFIX)) {

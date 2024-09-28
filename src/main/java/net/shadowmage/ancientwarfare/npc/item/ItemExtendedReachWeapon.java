@@ -21,7 +21,7 @@ public class ItemExtendedReachWeapon extends ItemSword implements IClientRegiste
 	public ItemExtendedReachWeapon(ToolMaterial material, String registryName, double attackOffset, double attackSpeed, float reach) {
 		super(material);
 		this.reach = reach;
-		setUnlocalizedName(registryName);
+		setTranslationKey(registryName);
 		setRegistryName(new ResourceLocation(AncientWarfareNPC.MOD_ID, registryName));
 		setCreativeTab(AncientWarfareNPC.TAB);
 

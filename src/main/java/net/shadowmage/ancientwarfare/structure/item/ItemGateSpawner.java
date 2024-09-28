@@ -77,7 +77,7 @@ public class ItemGateSpawner extends ItemBaseStructure implements IItemKeyInterf
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack par1ItemStack) {
+	public String getTranslationKey(ItemStack par1ItemStack) {
 		return "item." + Gate.getGateByID(par1ItemStack.getItemDamage()).getDisplayName();
 	}
 

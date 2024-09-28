@@ -18,8 +18,8 @@ public class ItemArmor extends ItemBaseVehicle {
 	private String tooltipName;
 
 	public ItemArmor(ResourceLocation registryName) {
-		super(registryName.getResourcePath());
-		tooltipName = "item." + registryName.getResourcePath() + ".tooltip";
+		super(registryName.getPath());
+		tooltipName = "item." + registryName.getPath() + ".tooltip";
 	}
 
 	@Override
@@ -31,6 +31,6 @@ public class ItemArmor extends ItemBaseVehicle {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerClient() {
-		ModelLoaderHelper.registerItem(this, (i, m) -> new ModelResourceLocation(new ResourceLocation(AncientWarfareCore.MOD_ID, "vehicle/armor"), "variant=" + getRegistryName().getResourcePath()));
+		ModelLoaderHelper.registerItem(this, (i, m) -> new ModelResourceLocation(new ResourceLocation(AncientWarfareCore.MOD_ID, "vehicle/armor"), "variant=" + getRegistryName().getPath()));
 	}
 }
