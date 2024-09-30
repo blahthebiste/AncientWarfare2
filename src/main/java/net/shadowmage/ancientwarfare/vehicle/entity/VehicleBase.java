@@ -484,7 +484,7 @@ public class VehicleBase extends Entity implements IEntityAdditionalSpawnData, I
 						IBlockState iblockstate = world.getBlockState(currentPos);
 
 						try {
-							iblockstate.getBlock().onEntityCollision(world, currentPos, iblockstate, this);
+							iblockstate.getBlock().onEntityCollidedWithBlock(world, currentPos, iblockstate, this);
 							onInsideBlock(iblockstate, currentPos);
 						}
 						catch (Throwable throwable) {
@@ -550,10 +550,20 @@ public class VehicleBase extends Entity implements IEntityAdditionalSpawnData, I
 	public Entity getControllingPassenger() {
 		return getPassengers().isEmpty() ? null : getPassengers().get(0);
 	}
+	
+    private void normalizeYaw() {
+        while (this.rotationYaw >= 360.0F) {
+            this.rotationYaw -= 360.0F;
+        }
+        while (this.rotationYaw < 0.0F) {
+            this.rotationYaw += 360.0F;
+        }
+    }
 
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
+		normalizeYaw();
 		if (this.world.isRemote) {
 			this.onUpdateClient();
 		} else {
@@ -581,7 +591,8 @@ public class VehicleBase extends Entity implements IEntityAdditionalSpawnData, I
 				//TODO config setting for vehicle search range
 				this.assignedRider = null;
 			}
-		}
+		}	
+
 /* TODO perf test vehicles
 		ServerPerformanceMonitor.addVehicleTickTime(System.nanoTime() - t1);
 */
