@@ -142,8 +142,18 @@ public class TemplateLoader {
 			TemplateExporter.exportTo(template, fileName.getParent().toFile());
 			AncientWarfareStructure.LOG.info("Changes saved to {}", fileName);
 		}
-
-		AncientWarfareStructure.LOG.info("Loaded Structure Template: [{}] WorldGen: {}  Survival: {}", template.name, template.getValidationSettings().isWorldGenEnabled(), template.getValidationSettings().isSurvival());
+		try {
+			AncientWarfareStructure.LOG.info("Loaded Structure Template: [{}] WorldGen: {}  Survival: {}", template.name, template.getValidationSettings().isWorldGenEnabled(), template.getValidationSettings().isSurvival());
+		}
+		catch (NullPointerException e) {
+			AncientWarfareStructure.LOG.error("NPE when attempting to load structure from file: "+fileName);
+			if(template == null) {
+				AncientWarfareStructure.LOG.error("Template itself is null");
+			}
+			else {
+				AncientWarfareStructure.LOG.error("Structure responsible: "+template.name);
+			}
+		}
 		StructureTemplateManager.addTemplate(template);
 		return Optional.of(new Tuple<>(template.name, fileName.toString()));
 	}
