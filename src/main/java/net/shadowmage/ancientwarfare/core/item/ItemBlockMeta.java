@@ -11,8 +11,8 @@ public class ItemBlockMeta extends ItemBlockBase {
 	}
 
 	@Override
-	public String getTranslationKey(ItemStack stack) {
-		return super.getTranslationKey(stack) + "." + stack.getItemDamage();
+	public String getUnlocalizedName(ItemStack stack) {
+		return super.getUnlocalizedName(stack) + "." + stack.getItemDamage();
 	}
 
 	@Override

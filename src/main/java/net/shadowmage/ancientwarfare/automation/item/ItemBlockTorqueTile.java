@@ -24,7 +24,7 @@ public class ItemBlockTorqueTile extends ItemBlockBase {
 		}
 		rotatable = (IRotatableBlock) block;
 		NonNullList<ItemStack> subBlocks = NonNullList.create();
-		block.getSubBlocks(block.getCreativeTab(), subBlocks);
+		block.getSubBlocks(block.getCreativeTabToDisplayOn(), subBlocks);
 		setHasSubtypes(subBlocks.size() > 1);
 	}
 
@@ -43,7 +43,7 @@ public class ItemBlockTorqueTile extends ItemBlockBase {
 	}
 
 	@Override
-	public String getTranslationKey(ItemStack stack) {
-		return super.getTranslationKey(stack) + "." + stack.getItemDamage();
+	public String getUnlocalizedName(ItemStack stack) {
+		return super.getUnlocalizedName(stack) + "." + stack.getItemDamage();
 	}
 }

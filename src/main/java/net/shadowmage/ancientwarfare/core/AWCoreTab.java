@@ -2,8 +2,6 @@ package net.shadowmage.ancientwarfare.core;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.shadowmage.ancientwarfare.core.init.AWCoreItems;
 
 public class AWCoreTab extends CreativeTabs {
@@ -12,8 +10,7 @@ public class AWCoreTab extends CreativeTabs {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public ItemStack createIcon() {
+	public ItemStack getTabIconItem() {
 		return new ItemStack(AWCoreItems.RESEARCH_BOOK);
 	}
 }

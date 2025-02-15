@@ -22,8 +22,7 @@ public class AWNPCTab extends CreativeTabs {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public ItemStack createIcon() {
+	public ItemStack getTabIconItem() {
 		return new ItemStack(AWNPCItems.NPC_SPAWNER);
 	}
 

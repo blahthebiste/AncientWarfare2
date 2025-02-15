@@ -311,7 +311,7 @@ public class CommandUtils extends RootCommand {
 			private void startMoving(EntityPlayerMP player, World world, int chunkLoadRadius, int range) {
 				this.player = player;
 				originalPosition = player.getPosition();
-				originalChunkPos = world.getChunk(originalPosition).getPos();
+				originalChunkPos = world.getChunkFromBlockCoords(originalPosition).getPos();
 				this.chunkLoadRadius = chunkLoadRadius;
 				this.range = range;
 				finishedMoving = false;

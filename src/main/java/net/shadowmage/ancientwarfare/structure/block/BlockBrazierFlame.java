@@ -91,7 +91,7 @@ public class BlockBrazierFlame extends BlockBaseStructure {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
@@ -200,7 +200,7 @@ public class BlockBrazierFlame extends BlockBaseStructure {
 	@SideOnly(Side.CLIENT)
 	public void registerClient() {
 		//noinspection ConstantConditions
-		ResourceLocation baseLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "structure/" + getRegistryName().getPath());
+		ResourceLocation baseLocation = new ResourceLocation(AncientWarfareCore.MOD_ID, "structure/" + getRegistryName().getResourcePath());
 
 		ModelLoader.setCustomStateMapper(this, new StateMapperBase() {
 			@Override

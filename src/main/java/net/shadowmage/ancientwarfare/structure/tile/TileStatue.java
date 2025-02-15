@@ -54,7 +54,7 @@ public class TileStatue extends TileUpdatable implements BlockRotationHandler.IR
 	}
 
 	private void readNBT(NBTTagCompound compound) {
-		facing = EnumFacing.byHorizontalIndex(compound.getByte("facing"));
+		facing = EnumFacing.getHorizontal(compound.getByte("facing"));
 		entityStatueInfo.deserializeNBT(compound.getCompoundTag("entityStatueInfo"));
 	}
 

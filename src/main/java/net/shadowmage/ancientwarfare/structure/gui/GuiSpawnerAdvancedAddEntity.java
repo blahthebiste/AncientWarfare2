@@ -103,7 +103,7 @@ public class GuiSpawnerAdvancedAddEntity extends GuiContainerBase {
 			String tag = tagBuffer.toString();
 			try {
 				NBTTagCompound base = JsonToNBT.getTagFromJson(tag);
-				if (base != null && !base.isEmpty()) {
+				if (base != null && !base.hasNoTags()) {
 					settings.setCustomSpawnTag(base);
 				}
 			}

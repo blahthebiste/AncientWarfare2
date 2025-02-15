@@ -99,7 +99,7 @@ public class BlockAdvancedSpawner extends BlockBaseStructure {
 	}
 
 	@Override
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

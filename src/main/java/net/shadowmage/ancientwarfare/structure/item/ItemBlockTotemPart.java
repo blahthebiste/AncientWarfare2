@@ -31,13 +31,13 @@ public class ItemBlockTotemPart extends ItemBlockBase {
 	}
 
 	@Override
-	public String getTranslationKey(ItemStack stack) {
+	public String getUnlocalizedName(ItemStack stack) {
 		if (!stack.hasTagCompound()) {
-			return super.getTranslationKey(stack);
+			return super.getUnlocalizedName(stack);
 		}
 
 		//noinspection ConstantConditions
-		return String.format("%s.%s", super.getTranslationKey(stack),
+		return String.format("%s.%s", super.getUnlocalizedName(stack),
 				BlockTotemPart.Variant.fromId(stack.getTagCompound().getByte("variant")).name().toLowerCase());
 	}
 }

@@ -1,5 +1,7 @@
 package net.shadowmage.ancientwarfare.core.upgrade;
 
+import net.shadowmage.ancientwarfare.automation.init.AWAutomationItems;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,6 +26,13 @@ public enum WorksiteUpgrade {
 		for (int anOvr : ovr) {
 			overrides.add(anOvr);
 		}
+	}
+
+	/*
+	 * Should be used to return localization key for this upgrade.  Should be used in a worksite-upgrade-list GUI (or other...)
+	 */
+	public String unlocalizedName() {
+		return AWAutomationItems.WORKSITE_UPGRADE.getUnlocalizedName() + "." + ordinal();
 	}
 
 	/*

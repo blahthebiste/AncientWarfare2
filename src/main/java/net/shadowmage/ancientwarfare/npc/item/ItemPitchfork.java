@@ -20,7 +20,7 @@ public class ItemPitchfork extends ItemBaseNPC {
 		this.setMaxDamage(material.getMaxUses());
 		this.attackDamage = material.getAttackDamage();
 		this.attackSpeed = attackSpeed;
-		setTranslationKey("pitchfork");
+		setUnlocalizedName("pitchfork");
 		setCreativeTab(AncientWarfareNPC.TAB);
 	}
 

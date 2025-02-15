@@ -102,7 +102,7 @@ public class AWCoreLoot {
 
 	@SubscribeEvent
 	public static void lootLoad(LootTableLoadEvent evt) {
-		String resPath = evt.getName().getPath();
+		String resPath = evt.getName().getResourcePath();
 
 		if (injectTables.containsKey(resPath)) {
 			String jsonContents;

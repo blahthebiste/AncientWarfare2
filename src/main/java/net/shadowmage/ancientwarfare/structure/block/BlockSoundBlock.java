@@ -45,7 +45,7 @@ public class BlockSoundBlock extends BlockBaseStructure implements IBakeryProvid
 	}
 
 	@Override
-	public BlockRenderLayer getRenderLayer() {
+	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

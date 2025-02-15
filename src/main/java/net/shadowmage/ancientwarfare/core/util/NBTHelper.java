@@ -117,7 +117,7 @@ public class NBTHelper {
 			if (tag.getId() == 9) {
 				NBTTagList nbttaglist = (NBTTagList) tag;
 
-				if (!nbttaglist.isEmpty() && nbttaglist.getTagType() != type) {
+				if (!nbttaglist.hasNoTags() && nbttaglist.getTagType() != type) {
 					return new NBTTagList();
 				}
 

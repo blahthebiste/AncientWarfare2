@@ -11,13 +11,13 @@ public class ItemBlockFirePit extends ItemBlockBase {
 	}
 
 	@Override
-	public String getTranslationKey(ItemStack stack) {
+	public String getUnlocalizedName(ItemStack stack) {
 		if (!stack.hasTagCompound()) {
-			return super.getTranslationKey(stack);
+			return super.getUnlocalizedName(stack);
 		}
 
 		//noinspection ConstantConditions
-		return String.format("%s.%s.%s", super.getTranslationKey(stack),
+		return String.format("%s.%s.%s", super.getUnlocalizedName(stack),
 				stack.getTagCompound().getString(BlockFirePit.VARIANT_TAG),
 				stack.getTagCompound().getBoolean(BlockFirePit.LIT_TAG) ? "lit" : "unlit");
 	}
