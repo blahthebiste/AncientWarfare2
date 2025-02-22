@@ -4,6 +4,7 @@ import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.EnumHand;
 import net.shadowmage.ancientwarfare.npc.ai.NpcAIAttack;
+import net.shadowmage.ancientwarfare.npc.config.AWNPCStatics;
 import net.shadowmage.ancientwarfare.npc.entity.NpcBase;
 
 public class NpcAIFactionRangedAttack extends NpcAIAttack<NpcBase> {
@@ -21,7 +22,7 @@ public class NpcAIFactionRangedAttack extends NpcAIAttack<NpcBase> {
 	}
 
 	public <T extends NpcBase & IRangedAttackMob> NpcAIFactionRangedAttack(T npc) {
-		this(npc, 1, (int) Math.pow(npc.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue(), 2), 45);
+		this(npc, 1, (int) Math.pow(AWNPCStatics.archerRange, 2), 45);
 	}
 
 	@Override

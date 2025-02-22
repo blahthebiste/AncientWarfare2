@@ -25,8 +25,9 @@ public class NpcCommand {
 		GUARD, //attack click on friendly player or npc
 		SET_HOME, SET_UPKEEP, CLEAR_HOME, CLEAR_UPKEEP, CLEAR_COMMAND, NONE;
 
+        // Experimental: move commands are also persistent; NPCs will return to that task after performing others
 		public boolean isPersistent() {
-			return (this == ATTACK || this == GUARD || this == ATTACK_AREA);
+			return (this == MOVE || this == ATTACK || this == GUARD || this == ATTACK_AREA);
 		}
 	}
 

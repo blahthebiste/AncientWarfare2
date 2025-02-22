@@ -106,6 +106,12 @@ public class GuiNpcPlayerOwnedTrade extends GuiContainerBase<ContainerNpcPlayerO
 			protected void onPressed() {
 				trade.performTrade(player, getContainer().storage);
 				getContainer().doTrade(tradeIndex);
+                // Add shift click support: repeat the trade as many times as possible
+                if (isShiftKeyDown()) {
+                    while(trade.performTrade(player, null)){
+                        getContainer().doTrade(tradeIndex);
+                    }
+                }
 				refreshGui();
 			}
 		};

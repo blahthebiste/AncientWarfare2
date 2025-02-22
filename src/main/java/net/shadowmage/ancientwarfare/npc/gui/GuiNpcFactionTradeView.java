@@ -114,6 +114,12 @@ public class GuiNpcFactionTradeView extends GuiContainerBase<ContainerNpcFaction
 				protected void onPressed() {
 					trade.performTrade(player, null);
 					getContainer().doTrade(tradeNum);
+                    // Add shift click support: repeat the trade as many times as possible
+                    if (isShiftKeyDown()) {
+                        while(trade.performTrade(player, null)){
+                            getContainer().doTrade(tradeNum);
+                        }
+                    }
 					refreshGui();
 				}
 			};
