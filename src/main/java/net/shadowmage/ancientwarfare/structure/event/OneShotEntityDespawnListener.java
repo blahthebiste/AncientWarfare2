@@ -71,7 +71,7 @@ public class OneShotEntityDespawnListener implements IWorldEventListener {
 		if (entityIn.hasCapability(CapabilityRespawnData.RESPAWN_DATA_CAPABILITY, null)) {
 			IRespawnData respawnData = entityIn.getCapability(CapabilityRespawnData.RESPAWN_DATA_CAPABILITY, null);
 
-			if (respawnData.canRespawn() && ((EntityLivingBase) entityIn).getHealth() > 0 && !(entityIn instanceof NpcFaction) && !(entityIn.getClass().toString().equals("com.github.alexthe666.iceandfire.entity.EntityDragonBase"))) { //NpcFaction is handled separately
+			if (respawnData.canRespawn() && ((EntityLivingBase) entityIn).getHealth() > 0 && !(entityIn instanceof NpcFaction) && !(entityIn.getClass().getName().equals("com.github.alexthe666.iceandfire.entity.EntityFireDragon") && !(entityIn.getClass().getName().equals("com.github.alexthe666.iceandfire.entity.EntityIceDragon") && !(entityIn.getClass().getName().equals("com.github.alexthe666.iceandfire.entity.EntityLightningDragon"))))) { //NpcFaction is handled separately
 				SpawnerHelper.createSpawner(respawnData, entityIn.world);
 			}
 		}
