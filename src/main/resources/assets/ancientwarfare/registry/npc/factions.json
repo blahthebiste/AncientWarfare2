@@ -315,7 +315,7 @@
             "name": "witchbane",
             "color": "ffffff",
             "standing_settings": {
-                "player_default_standing": -1000,
+                "player_default_standing": -100,
                 "standing_can_change": true,
                 "standing_changes": {
                     "kill": -10,
@@ -623,7 +623,7 @@
             "name": "kong",
             "color": "004000",
             "standing_settings": {
-                "player_default_standing": -1000,
+                "player_default_standing": -100,
                 "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,
@@ -810,7 +810,7 @@
             "name": "pirate",
             "color": "cc7722",
             "standing_settings": {
-                "player_default_standing": -1000,
+                "player_default_standing": -100,
                 "standing_can_change": true,
                 "standing_changes": {
                     "kill": -100,

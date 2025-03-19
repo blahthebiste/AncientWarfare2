@@ -10,22 +10,29 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.shadowmage.ancientwarfare.core.AncientWarfareCore;
 import net.shadowmage.ancientwarfare.core.util.ModelLoaderHelper;
+import net.shadowmage.ancientwarfare.vehicle.armors.IVehicleArmor;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemArmor extends ItemBaseVehicle {
-	private String tooltipName;
+	private String defenseTooltip;
+	private String fireTooltip;
+	private String explosiveTooltip;
 
-	public ItemArmor(ResourceLocation registryName) {
+	public ItemArmor(ResourceLocation registryName, IVehicleArmor armor) {
 		super(registryName.getResourcePath());
-		tooltipName = "item." + registryName.getResourcePath() + ".tooltip";
+        defenseTooltip = I18n.format("item.armor_defense.tooltip", armor.getGeneralDamageReduction());
+        fireTooltip = I18n.format("item.armor_fire.tooltip", armor.getFireDamageReduction());
+        explosiveTooltip = I18n.format("item.armor_explosive.tooltip", armor.getExplosiveDamageReduction());
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format(tooltipName));
+		tooltip.add(defenseTooltip);
+		tooltip.add(fireTooltip);
+		tooltip.add(explosiveTooltip);
 	}
 
 	@Override

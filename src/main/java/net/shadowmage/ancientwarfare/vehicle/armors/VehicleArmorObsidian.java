@@ -21,12 +21,14 @@
 
 package net.shadowmage.ancientwarfare.vehicle.armors;
 
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
+
 public class VehicleArmorObsidian extends VehicleArmorBase {
 
 	public VehicleArmorObsidian() {
 		super("armor_obsidian");
-		this.general = 2.5f;
-		this.explosive = 7.f;
-		this.fire = 2.5f;
+		this.general = AWCoreStatics.vehicleArmorObsidianGeneralDefense;
+		this.explosive = AWCoreStatics.vehicleArmorObsidianExplosiveDefense;
+		this.fire = AWCoreStatics.vehicleArmorObsidianFireDefense;
 	}
 }

@@ -18,10 +18,17 @@ public class ItemUpgrade extends ItemBaseVehicle {
 	private String tooltipName;
 	private String vehicleUpgradeTooltipName;
 
-	public ItemUpgrade(ResourceLocation registryName) {
+	public ItemUpgrade(ResourceLocation registryName, String dynamicInfo) {
 		super(registryName.getResourcePath());
-		tooltipName = "item." + registryName.getResourcePath() + ".tooltip";
-		vehicleUpgradeTooltipName = "item.vehicle_upgrade_tooltip";
+        // Some upgrades include their actual effect in their tooltip.
+        // Now that these effects are configurable, the tooltip needs to adjust dynamically.
+        if(dynamicInfo.isEmpty()) {
+            tooltipName = "item." + registryName.getResourcePath() + ".tooltip";
+        }
+        else {
+            tooltipName = I18n.format("item." + registryName.getResourcePath() + ".tooltip", dynamicInfo);
+        }
+        vehicleUpgradeTooltipName = "item.vehicle_upgrade_tooltip";
 	}
 
 	@Override

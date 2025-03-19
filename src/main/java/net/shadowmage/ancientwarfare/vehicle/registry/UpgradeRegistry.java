@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.vehicle.item.ItemUpgrade;
 import net.shadowmage.ancientwarfare.vehicle.upgrades.IVehicleUpgradeType;
 import net.shadowmage.ancientwarfare.vehicle.upgrades.VehicleUpgradeAim;
@@ -52,18 +53,25 @@ public class UpgradeRegistry {
 	 * called during init to register upgrade types as items
 	 */
 	public static void registerUpgrades(IForgeRegistry<Item> registry) {
-		speedUpgrade = registerUpgrade(new VehicleUpgradeSpeed(), registry);
-		aimUpgrade = registerUpgrade(new VehicleUpgradeAim(), registry);
-		reloadUpgrade = registerUpgrade(new VehicleUpgradeReload(), registry);
-		powerUpgrade = registerUpgrade(new VehicleUpgradePower(), registry);
-		pitchExtUpgrade = registerUpgrade(new VehicleUpgradeTurretPitch(), registry);
-		pitchUpUpgrade = registerUpgrade(new VehicleUpgradePitchUp(), registry);
-		pitchDownUpgrade = registerUpgrade(new VehicleUpgradePitchDown(), registry);
+		speedUpgrade = registerUpgrade(new VehicleUpgradeSpeed(), registry, ""+AWCoreStatics.vehicleUpgradeMaxSpeed);
+		aimUpgrade = registerUpgrade(new VehicleUpgradeAim(), registry, Float.toString(AWCoreStatics.vehicleUpgradeAccuracy));
+		reloadUpgrade = registerUpgrade(new VehicleUpgradeReload(), registry, Integer.toString(AWCoreStatics.vehicleUpgradeReloadSpeed));
+		powerUpgrade = registerUpgrade(new VehicleUpgradePower(), registry, ""+AWCoreStatics.vehicleUpgradeProjectileSpeed);
+		pitchExtUpgrade = registerUpgrade(new VehicleUpgradeTurretPitch(), registry, ""+AWCoreStatics.vehicleUpgradePitchExtension);
+		pitchUpUpgrade = registerUpgrade(new VehicleUpgradePitchUp(), registry, ""+AWCoreStatics.vehicleUpgradePitchUp);
+		pitchDownUpgrade = registerUpgrade(new VehicleUpgradePitchDown(), registry, ""+AWCoreStatics.vehicleUpgradePitchDown);
 	}
 
 	private static IVehicleUpgradeType registerUpgrade(IVehicleUpgradeType upgrade, IForgeRegistry<Item> registry) {
 		upgradeInstances.put(upgrade.getRegistryName(), upgrade);
-		ItemUpgrade item = new ItemUpgrade(upgrade.getRegistryName());
+		ItemUpgrade item = new ItemUpgrade(upgrade.getRegistryName(), "");
+		registry.register(item);
+		return upgrade;
+	}
+
+	private static IVehicleUpgradeType registerUpgrade(IVehicleUpgradeType upgrade, IForgeRegistry<Item> registry, String dynamicInfo) {
+		upgradeInstances.put(upgrade.getRegistryName(), upgrade);
+		ItemUpgrade item = new ItemUpgrade(upgrade.getRegistryName(), dynamicInfo);
 		registry.register(item);
 		return upgrade;
 	}

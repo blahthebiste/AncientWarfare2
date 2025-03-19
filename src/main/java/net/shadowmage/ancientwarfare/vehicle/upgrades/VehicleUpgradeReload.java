@@ -21,6 +21,7 @@
 
 package net.shadowmage.ancientwarfare.vehicle.upgrades;
 
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.vehicle.entity.VehicleBase;
 
 public class VehicleUpgradeReload extends VehicleUpgradeBase {
@@ -31,7 +32,8 @@ public class VehicleUpgradeReload extends VehicleUpgradeBase {
 
 	@Override
 	public void applyVehicleEffects(VehicleBase vehicle) {
-		vehicle.currentReloadTicks *= 0.9f;
+        float percentDecrease = (AWCoreStatics.vehicleUpgradeReloadSpeed)/100.0f;
+        vehicle.currentReloadTicks *= (1.0f - percentDecrease);
 	}
 
 }

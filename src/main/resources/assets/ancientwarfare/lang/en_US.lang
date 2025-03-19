@@ -1794,30 +1794,31 @@ item.tempered_iron.name=Tempered Iron
 item.minor_alloy.name=Minor Alloy
 item.major_alloy.name=Major Alloy
 
+
 # vehicle upgrades
 item.vehicle_upgrade_tooltip=Vehicle Upgrade
 item.vehicle_upgrade_speed.name=Iron Bearings
-item.vehicle_upgrade_speed.tooltip=Max Speed + 0.25m/s
+item.vehicle_upgrade_speed.tooltip=Max Speed + %sm/s
 item.vehicle_upgrade_aim.name=Basic Trajectory Calculator
-item.vehicle_upgrade_aim.tooltip=Acc +3%%
+item.vehicle_upgrade_aim.tooltip=Accuracy +%s％
 item.vehicle_upgrade_reload.name=Spring-Fed Reloader
-item.vehicle_upgrade_reload.tooltip=Reload Time - 10%%
+item.vehicle_upgrade_reload.tooltip=Reload Time - %s％
 item.vehicle_upgrade_power.name=Power Upgrade
-item.vehicle_upgrade_power.tooltip=Missile Speed + 2m/s
+item.vehicle_upgrade_power.tooltip=Missile Speed + %sm/s
 item.vehicle_upgrade_turret_pitch.name=Pitch Extension
-item.vehicle_upgrade_turret_pitch.tooltip=Extends Turret Rotation
-item.vehicle_upgrade_pitch_up.name=Turret Wedge: +3'
-item.vehicle_upgrade_pitch_up.tooltip=Aim Pitch +3'
-item.vehicle_upgrade_pitch_down.name=Turret Wedge: -3'
-item.vehicle_upgrade_pitch_down.tooltip=Aim Pitch -3'
+item.vehicle_upgrade_turret_pitch.tooltip=Extends Turret Rotation by %s°
+item.vehicle_upgrade_pitch_up.name=Turret Wedge: Pitch Up
+item.vehicle_upgrade_pitch_up.tooltip=Shifts Aim Pitch +%s°
+item.vehicle_upgrade_pitch_down.name=Turret Wedge: Pitch Down
+item.vehicle_upgrade_pitch_down.tooltip=Shifts Aim Pitch -%s°
 
 # vehicle armor items
 item.armor_iron.name=Iron Vehicle Armor
-item.armor_iron.tooltip=Reduce Most Damage by 7%%
+item.armor_defense.tooltip=Reduce Most Damage by %s％
 item.armor_stone.name=Stone Vehicle Armor
-item.armor_stone.tooltip=Reduce Fire Damage by 7%%
+item.armor_fire.tooltip=Reduce Fire Damage by %s％
 item.armor_obsidian.name=Obsidian Vehicle Armor
-item.armor_obsidian.tooltip=Reduce Blast Damage by 7%%
+item.armor_explosive.tooltip=Reduce Blast Damage by %s％
 
 #core input keybinds
 keybind.category.awCore=Ancient Warfare

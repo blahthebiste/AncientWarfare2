@@ -21,6 +21,7 @@
 
 package net.shadowmage.ancientwarfare.vehicle.upgrades;
 
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.vehicle.entity.VehicleBase;
 
 public class VehicleUpgradePitchUp extends VehicleUpgradeBase {
@@ -31,8 +32,8 @@ public class VehicleUpgradePitchUp extends VehicleUpgradeBase {
 
 	@Override
 	public void applyVehicleEffects(VehicleBase vehicle) {
-		vehicle.currentTurretPitchMax += 3;
-		vehicle.currentTurretPitchMin += 3;
+		vehicle.currentTurretPitchMax += AWCoreStatics.vehicleUpgradePitchUp;
+		vehicle.currentTurretPitchMin += AWCoreStatics.vehicleUpgradePitchUp;
 		if (vehicle.localTurretPitch < vehicle.currentTurretPitchMin) {
 			vehicle.localTurretPitch = vehicle.currentTurretPitchMin;
 		}
