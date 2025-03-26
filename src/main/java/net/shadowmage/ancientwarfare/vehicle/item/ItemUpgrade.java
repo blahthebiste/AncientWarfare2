@@ -17,18 +17,11 @@ import java.util.List;
 public class ItemUpgrade extends ItemBaseVehicle {
 	private String tooltipName;
 	private String vehicleUpgradeTooltipName;
+	private String dynamicInfo;
 
 	public ItemUpgrade(ResourceLocation registryName, String dynamicInfo) {
 		super(registryName.getResourcePath());
-        // Some upgrades include their actual effect in their tooltip.
-        // Now that these effects are configurable, the tooltip needs to adjust dynamically.
-        if(dynamicInfo.isEmpty()) {
-            tooltipName = "item." + registryName.getResourcePath() + ".tooltip";
-        }
-        else {
-            tooltipName = I18n.format("item." + registryName.getResourcePath() + ".tooltip", dynamicInfo);
-        }
-        vehicleUpgradeTooltipName = "item.vehicle_upgrade_tooltip";
+        this.dynamicInfo = dynamicInfo;
 	}
 
 	@Override
@@ -42,5 +35,15 @@ public class ItemUpgrade extends ItemBaseVehicle {
 	@SideOnly(Side.CLIENT)
 	public void registerClient() {
 		ModelLoaderHelper.registerItem(this, (i, m) -> new ModelResourceLocation(new ResourceLocation(AncientWarfareCore.MOD_ID, "vehicle/upgrade"), "variant=" + getRegistryName().getResourcePath()));
-	}
+
+        // Some upgrades include their actual effect in their tooltip.
+        // Now that these effects are configurable, the tooltip needs to adjust dynamically.
+        if(dynamicInfo.isEmpty()) {
+            tooltipName = "item." + getRegistryName().getResourcePath() + ".tooltip";
+        }
+        else {
+            tooltipName = I18n.format("item." + getRegistryName().getResourcePath() + ".tooltip", dynamicInfo);
+        }
+        vehicleUpgradeTooltipName = "item.vehicle_upgrade_tooltip";
+    }
 }

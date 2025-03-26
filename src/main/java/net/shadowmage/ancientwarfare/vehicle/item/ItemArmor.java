@@ -19,12 +19,11 @@ public class ItemArmor extends ItemBaseVehicle {
 	private String defenseTooltip;
 	private String fireTooltip;
 	private String explosiveTooltip;
+    private IVehicleArmor armor;
 
 	public ItemArmor(ResourceLocation registryName, IVehicleArmor armor) {
 		super(registryName.getResourcePath());
-        defenseTooltip = I18n.format("item.armor_defense.tooltip", armor.getGeneralDamageReduction());
-        fireTooltip = I18n.format("item.armor_fire.tooltip", armor.getFireDamageReduction());
-        explosiveTooltip = I18n.format("item.armor_explosive.tooltip", armor.getExplosiveDamageReduction());
+        this.armor = armor;
 	}
 
 	@Override
@@ -39,5 +38,9 @@ public class ItemArmor extends ItemBaseVehicle {
 	@SideOnly(Side.CLIENT)
 	public void registerClient() {
 		ModelLoaderHelper.registerItem(this, (i, m) -> new ModelResourceLocation(new ResourceLocation(AncientWarfareCore.MOD_ID, "vehicle/armor"), "variant=" + getRegistryName().getResourcePath()));
+
+        defenseTooltip = I18n.format("item.armor_defense.tooltip", armor.getGeneralDamageReduction());
+        fireTooltip = I18n.format("item.armor_fire.tooltip", armor.getFireDamageReduction());
+        explosiveTooltip = I18n.format("item.armor_explosive.tooltip", armor.getExplosiveDamageReduction());
 	}
 }
