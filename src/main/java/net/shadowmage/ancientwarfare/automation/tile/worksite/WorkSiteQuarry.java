@@ -10,6 +10,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraftforge.common.ForgeChunkManager;
+import net.minecraftforge.event.ForgeEventFactory;
+import net.shadowmage.ancientwarfare.core.entity.AWFakePlayer;
 import net.shadowmage.ancientwarfare.core.network.NetworkHandler;
 import net.shadowmage.ancientwarfare.core.upgrade.WorksiteUpgrade;
 import net.shadowmage.ancientwarfare.core.util.BlockTools;
@@ -129,6 +131,10 @@ public final class WorkSiteQuarry extends TileWorksiteBoundedInventory {
 		NonNullList<ItemStack> stacks = NonNullList.create();
 
 		block.getDrops(stacks, world, current, state, getFortune());
+
+        EntityPlayer fakePlayer = AWFakePlayer.get(world);
+        // No upgrades give silk touch currently
+        ForgeEventFactory.fireBlockHarvesting(stacks, world, pos, state, getFortune(), 1.0f, false, fakePlayer);
 
 		if (!InventoryTools.insertItems(mainInventory, stacks, true).isEmpty()) {
 			return false;
