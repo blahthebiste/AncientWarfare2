@@ -2,6 +2,7 @@ package net.shadowmage.ancientwarfare.structure.event;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.SoundCategory;
@@ -71,7 +72,7 @@ public class OneShotEntityDespawnListener implements IWorldEventListener {
 		if (entityIn.hasCapability(CapabilityRespawnData.RESPAWN_DATA_CAPABILITY, null)) {
 			IRespawnData respawnData = entityIn.getCapability(CapabilityRespawnData.RESPAWN_DATA_CAPABILITY, null);
 
-			if (respawnData.canRespawn() && ((EntityLivingBase) entityIn).getHealth() > 0 && !(entityIn instanceof NpcFaction)) { //NpcFaction is handled separately
+			if (respawnData.canRespawn() && ((EntityLivingBase) entityIn).getHealth() > 0 && !(entityIn instanceof NpcFaction) && !EntityList.getKey(entityIn).getResourceDomain().equals("iceandfire")) { //NpcFaction is handled separately
 				SpawnerHelper.createSpawner(respawnData, entityIn.world);
 			}
 		}
