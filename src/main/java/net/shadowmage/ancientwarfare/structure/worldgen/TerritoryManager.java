@@ -92,6 +92,12 @@ public class TerritoryManager {
 	}
 
 	public static void addTerritoryInBiome(String territoryName, String biomeName) {
+        // Logic for disabling certain territories belonging to certain factions:
+        if(AWStructureStatics.factionBlacklist.contains(territoryName.trim())) {
+            WorldGenDetailedLogHelper.log("[AW2t]: Faction disabled in config; skipping territory for faction \""+territoryName+"\"");
+            return;
+        }
+
 		Biome biome = ForgeRegistries.BIOMES.getValue(new ResourceLocation(biomeName));
 		if (biome != null) {
 			List<String> territoryNames = territoryNamesByBiome.getOrDefault(biome, new ArrayList<>());

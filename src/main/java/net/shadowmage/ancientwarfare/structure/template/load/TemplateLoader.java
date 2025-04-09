@@ -87,10 +87,22 @@ public class TemplateLoader {
 
 			@SuppressWarnings("squid:S4784")
 			String name = FilenameUtils.removeExtension(relative).replaceAll("\\\\", "/");
+            String nameNoPath = name.substring(name.lastIndexOf('/') + 1);
+            boolean bannedFaction = false;
+            // Tweak: config for dynamically blacklisting structures by name
+            for(String factionName : AWStructureStatics.factionBlacklist) {
+                if(nameNoPath.trim().toLowerCase().startsWith(factionName.trim().toLowerCase())) {
+                    AncientWarfareStructure.LOG.warn("Template data {} from {} is part of a blacklisted faction {}; will not be loaded", nameNoPath, file, factionName);
+                    bannedFaction = true;
+                    break;
+                }
+                else {
+                    AncientWarfareStructure.LOG.warn("Template data {} from {} is NOT part of a blacklisted faction {}", nameNoPath, file, factionName);
+                }
+            }
 
 			String extension = FilenameUtils.getExtension(file.toString());
-
-			if (extension.equals(AWStructureStatics.townTemplateExtension) || extension.equals(AWStructureStatics.templateExtension)) {
+			if (!bannedFaction && (extension.equals(AWStructureStatics.townTemplateExtension) || extension.equals(AWStructureStatics.templateExtension))) {
 				List<String> lines;
 				try (BufferedReader reader = Files.newBufferedReader(file, StandardCharsets.ISO_8859_1)) {
 					lines = reader.lines().filter(l -> !l.startsWith("#")).collect(Collectors.toList());

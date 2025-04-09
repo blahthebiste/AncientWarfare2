@@ -38,7 +38,10 @@ public class AWStructureStatics extends ModConfiguration {
 	private static HashSet<String> skippableWorldGenBlocks = new HashSet<>();
 	private static HashSet<String> worldGenTargetBlocks = new HashSet<>();
 	private static HashSet<String> scannerSkippedBlocks = new HashSet<>();
-	public static boolean collectWorldGenStatistics = true;
+    // Tweak:
+	public static HashSet<String> factionBlacklist = new HashSet<>();
+
+    public static boolean collectWorldGenStatistics = true;
 
 	public static int gateVerticalWoodenMaxHealth = 80;
 	public static int gateVerticalIronMaxHealth = 80;
@@ -55,6 +58,7 @@ public class AWStructureStatics extends ModConfiguration {
 	private static final String targetBlocks = "e_world_gen_target_blocks";
 	private static final String scanSkippedBlocks = "f_scanner_skipped_blocks";
 	private static final String excludedLootTables = "g_excluded_loot_tables";
+	private static final String blacklistedFactions = "h_faction_blacklist";
 
 	@Override
 	public void initializeCategories() {
@@ -95,6 +99,7 @@ public class AWStructureStatics extends ModConfiguration {
 		initializeDefaultSkippedEntities();
 		initializeDefaultTargetBlocks();
 		initializeScannerSkippedBlocks();
+		initializeFactionBlacklist();
 
 		lootTableExclusions = new HashSet<>(Arrays.asList(config.get(excludedLootTables, "excluded_loot_tables", new String[] {
 				"advanced-fishing:gameplay/fishing",
@@ -576,6 +581,13 @@ public class AWStructureStatics extends ModConfiguration {
 		defaultSkippableBlocks = config.get(worldGenBlocks, "skippable_blocks", defaultSkippableBlocks).getStringList();
 		Collections.addAll(skippableWorldGenBlocks, defaultSkippableBlocks);
 	}
+
+
+    private void initializeFactionBlacklist() {
+        String[] defaultFactionBlacklist = new String[] { };
+        defaultFactionBlacklist = config.getStringList("faction_blacklist", blacklistedFactions, defaultFactionBlacklist, "Add a faction's name here to turn off their structures/territory spawning. This does not disable their items or reputation.\nANY string here will disable ALL structures from the default pack which start with it; use responsibly.\nFor example:\n\tempire\n\tbuffloka\n\tdwarf");
+        Collections.addAll(factionBlacklist, defaultFactionBlacklist);
+    }
 
 	public static void logSkippableBlocksCoveredByMaterial() {
 		skippableWorldGenBlocks.stream().filter(b -> getBlock(b).isPresent() && isSkippableMaterial(getBlock(b).get().getDefaultState().getMaterial()))
