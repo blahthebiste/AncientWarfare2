@@ -21,6 +21,7 @@
 
 package net.shadowmage.ancientwarfare.vehicle.upgrades;
 
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.vehicle.entity.VehicleBase;
 
 public class VehicleUpgradeSpeed extends VehicleUpgradeBase {
@@ -31,7 +32,7 @@ public class VehicleUpgradeSpeed extends VehicleUpgradeBase {
 
 	@Override
 	public void applyVehicleEffects(VehicleBase vehicle) {
-		vehicle.currentForwardSpeedMax += 0.25f * 0.05f;
+        vehicle.currentForwardSpeedMax += AWCoreStatics.vehicleUpgradeMaxSpeed * 0.05f;
 	}
 
 }

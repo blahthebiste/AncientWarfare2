@@ -21,12 +21,14 @@
 
 package net.shadowmage.ancientwarfare.vehicle.armors;
 
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
+
 public class VehicleArmorIron extends VehicleArmorBase {
 
 	public VehicleArmorIron() {
 		super("armor_iron");
-		this.general = 7.0f;
-		this.explosive = 2.5f;
-		this.fire = 2.5f;
+		this.general = AWCoreStatics.vehicleArmorIronGeneralDefense;
+		this.explosive = AWCoreStatics.vehicleArmorIronExplosiveDefense;
+		this.fire = AWCoreStatics.vehicleArmorIronFireDefense;
 	}
 }

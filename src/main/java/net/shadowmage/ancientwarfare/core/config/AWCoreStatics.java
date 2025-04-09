@@ -54,6 +54,22 @@ public class AWCoreStatics extends ModConfiguration {
 	public static int bossConquerResistance = 5;
 	public static int batteringRamBaseDamage = 5;
 	public static int nemesisRepChange = 1;
+	public static int vehicleUpgradePitchExtension = 3;
+	public static int vehicleUpgradePitchDown = 3;
+	public static int vehicleUpgradePitchUp = 3;
+	public static float vehicleUpgradeMaxSpeed = 0.25f;
+	public static float vehicleUpgradeAccuracy = 3.0f;
+	public static float vehicleUpgradeProjectileSpeed = 2.0f;
+	public static int vehicleUpgradeReloadSpeed = 10;
+	public static float vehicleArmorIronGeneralDefense = 7.0f;
+	public static float vehicleArmorIronFireDefense = 2.5f;
+	public static float vehicleArmorIronExplosiveDefense = 2.5f;
+	public static float vehicleArmorObsidianGeneralDefense = 2.5f;
+	public static float vehicleArmorObsidianFireDefense = 2.5f;
+	public static float vehicleArmorObsidianExplosiveDefense = 7.0f;
+	public static float vehicleArmorStoneGeneralDefense = 2.5f;
+	public static float vehicleArmorStoneFireDefense = 7.0f;
+	public static float vehicleArmorStoneExplosiveDefense = 2.5f;
 
 	public static float invisibilityFollowRangePenalty = 0.1f;
 	public static float sneakingFollowRangePenalty = 0.5f;
@@ -214,6 +230,24 @@ public class AWCoreStatics extends ModConfiguration {
 		spawnerConquerResistance = config.getInt("spawner_conquer_resistance", tweakOptions, 1, 0, 1000000 , "Controls how many points un-spawned enemies are worth when calculating whether players can claim a structure.");
 		eliteConquerResistance = config.getInt("elite_conquer_resistance", tweakOptions, 2, 0, 1000000 , "Controls how many points elite enemies are worth when calculating whether players can claim a structure.");
 		bossConquerResistance = config.getInt("boss_conquer_resistance", tweakOptions, 5, 0, 1000000 , "Controls how many points boss enemies are worth when calculating whether players can claim a structure.");
+
+        // Vehicle upgrades
+        vehicleUpgradePitchExtension = config.getInt("vehicle_upgrade_pitch_extension", tweakOptions,3, 0, 90, "Controls the number of extra degrees granted by the Pitch Extension upgrade.\n(Anything higher than ~23 can get silly with stacking upgrades.)");
+        vehicleUpgradePitchDown = config.getInt("vehicle_upgrade_pitch_down", tweakOptions,3, 0, 90, "Controls the number of degrees pitch is shifted down by the Turret Wedge upgrade.\n(Anything higher than ~23 can get silly with stacking upgrades.)");
+        vehicleUpgradePitchUp = config.getInt("vehicle_upgrade_pitch_up", tweakOptions,3, 0, 90, "Controls the number of degrees pitch is shifted up by the Turret Wedge upgrade.\n(Anything higher than ~23 can get silly with stacking upgrades.)");
+        vehicleUpgradeMaxSpeed = config.getFloat("vehicle_upgrade_max_speed", tweakOptions,0.25f, 0.0f, 100.0f, "Controls the maximum movement speed increase granted by the Iron Bearings upgrade.");
+        vehicleUpgradeAccuracy = config.getFloat("vehicle_upgrade_accuracy", tweakOptions,3.0f, 0.0f, 100.0f, "Controls the accuracy bonus granted by the Basic Trajectory Calculator upgrade.");
+        vehicleUpgradeReloadSpeed = config.getInt("vehicle_upgrade_reload_speed", tweakOptions,10, 0, 100, "Controls the reload speed bonus granted by the Spring-Fed Reloader upgrade.");
+        vehicleUpgradeProjectileSpeed = config.getFloat("vehicle_upgrade_projectile_speed", tweakOptions,2.0f, 0.0f, 100.0f, "Controls the missile speed bonus granted by the Power Upgrade.");
+        vehicleArmorIronGeneralDefense = config.getFloat("vehicle_armor_iron_general_defense", tweakOptions,7.0f, 0.0f, 100.0f, "Controls the general damage reduction percentage granted by the Iron Vehicle Armor.");
+        vehicleArmorIronFireDefense = config.getFloat("vehicle_armor_iron_fire_defense", tweakOptions,2.5f, 0.0f, 100.0f, "Controls the fire damage reduction percentage granted by the Iron Vehicle Armor.");
+        vehicleArmorIronExplosiveDefense = config.getFloat("vehicle_armor_iron_explosive_defense", tweakOptions,2.5f, 0.0f, 100.0f, "Controls the explosive damage reduction percentage granted by the Iron Vehicle Armor.");
+        vehicleArmorObsidianGeneralDefense = config.getFloat("vehicle_armor_obsidian_general_defense", tweakOptions,2.5f, 0.0f, 100.0f, "Controls the general damage reduction percentage granted by the Obsidian Vehicle Armor.");
+        vehicleArmorObsidianFireDefense = config.getFloat("vehicle_armor_obsidian_fire_defense", tweakOptions,2.5f, 0.0f, 100.0f, "Controls the fire damage reduction percentage granted by the Obsidian Vehicle Armor.");
+        vehicleArmorObsidianExplosiveDefense = config.getFloat("vehicle_armor_obsidian_explosive_defense", tweakOptions,7.0f, 0.0f, 100.0f, "Controls the explosive damage reduction percentage granted by the Obsidian Vehicle Armor.");
+        vehicleArmorStoneGeneralDefense = config.getFloat("vehicle_armor_stone_general_defense", tweakOptions,2.5f, 0.0f, 100.0f, "Controls the general damage reduction percentage granted by the Stone Vehicle Armor.");
+        vehicleArmorStoneFireDefense = config.getFloat("vehicle_armor_stone_fire_defense", tweakOptions,7.0f, 0.0f, 100.0f, "Controls the fire damage reduction percentage granted by the Stone Vehicle Armor.");
+        vehicleArmorStoneExplosiveDefense = config.getFloat("vehicle_armor_stone_explosive_defense", tweakOptions,2.5f, 0.0f, 100.0f, "Controls the explosive damage reduction percentage granted by the Stone Vehicle Armor.");
 
 		glowDuration = config.getInt("highlight_duration", tweakOptions, 6000, 0, 1000000 , "Controls how long enemies and spawners glow when they are preventing you from claiming a structure or opening a chest, in ticks.\n"+"There are 20 ticks per second, so the default 6000 = 5 minutes.");
 

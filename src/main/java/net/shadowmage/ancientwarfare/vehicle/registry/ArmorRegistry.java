@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.vehicle.armors.IVehicleArmor;
 import net.shadowmage.ancientwarfare.vehicle.armors.VehicleArmorIron;
 import net.shadowmage.ancientwarfare.vehicle.armors.VehicleArmorObsidian;
@@ -32,7 +33,7 @@ public class ArmorRegistry {
 	private static IVehicleArmor registerArmorType(IVehicleArmor armor, IForgeRegistry<Item> registry) {
 
 		armorInstances.put(armor.getRegistryName(), armor);
-		ItemArmor item = new ItemArmor(armor.getRegistryName());
+		ItemArmor item = new ItemArmor(armor.getRegistryName(), armor);
 		registry.register(item);
 		return armor;
 	}

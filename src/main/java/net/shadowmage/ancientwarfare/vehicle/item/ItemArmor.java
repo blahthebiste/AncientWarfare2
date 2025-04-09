@@ -10,27 +10,37 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.shadowmage.ancientwarfare.core.AncientWarfareCore;
 import net.shadowmage.ancientwarfare.core.util.ModelLoaderHelper;
+import net.shadowmage.ancientwarfare.vehicle.armors.IVehicleArmor;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemArmor extends ItemBaseVehicle {
-	private String tooltipName;
+	private String defenseTooltip;
+	private String fireTooltip;
+	private String explosiveTooltip;
+    private IVehicleArmor armor;
 
-	public ItemArmor(ResourceLocation registryName) {
+	public ItemArmor(ResourceLocation registryName, IVehicleArmor armor) {
 		super(registryName.getResourcePath());
-		tooltipName = "item." + registryName.getResourcePath() + ".tooltip";
+        this.armor = armor;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format(tooltipName));
+		tooltip.add(defenseTooltip);
+		tooltip.add(fireTooltip);
+		tooltip.add(explosiveTooltip);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerClient() {
 		ModelLoaderHelper.registerItem(this, (i, m) -> new ModelResourceLocation(new ResourceLocation(AncientWarfareCore.MOD_ID, "vehicle/armor"), "variant=" + getRegistryName().getResourcePath()));
+
+        defenseTooltip = I18n.format("item.armor_defense.tooltip", armor.getGeneralDamageReduction());
+        fireTooltip = I18n.format("item.armor_fire.tooltip", armor.getFireDamageReduction());
+        explosiveTooltip = I18n.format("item.armor_explosive.tooltip", armor.getExplosiveDamageReduction());
 	}
 }

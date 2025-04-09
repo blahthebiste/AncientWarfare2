@@ -21,6 +21,7 @@
 
 package net.shadowmage.ancientwarfare.vehicle.upgrades;
 
+import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.vehicle.entity.VehicleBase;
 
 public class VehicleUpgradeAim extends VehicleUpgradeBase {
@@ -31,8 +32,11 @@ public class VehicleUpgradeAim extends VehicleUpgradeBase {
 
 	@Override
 	public void applyVehicleEffects(VehicleBase vehicle) {
-		float adj = 1 - vehicle.currentAccuracy;
-		vehicle.currentAccuracy += adj * .5f;
+		// Why did this code just halve inaccuracy, while the item upgrade claims to add flat accuracy?
+        //float adj = 1 - vehicle.currentAccuracy;
+		//vehicle.currentAccuracy += adj * .5f;
+        // Either way, here's a version of the code that does what the item claims to do:
+		vehicle.currentAccuracy += AWCoreStatics.vehicleUpgradeAccuracy;
 		if (vehicle.currentAccuracy > 1) {
 			vehicle.currentAccuracy = 1;
 		}
