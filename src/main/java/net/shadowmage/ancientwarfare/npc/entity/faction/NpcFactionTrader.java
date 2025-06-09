@@ -18,7 +18,6 @@ import net.shadowmage.ancientwarfare.npc.ai.NpcAIWander;
 import net.shadowmage.ancientwarfare.npc.item.ItemCommandBaton;
 import net.shadowmage.ancientwarfare.npc.trade.FactionTradeList;
 
-import static net.minecraft.client.gui.GuiScreen.isShiftKeyDown;
 
 public class NpcFactionTrader extends NpcFaction {
 
@@ -77,7 +76,7 @@ public class NpcFactionTrader extends NpcFaction {
 	protected boolean processInteract(EntityPlayer player, EnumHand hand) {
 		boolean baton = !player.getHeldItem(hand).isEmpty() && player.getHeldItem(hand).getItem() instanceof ItemCommandBaton;
 		if (!baton && isEntityAlive()) {
-			if (!player.world.isRemote && trader == null && !isShiftKeyDown()) {
+			if (!player.world.isRemote && trader == null && !player.isSneaking()) {
 				startTrade(player);
 				NetworkHandler.INSTANCE.openGui(player, NetworkHandler.GUI_NPC_FACTION_TRADE_VIEW, getEntityId(), 0, 0);
 			}

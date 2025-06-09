@@ -96,9 +96,6 @@ public class TemplateLoader {
                     bannedFaction = true;
                     break;
                 }
-                else {
-                    AncientWarfareStructure.LOG.warn("Template data {} from {} is NOT part of a blacklisted faction {}", nameNoPath, file, factionName);
-                }
             }
 
 			String extension = FilenameUtils.getExtension(file.toString());
