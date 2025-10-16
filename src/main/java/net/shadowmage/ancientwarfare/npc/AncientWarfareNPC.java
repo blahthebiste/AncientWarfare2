@@ -42,6 +42,7 @@ import net.shadowmage.ancientwarfare.npc.container.ContainerTownHall;
 import net.shadowmage.ancientwarfare.npc.container.ContainerTradeOrder;
 import net.shadowmage.ancientwarfare.npc.container.ContainerUpkeepOrder;
 import net.shadowmage.ancientwarfare.npc.container.ContainerWorkOrder;
+import net.shadowmage.ancientwarfare.npc.raid.CommandStartRaid;
 import net.shadowmage.ancientwarfare.npc.registry.NPCDialogue;
 import net.shadowmage.ancientwarfare.npc.entity.faction.attributes.EntityVehicleProperty;
 import net.shadowmage.ancientwarfare.npc.faction.FactionTracker;
@@ -164,6 +165,7 @@ public class AncientWarfareNPC {
 		evt.registerServerCommand(new CommandFaction());
 		evt.registerServerCommand(new CommandTeams());
 		evt.registerServerCommand(new CommandDebugAI());
+        evt.registerServerCommand(new CommandStartRaid());
 	}
 
 	@SubscribeEvent

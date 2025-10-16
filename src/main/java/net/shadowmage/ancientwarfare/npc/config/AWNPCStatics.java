@@ -51,6 +51,10 @@ public class AWNPCStatics extends ModConfiguration {
 	private HashMap<String, Integer> foodValues;
 	private static int foodMultiplier = 350;
 
+    public static final boolean RAIDS_ENABLED = true;
+    public static final long RAID_INITIAL_DELAY = 24000L; // 1 in-game day
+    public static final int RAID_FORCE_SIZE = 6;
+
 	/* ********************************************FACTION STARTING VALUE SETTINGS************************************************ */
 	private Configuration factionConfig;
 	private static final String factionSettings = "01_faction_settings";
