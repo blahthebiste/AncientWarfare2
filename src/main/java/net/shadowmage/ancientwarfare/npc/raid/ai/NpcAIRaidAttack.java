@@ -39,12 +39,6 @@ public class NpcAIRaidAttack extends NpcAI<NpcFaction> {
         return true;
     }
 
-    @Override
-    public boolean shouldContinueExecuting() {
-        if (npc.isDead || npc.isAIDisabled()) return false;
-        // keep going while we have a raid target and haven't timed out
-        return ticks < MAX_TIMEOUT;
-    }
 
     @Override
     public void startExecuting() {

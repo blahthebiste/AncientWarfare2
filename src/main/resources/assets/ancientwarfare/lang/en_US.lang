@@ -1794,6 +1794,10 @@ item.tempered_iron.name=Tempered Iron
 item.minor_alloy.name=Minor Alloy
 item.major_alloy.name=Major Alloy
 
+item.ancientwarfare.trade_deal_order.name=Trade Deal Order
+item.ancientwarfare.trade_deal_order.tooltip=A parchment contract establishing recurring trade agreements between factions.
+
+
 
 # vehicle upgrades
 item.vehicle_upgrade_tooltip=Vehicle Upgrade
@@ -1913,4 +1917,21 @@ gui.ancientwarfarenpc.faction_name.wizardly=Wizards
 gui.ancientwarfarenpc.faction_name.xoltec=Xoltec
 gui.ancientwarfarenpc.faction_name.zamurai=Zamurai
 gui.ancientwarfarenpc.faction_name.zimba=Zimba
+
+guistrings.npc.reinforcements=Reinforcements
+guistrings.npc.reinforcements.title=Call Reinforcements
+guistrings.npc.reinf_cost=Cost: %s gold
+guistrings.npc.call=Call
+guistrings.npc.reinf_not_enough_gold=You need more gold to request reinforcements!
+
+guistrings.npc.options=Options
+guistrings.npc.death_list=View Death List
+guistrings.npc.reinforcements=Call Reinforcements
+gui.back=Back
+
+gui.trade_deal_order.title=Trade Deal Order
+gui.trade_deal_order.offered=Offered Goods
+gui.trade_deal_order.requested=Requested Goods
+
+
 

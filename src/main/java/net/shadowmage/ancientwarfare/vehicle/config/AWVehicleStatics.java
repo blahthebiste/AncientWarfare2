@@ -75,7 +75,7 @@ public class AWVehicleStatics extends ModConfiguration {
 		@Config.Name("owned_soldiers_use_ammo")
 		@Config.Comment("Makes PLAYER OWNED soldiers require ammo for firing vehicles\n" + ClientAndServerSideNote)
 		@Config.RequiresMcRestart
-		public boolean ownedSoldiersUseAmmo = true;
+		public boolean ownedSoldiersUseAmmo = false;
 
 		@Config.Name("vehicles_tear_up_grass")
 		@Config.Comment("Determines whether moving vehicles turn grass blocks into dirt under them by tearing grass\n" + ClientAndServerSideNote)

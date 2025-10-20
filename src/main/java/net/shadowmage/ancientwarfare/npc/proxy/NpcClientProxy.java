@@ -97,6 +97,7 @@ public class NpcClientProxy extends NpcCommonProxy {
 		NetworkHandler.registerGui(NetworkHandler.GUI_NPC_TRADE_ORDER, GuiTradeOrder.class);
 		NetworkHandler.registerGui(NetworkHandler.GUI_NPC_PLAYER_OWNED_TRADE, GuiNpcPlayerOwnedTrade.class);
 		NetworkHandler.registerGui(NetworkHandler.GUI_NPC_FACTION_BARD, GuiNpcFactionBard.class);
+        NetworkHandler.registerGui(NetworkHandler.GUI_TRADE_DEAL_ORDER, GuiTradeDealOrder.class);
 
 		/* optional dependency for EBWizardry spell casters
 		 * References to the EBWizardry specific class can only be here, to avoid class loading if the mod is no present.

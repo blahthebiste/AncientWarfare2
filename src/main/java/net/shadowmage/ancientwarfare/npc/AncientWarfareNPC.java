@@ -23,6 +23,7 @@ import net.shadowmage.ancientwarfare.core.network.PacketBase;
 import net.shadowmage.ancientwarfare.core.registry.RegistryLoader;
 import net.shadowmage.ancientwarfare.npc.command.CommandDebugAI;
 import net.shadowmage.ancientwarfare.npc.command.CommandFaction;
+import net.shadowmage.ancientwarfare.npc.command.CommandReinforce;
 import net.shadowmage.ancientwarfare.npc.command.CommandTeams;
 import net.shadowmage.ancientwarfare.npc.compat.EpicSiegeCompat;
 import net.shadowmage.ancientwarfare.npc.compat.TwilightForestCompat;
@@ -39,10 +40,12 @@ import net.shadowmage.ancientwarfare.npc.container.ContainerNpcInventory;
 import net.shadowmage.ancientwarfare.npc.container.ContainerNpcPlayerOwnedTrade;
 import net.shadowmage.ancientwarfare.npc.container.ContainerRoutingOrder;
 import net.shadowmage.ancientwarfare.npc.container.ContainerTownHall;
-import net.shadowmage.ancientwarfare.npc.container.ContainerTradeOrder;
+import net.shadowmage.ancientwarfare.npc.container.ContainerTradeDealOrder;
 import net.shadowmage.ancientwarfare.npc.container.ContainerUpkeepOrder;
 import net.shadowmage.ancientwarfare.npc.container.ContainerWorkOrder;
 import net.shadowmage.ancientwarfare.npc.raid.CommandStartRaid;
+import net.shadowmage.ancientwarfare.npc.raid.RaidManager;
+import net.shadowmage.ancientwarfare.npc.raid.reinforcements.ReinforcementReturnHandler;
 import net.shadowmage.ancientwarfare.npc.registry.NPCDialogue;
 import net.shadowmage.ancientwarfare.npc.entity.faction.attributes.EntityVehicleProperty;
 import net.shadowmage.ancientwarfare.npc.faction.FactionTracker;
@@ -60,6 +63,7 @@ import net.shadowmage.ancientwarfare.npc.registry.FactionTradeListRegistry;
 import net.shadowmage.ancientwarfare.npc.registry.NpcDefaultsRegistry;
 import net.shadowmage.ancientwarfare.npc.registry.TargetRegistry;
 import net.shadowmage.ancientwarfare.structure.network.PacketStructureEntry;
+import net.shadowmage.ancientwarfare.npc.raid.reinforcements.ReinforcementManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -91,8 +95,12 @@ public class AncientWarfareNPC {
 
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(net.shadowmage.ancientwarfare.npc.event.EventHandler.INSTANCE);
+        MinecraftForge.EVENT_BUS.register(new ReinforcementReturnHandler());
+        MinecraftForge.EVENT_BUS.register(new RaidManager());
+        MinecraftForge.EVENT_BUS.register(new TradeCaravanEventHandler());
 
-		NetworkHandler.registerContainer(NetworkHandler.GUI_NPC_INVENTORY, ContainerNpcInventory.class);
+
+        NetworkHandler.registerContainer(NetworkHandler.GUI_NPC_INVENTORY, ContainerNpcInventory.class);
 		NetworkHandler.registerContainer(NetworkHandler.GUI_NPC_WORK_ORDER, ContainerWorkOrder.class);
 		NetworkHandler.registerContainer(NetworkHandler.GUI_NPC_UPKEEP_ORDER, ContainerUpkeepOrder.class);
 		NetworkHandler.registerContainer(NetworkHandler.GUI_NPC_COMBAT_ORDER, ContainerCombatOrder.class);
@@ -105,8 +113,12 @@ public class AncientWarfareNPC {
 		NetworkHandler.registerContainer(NetworkHandler.GUI_NPC_TRADE_ORDER, ContainerTradeOrder.class);
 		NetworkHandler.registerContainer(NetworkHandler.GUI_NPC_PLAYER_OWNED_TRADE, ContainerNpcPlayerOwnedTrade.class);
 		NetworkHandler.registerContainer(NetworkHandler.GUI_NPC_FACTION_BARD, ContainerNpcFactionBard.class);
+        NetworkHandler.registerContainer(NetworkHandler.GUI_TRADE_DEAL_ORDER, ContainerTradeDealOrder.class);
 
-		/* optional dependency for EBWizardry spell casters
+
+
+
+        /* optional dependency for EBWizardry spell casters
 		 * References to the EBWizardry specific class can only be here, to avoid class loading if the mod is no present.
 		 * Any reference outside of the lambdas will crash the game if EBWizardry is not present */
 		Supplier<Runnable> registerWizardrySpellcaster = () -> () -> {
@@ -166,6 +178,8 @@ public class AncientWarfareNPC {
 		evt.registerServerCommand(new CommandTeams());
 		evt.registerServerCommand(new CommandDebugAI());
         evt.registerServerCommand(new CommandStartRaid());
+        evt.registerServerCommand(new CommandReinforce());
+        evt.registerServerCommand(new CommandSpawnTradeCaravan());
 	}
 
 	@SubscribeEvent

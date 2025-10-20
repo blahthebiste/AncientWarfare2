@@ -136,6 +136,8 @@ public final class NetworkHandler implements IGuiHandler {
 	public static final int GUI_STATUE = 61;
 	public static final int GUI_NPC_FACTION_SPELLCASTER_WIZARDRY = 62;
 
+    public static final int GUI_TRADE_DEAL_ORDER = 63;
+
 	private FMLEventChannel channel;
 
 	private HashMap<Integer, Class<? extends ContainerBase>> containerClasses = new HashMap<>();

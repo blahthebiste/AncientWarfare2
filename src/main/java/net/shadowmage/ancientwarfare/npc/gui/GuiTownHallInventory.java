@@ -20,23 +20,24 @@ public class GuiTownHallInventory extends GuiContainerBase<ContainerTownHall> {
 		this.xSize = 178;
 	}
 
-	@Override
-	public void initElements() {
-		this.getContainer().addSlots();
-		Button button = new Button(8, 8, 40, 12, "guistrings.npc.death_list") {
-			@Override
-			protected void onPressed() {
-				getContainer().removeSlots();
-				Minecraft.getMinecraft().displayGuiScreen(new GuiTownHallDeathList(GuiTownHallInventory.this));
-			}
-		};
-		addGuiElement(button);
+    @Override
+    public void initElements() {
+        this.getContainer().addSlots();
 
-		addGuiElement(new Label(110, 10, "guistrings.npc.town_range"));
-		input = new NumberInput(145, 8, 24, getContainer().tileEntity.getRange(), this);
-		input.setIntegerValue();
-		addGuiElement(input);
-	}
+        // Replace Death List with Options Button
+        Button optionsButton = new Button(8, 8, 60, 12, "Options") {
+            @Override
+            protected void onPressed() {
+                Minecraft.getMinecraft().displayGuiScreen(new GuiTownHallOptions(GuiTownHallInventory.this));
+            }
+        };
+        addGuiElement(optionsButton);
+
+        addGuiElement(new Label(110, 10, "guistrings.npc.town_range"));
+        input = new NumberInput(145, 8, 24, getContainer().tileEntity.getRange(), this);
+        input.setIntegerValue();
+        addGuiElement(input);
+    }
 
 	@Override
 	public void setupElements() {

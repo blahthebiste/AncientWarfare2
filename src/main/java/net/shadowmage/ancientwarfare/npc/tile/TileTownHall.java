@@ -11,6 +11,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.capabilities.Capability;
@@ -26,11 +27,15 @@ import net.shadowmage.ancientwarfare.npc.config.AWNPCStatics;
 import net.shadowmage.ancientwarfare.npc.container.ContainerTownHall;
 import net.shadowmage.ancientwarfare.npc.entity.NpcPlayerOwned;
 import net.shadowmage.ancientwarfare.npc.item.ItemNpcSpawner;
+import net.minecraft.util.text.TextComponentString;
+import net.shadowmage.ancientwarfare.npc.raid.reinforcements.ReinforcementManager;
+import net.shadowmage.ancientwarfare.npc.raid.reinforcements.ReinforcementUtils;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class TileTownHall extends TileOwned implements IInteractableTile, ITickable, IBlockBreakHandler {
 
@@ -42,7 +47,15 @@ public class TileTownHall extends TileOwned implements IInteractableTile, ITicka
 	private boolean isActive = true;
 	private boolean isNeglected = false;
 
-	private String oldOwner = null;
+    private boolean reinforcementRequestActive = false;
+    private int reinforcementTimer = 0;
+    private boolean reinforcementSuccess = false;
+    private UUID messengerUUID = null;
+    private BlockPos messengerStartPos = null;
+    private final int REINFORCEMENT_DELAY_TICKS = 100; // ~5 seconds
+
+
+    private String oldOwner = null;
 
 	private final List<NpcDeathEntry> deathNotices = new ArrayList<>();
 
@@ -61,19 +74,51 @@ public class TileTownHall extends TileOwned implements IInteractableTile, ITicka
 		super();
 	}
 
-	@Override
-	public void update() {
-		if (world == null || world.isRemote)
-			return;
+    @Override
+    public void update() {
+        // ✅ Safety checks
+        if (world == null || world.isRemote)
+            return;
 
-		updateDelayTicks--;
-		if (updateDelayTicks <= 0 && isActive) {
-			broadcast();
-			updateDelayTicks = AWNPCStatics.townUpdateFreq;
-		}
-	}
+        // Decrement delay counter safely
+        if (updateDelayTicks > 0) {
+            updateDelayTicks--;
+        }
 
-	public void addViewer(ContainerTownHall viewer) {
+        // 🔹 Periodic Town Hall broadcast (every townUpdateFreq ticks)
+        if (updateDelayTicks <= 0 && isActive) {
+            broadcast();
+            updateDelayTicks = AWNPCStatics.townUpdateFreq;
+        }
+
+        // 🔹 Handle reinforcement logic when alarm is active
+        if (alarmActive && isActive) {
+            // Only every 10 seconds (200 ticks)
+            if (world.getWorldTime() % 200 == 0) {
+                EntityPlayer owner = world.getPlayerEntityByUUID(getOwner().getUUID());
+                if (owner != null) {
+                    // 5% random chance each check
+                    if (world.rand.nextFloat() < 0.05F) {
+                        List<String> friendly = net.shadowmage.ancientwarfare.npc.raid.reinforcements.ReinforcementUtils.getAllFriendlyFactions(owner);
+                        if (!friendly.isEmpty()) {
+                            String chosen = friendly.get(world.rand.nextInt(friendly.size()));
+                            net.shadowmage.ancientwarfare.npc.raid.reinforcements.ReinforcementManager.requestReinforcements(world, owner, this, chosen);
+                            owner.sendMessage(new net.minecraft.util.text.TextComponentString(
+                                    "§eYour Town Hall has called reinforcements from §a" + chosen + "!"
+                            ));
+                        } else {
+                            owner.sendMessage(new net.minecraft.util.text.TextComponentString(
+                                    "§cNo friendly factions were available to assist."
+                            ));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    public void addViewer(ContainerTownHall viewer) {
 		if (!viewers.contains(viewer)) {
 			viewers.add(viewer);
 		}
@@ -114,6 +159,8 @@ public class TileTownHall extends TileOwned implements IInteractableTile, ITicka
 		deathNotices.add(entry);
 		informViewers();
 	}
+
+
 
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
@@ -208,15 +255,31 @@ public class TileTownHall extends TileOwned implements IInteractableTile, ITicka
 		}
 	}
 
-	@Override
-	public boolean onBlockClicked(EntityPlayer player, @Nullable EnumHand hand) {
-		if (!player.world.isRemote && isOwner(player)) {
-			NetworkHandler.INSTANCE.openGui(player, NetworkHandler.GUI_NPC_TOWN_HALL, pos);
-		}
-		return true;
-	}
+    @Override
+    public boolean onBlockClicked(EntityPlayer player, @Nullable EnumHand hand) {
+        if (!player.world.isRemote && isOwner(player)) {
+            // 🔹 Normal behavior: open GUI
+            if (!player.isSneaking()) {
+                NetworkHandler.INSTANCE.openGui(player, NetworkHandler.GUI_NPC_TOWN_HALL, pos);
+                return true;
+            }
 
-	public List<NpcDeathEntry> getDeathList() {
+            // 🔹 Sneak-click = attempt to call reinforcements
+            List<String> friendlyFactions = ReinforcementUtils.getAllFriendlyFactions(player);
+            if (friendlyFactions.isEmpty()) {
+                player.sendMessage(new TextComponentString("§cNo friendly factions are willing to help."));
+                return true;
+            }
+
+            String chosenFaction = friendlyFactions.get(world.rand.nextInt(friendlyFactions.size()));
+            ReinforcementManager.requestReinforcements(world, player, this, chosenFaction);
+            return true;
+        }
+        return false;
+    }
+
+
+    public List<NpcDeathEntry> getDeathList() {
 		return deathNotices;
 	}
 

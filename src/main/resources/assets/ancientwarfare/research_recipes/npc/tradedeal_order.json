@@ -1,0 +1,23 @@
+{
+  "type": "ancientwarfare:research_recipe",
+  "research": "trade",
+  "pattern": [
+    "D",
+    "P",
+    "W"
+  ],
+  "key": {
+    "P": {
+      "item": "#PAPER"
+    },
+    "D": {
+      "item": "#DYEYELLOW"
+    },
+    "W": {
+      "item": "#PLANKWOOD"
+    }
+  },
+  "result": {
+    "item": "ancientwarfarenpc:trade_order"
+  }
+}

@@ -35,7 +35,7 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.entity.living.PotionEvent;
 import net.shadowmage.ancientwarfare.core.config.AWCoreStatics;
 import net.shadowmage.ancientwarfare.core.util.NBTHelper;
-import net.shadowmage.ancientwarfare.npc.ai.AIHelper;
+import net.shadowmage.ancientwarfare.npc.ai.*;
 import net.shadowmage.ancientwarfare.npc.ai.faction.NpcAIFactionFleeSun;
 import net.shadowmage.ancientwarfare.npc.ai.faction.NpcAIFactionRestrictSun;
 import net.shadowmage.ancientwarfare.npc.registry.NPCDialogue;
@@ -125,9 +125,14 @@ public abstract class NpcFaction extends NpcBase {
 	}
 
 	private void addAI() {
+
 		tasks.addTask(2, new NpcAIFactionRestrictSun(this));
 		tasks.addTask(3, new NpcAIFactionFleeSun(this, 1.0D));
-	}
+
+        tasks.addTask(4, new NpcAIWander(this, 0.8D));              // wander around naturally
+        tasks.addTask(7, new NpcAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        tasks.addTask(2, new NpcAIDoor(this, true));// look at nearby players
+    }
 
 	public void setAdditionalAttribute(IAdditionalAttribute<?> attribute, Object value) {
 		additionalAttributes.put(attribute, value);

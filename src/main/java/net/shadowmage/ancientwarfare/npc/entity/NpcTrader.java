@@ -27,12 +27,14 @@ import net.shadowmage.ancientwarfare.npc.item.ItemCommandBaton;
 import net.shadowmage.ancientwarfare.npc.item.ItemTradeOrder;
 import net.shadowmage.ancientwarfare.npc.orders.TradeOrder;
 import net.shadowmage.ancientwarfare.npc.trade.POTradeList;
+import net.shadowmage.ancientwarfare.npc.ai.NpcAITradeDealRunner;
 
 public class NpcTrader extends NpcPlayerOwned {
 
 	private EntityPlayer trader;//used by guis/containers to prevent further interaction
 	private POTradeList tradeList = new POTradeList();
 	private NpcAIPlayerOwnedTrader tradeAI;
+    private NpcAITradeDealRunner tradeDealAI;
 
 	public NpcTrader(World par1World) {
 		super(par1World);
@@ -54,7 +56,9 @@ public class NpcTrader extends NpcPlayerOwned {
 		this.tasks.addTask(101, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
 		this.tasks.addTask(102, new NpcAIWander(this));
 		this.tasks.addTask(103, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
-	}
+        this.tasks.addTask(8, tradeDealAI = new NpcAITradeDealRunner(this));
+
+    }
 
 	@Override
 	public boolean isValidOrdersStack(ItemStack stack) {
@@ -79,6 +83,10 @@ public class NpcTrader extends NpcPlayerOwned {
 	public String getNpcType() {
 		return "trader";
 	}
+
+    public NpcAITradeDealRunner getTradeDealAI() {
+        return tradeDealAI;
+    }
 
 	@Override
 	protected boolean processInteract(EntityPlayer player, EnumHand hand) {
@@ -137,16 +145,21 @@ public class NpcTrader extends NpcPlayerOwned {
 		return tradeList;
 	}
 
-	@Override
-	public void writeEntityToNBT(NBTTagCompound tag) {
-		super.writeEntityToNBT(tag);
-		tag.setTag("tradeAI", tradeAI.writeToNBT(new NBTTagCompound()));
-	}
+    @Override
+    public void writeEntityToNBT(NBTTagCompound tag) {
+        super.writeEntityToNBT(tag);
+        if (tradeAI != null)
+            tag.setTag("tradeAI", tradeAI.writeToNBT(new NBTTagCompound()));
+        if (tradeDealAI != null)
+            tag.setTag("tradeDealAI", new NBTTagCompound()); // Placeholder for future persistence
+    }
 
-	@Override
-	public void readEntityFromNBT(NBTTagCompound tag) {
-		super.readEntityFromNBT(tag);
-		tradeAI.readFromNBT(tag.getCompoundTag("tradeAI"));
-	}
+    @Override
+    public void readEntityFromNBT(NBTTagCompound tag) {
+        super.readEntityFromNBT(tag);
+        if (tag.hasKey("tradeAI"))
+            tradeAI.readFromNBT(tag.getCompoundTag("tradeAI"));
+        // tradeDealAI will be reconstructed automatically on load//
+    }
 
 }

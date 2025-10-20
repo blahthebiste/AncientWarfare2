@@ -1,5 +1,6 @@
 package net.shadowmage.ancientwarfare.npc.raid;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.shadowmage.ancientwarfare.npc.registry.FactionDefinition;
 import net.shadowmage.ancientwarfare.npc.registry.FactionRegistry;
 import net.shadowmage.ancientwarfare.npc.tile.TileTownHall;
@@ -49,20 +50,17 @@ public class RaidUtils {
     public static String getRandomHostileFaction() {
         Set<String> factions = FactionRegistry.getFactionNames();
         if (factions.isEmpty()) {
-            return "Bandits";
+            return "Bandits"; // fallback
         }
 
         List<String> hostileFactions = new ArrayList<>();
 
         for (String name : factions) {
             FactionDefinition def = FactionRegistry.getFaction(name);
-            if (def == null) continue;
+            if (def == null || def.getStandingSettings() == null) continue;
 
-            // Check direct hostility or negative player standing
-            boolean hostileToPlayer =
-                    def.isHostileTowards("player") ||
-                    (def.getStandingSettings() != null &&
-                     def.getStandingSettings().getPlayerDefaultStanding() < 0);
+            int standing = def.getStandingSettings().getPlayerDefaultStanding();
+            boolean hostileToPlayer = def.isHostileTowards("player") || standing < 0;
 
             if (hostileToPlayer) {
                 hostileFactions.add(name);
@@ -70,11 +68,13 @@ public class RaidUtils {
         }
 
         if (hostileFactions.isEmpty()) {
-            return "Bandits";
+            return "Bandits"; // fallback default if no hostile faction found
         }
 
         return hostileFactions.get(RAND.nextInt(hostileFactions.size()));
     }
+
+
 
     /** Wrapper: returns the BlockPos of the nearest Town Hall or null if none found */
     public static BlockPos getTownHallPositionNear(World world, BlockPos pos) {
