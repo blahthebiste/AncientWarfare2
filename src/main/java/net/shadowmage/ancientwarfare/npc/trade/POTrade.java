@@ -26,7 +26,7 @@ public class POTrade extends Trade {
 	private void updateCompactInput() {
 		NonNullList<ItemStack> list = NonNullList.create();
 		for (ItemStack temp : input) {
-			if (!temp.isEmpty()) {
+			if (temp != null && !temp.isEmpty()) {
 				list.add(temp.copy());
 			}
 		}
@@ -36,7 +36,7 @@ public class POTrade extends Trade {
 	private void updateCompactOutput() {
 		NonNullList<ItemStack> list = NonNullList.create();
 		for (ItemStack temp : output) {
-			if (!temp.isEmpty()) {
+			if (temp != null && !temp.isEmpty()) {
 				list.add(temp.copy());
 			}
 		}

@@ -1,6 +1,5 @@
 package net.shadowmage.ancientwarfare.npc.command;
 
-
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -9,8 +8,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.util.text.TextComponentString;
 import net.shadowmage.ancientwarfare.npc.trade.TradeCaravanData;
-import net.shadowmage.ancientwarfare.npc.tile.TileTownHall;
-import net.shadowmage.ancientwarfare.npc.trade.FactionStorageManager;
+import net.shadowmage.ancientwarfare.npc.trade.TradeCaravanManager;
+import net.shadowmage.ancientwarfare.npc.util.TownHallLocator;
 
 import java.util.Random;
 
@@ -38,9 +37,10 @@ public class CommandSpawnTradeCaravan extends CommandBase {
         }
 
         String faction = args[0];
-        BlockPos townHallPos = FactionStorageManager.getFactionBase(world, faction);
+        BlockPos townHallPos = TownHallLocator.findNearestTownHall(world, player.getPosition(), 256);
+
         if (townHallPos == null) {
-            player.sendMessage(new TextComponentString("§cNo registered Town Hall found for faction " + faction));
+            player.sendMessage(new TextComponentString("§cNo nearby Town Hall found for faction §4" + faction));
             return;
         }
 
@@ -54,19 +54,18 @@ public class CommandSpawnTradeCaravan extends CommandBase {
         // Spawn the caravan
         TradeCaravanData caravan = new TradeCaravanData(faction, spawnPos, townHallPos);
         caravan.spawnCaravan(world);
-        player.sendMessage(new TextComponentString("§eTrade caravan from §a" + faction + " §espawned " + distance + " blocks away."));
+        TradeCaravanManager.registerCaravan(world, caravan);
 
-        // Schedule stay + departure (1 in-game day = 24000 ticks)
-        world.scheduleUpdate(spawnPos, world.getBlockState(spawnPos).getBlock(), 24000);
+        player.sendMessage(new TextComponentString("§eTrade caravan from §a" + faction + "§e spawned ~" + distance + " blocks from the town hall."));
+
+        // Schedule cleanup after ~2 in-game days (48000 ticks)
         server.addScheduledTask(() -> {
-            caravan.cleanup(world);
-            player.sendMessage(new TextComponentString("§eThe caravan from §a" + faction + " §ehas departed."));
+            server.getCommandManager().executeCommand(server, String.format("schedule function ancientwarfare:cleanup_caravan_%s %d", faction, 48000));
         });
     }
 
     @Override
     public int getRequiredPermissionLevel() {
-        return 2; // admin-level command
+        return 2; // Admin level
     }
 }
-

@@ -40,7 +40,6 @@ import net.shadowmage.ancientwarfare.npc.container.ContainerNpcInventory;
 import net.shadowmage.ancientwarfare.npc.container.ContainerNpcPlayerOwnedTrade;
 import net.shadowmage.ancientwarfare.npc.container.ContainerRoutingOrder;
 import net.shadowmage.ancientwarfare.npc.container.ContainerTownHall;
-import net.shadowmage.ancientwarfare.npc.container.ContainerTradeDealOrder;
 import net.shadowmage.ancientwarfare.npc.container.ContainerUpkeepOrder;
 import net.shadowmage.ancientwarfare.npc.container.ContainerWorkOrder;
 import net.shadowmage.ancientwarfare.npc.raid.CommandStartRaid;
@@ -95,6 +94,7 @@ public class AncientWarfareNPC {
 
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(net.shadowmage.ancientwarfare.npc.event.EventHandler.INSTANCE);
+        MinecraftForge.EVENT_BUS.register(new NPCTickManager());
         MinecraftForge.EVENT_BUS.register(new ReinforcementReturnHandler());
         MinecraftForge.EVENT_BUS.register(new RaidManager());
         MinecraftForge.EVENT_BUS.register(new TradeCaravanEventHandler());
