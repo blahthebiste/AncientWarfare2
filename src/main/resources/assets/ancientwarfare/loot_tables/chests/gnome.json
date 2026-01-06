@@ -128,6 +128,7 @@
             "entries": [
                 {
                     "type": "item",
+                    "entryName": "water_bottle",
                     "name": "minecraft:potion",
                     "weight": 5,
                     "functions": [
@@ -139,6 +140,7 @@
                 },
                 {
                     "type": "item",
+                    "entryName": "thick_potion",
                     "name": "minecraft:potion",
                     "weight": 3,
                     "functions": [
@@ -150,6 +152,7 @@
                 },
                 {
                     "type": "item",
+                    "entryName": "awkward_potion",
                     "name": "minecraft:potion",
                     "weight": 3,
                     "functions": [
@@ -161,6 +164,7 @@
                 },
                 {
                     "type": "item",
+                    "entryName": "mundane_potion",
                     "name": "minecraft:potion",
                     "weight": 2,
                     "functions": [
@@ -191,6 +195,7 @@
                 },
                 {
                     "type": "item",
+                    "entryName": "gnome_juice",
                     "name": "minecraft:potion",
                     "weight": 1,
                     "quality": 2,
