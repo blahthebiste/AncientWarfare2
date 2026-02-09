@@ -82,7 +82,7 @@ public class NpcAIFleeHostiles extends NpcAI<NpcPlayerOwned> {
 		ticker = 0;
 
 		boolean flee = false;
-		findNearbyRelevantEntities();
+		this.findNearbyRelevantEntities();
 		if (!npc.nearbyHostiles.isEmpty()) {
 			Entity nearestHostile = npc.nearbyHostiles.iterator().next();
 			if (npc.getTownHallPosition().isPresent() || npc.hasHome()) {
@@ -103,13 +103,12 @@ public class NpcAIFleeHostiles extends NpcAI<NpcPlayerOwned> {
 		return flee;
 	}
 
-	private void findNearbyRelevantEntities() {
+	private boolean findNearbyRelevantEntities() {
 		npc.nearbyHostiles.clear();
 		nearbySoldiers.clear();
-		List<EntityLiving> nearbyHostilesOrFriendlySoldiers = npc.world.getEntitiesWithinAABB(EntityLiving.class,
-				npc.getEntityBoundingBox().expand(DISTANCE_FROM_ENTITY, 3.0D, DISTANCE_FROM_ENTITY), hostileOrFriendlyCombatNpcSelector);
+		List<EntityLiving> nearbyHostilesOrFriendlySoldiers = npc.world.getEntitiesWithinAABB(EntityLiving.class, npc.getEntityBoundingBox().expand(DISTANCE_FROM_ENTITY, 3.0D, DISTANCE_FROM_ENTITY), hostileOrFriendlyCombatNpcSelector);
 		if (nearbyHostilesOrFriendlySoldiers.isEmpty()) {
-			return;
+			return false;
 		}
 
 		nearbyHostilesOrFriendlySoldiers.sort(sorter);
@@ -122,13 +121,14 @@ public class NpcAIFleeHostiles extends NpcAI<NpcPlayerOwned> {
 				} else if (entity instanceof IEntityOwnable && ((IEntityOwnable) entity).getOwner() != null) {
 					Entity owner = ((IEntityOwnable) entity).getOwner();
 					if (owner != null && isFriendly(entity.world, owner.getUniqueID(), owner.getName())) {
-						return;
+						return false;
 					}
 				} else {
 					npc.nearbyHostiles.add(entity);
 				}
 			}
 		}
+		return true;
 	}
 	// check if  the owner is same or owned by a team member or owned by a friend
 
