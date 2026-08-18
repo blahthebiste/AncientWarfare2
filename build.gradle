@@ -1,5 +1,3 @@
-import org.apache.tools.ant.filters.ReplaceTokens
-
 buildscript {
     repositories {
         jcenter()
@@ -23,7 +21,6 @@ buildscript {
 plugins {
     id "org.sonarqube" version "2.6.2"
     id "maven-publish"
-    id "com.wynprice.cursemaven" version "2.1.1"
     id "de.fuerstenau.buildconfig" version "1.1.8"
 }
 
@@ -32,13 +29,10 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'idea'
 
 repositories {
-    maven {
-        name = "CoFH Maven"
-        url = "http://maven.covers1624.net"
-    }
+
     maven {
         name "Curse Maven"
-        url = "https://cursemaven.com"
+        url = "https://www.cursemaven.com"
     }
     maven { 
         url "http://dvs1.progwml6.com/files/maven" 
@@ -65,11 +59,12 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    deobfCompile "cofh:RedstoneFlux:${rf_version}:universal"
-    deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
-    deobfCompile "codechicken:CodeChickenLib:${ccl_version}:deobf"
-    deobfCompile "curse.maven:FTBLib-237167:2832410"
-    compile "curse.maven:ElectroblobsWizardry-265642:4284076"
+    deobfCompile "curse.maven:RedstoneFlux-270789:2920436"
+    deobfCompile "curse.maven:jei-238222:8623356"
+    deobfCompile "curse.maven:CodeChickenLib-242818:2779848"
+    deobfCompile "curse.maven:FTBLib-237167:2985811"
+
+    compile "curse.maven:ElectroblobsWizardry-265642:8320066"
     compile "curse.maven:infinitylib-251396:3317119"
     compile "curse.maven:agricraft-225635:3317747"
 }
